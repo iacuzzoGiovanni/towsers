@@ -1,0 +1,27 @@
+// main.scss
+@import 'partials/variables';
+@import 'partials/mixins';
+@import 'partials/loading-view';
+@import 'partials/nav';
+@import 'partials/home';
+@import 'partials/contact';
+
+body{
+    background-color: transparent !important;
+}
+
+.page{
+    padding-top: 122px;
+    
+    @include respond-to(xs){
+        padding-top: 44px;
+    }
+    
+    @include respond-to(sm){
+        padding-top: 44px;
+    }
+    
+    @include respond-to(md){
+        padding-top: 44px;
+    }
+}

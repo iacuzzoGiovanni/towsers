@@ -1,0 +1,36 @@
+// _home.scss
+@import 'variables';
+@import 'mixins';
+
+.centered-img{
+    position: absolute;
+    top: calc(50% - 110px);
+    left: calc(50% - 250px);
+    width: 500px;
+    height: 220px;
+    
+    @include respond-to(xs){
+        top: calc(50% - 55px);
+        left: calc(50% - 125px);
+        width: 250px;
+        height: 110px;
+        
+        img{
+            width: 250px;
+            height: 110px; 
+        }
+    }
+    
+    @include respond-to(sm){
+        top: calc(50% - 55px);
+        left: calc(50% - 125px);
+        width: 250px;
+        height: 110px;
+        
+        img{
+            width: 250px;
+            height: 110px; 
+        }
+    }
+    
+}

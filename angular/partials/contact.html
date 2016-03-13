@@ -1,0 +1,97 @@
+<div class="contact page">
+   
+    <style>
+        html{
+            background: url({{myDirectory}}assets/bg/bgM-2.jpg) no-repeat center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+    
+    <div custom-nav menu-item-active="contact"></div>
+    
+    <div class="container">
+      
+      <section class="emails">
+       
+            <div class="row">
+
+                <div class="top-title col-sm-12">
+                    <h2>Contact information</h2>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <h3 class="hidden-xs">Management</h3>
+                    <a href="mailto:{{data.page.custom_fields.management[0]}}">{{data.page.custom_fields.management[0]}}</a>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <h3 class="hidden-xs">Booking</h3>
+                    <a href="mailto:{{data.page.custom_fields.bookings[0]}}">{{data.page.custom_fields.bookings[0]}}</a>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <h3 class="hidden-xs">General information</h3>
+                    <a href="mailto:{{data.page.custom_fields.general[0]}}">{{data.page.custom_fields.general[0]}}</a>
+                </div>
+
+            </div>
+            
+        </section>
+        
+        <section class="socials">
+            
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <h3>Social</h3>
+                </div>
+                
+            </div>
+               
+            <div class="row">
+                
+                <div class="col-sm-12">
+                   
+                    <ul>
+                       
+                        <li ng-if="data.page.custom_fields.facebook[0]" class="pull-left">
+                            <a href="{{data.page.custom_fields.facebook[0]}}" class="facebook" target="_blank">        {{data.page.custom_fields.facebook[0]}}
+                            </a>
+                        </li>
+
+                        <li ng-if="data.page.custom_fields.soundcloud[0]" class="pull-left">
+                            <a href="{{data.page.custom_fields.soundcloud[0]}}" class="soundcloud" target="_blank">{{data.page.custom_fields.soundcloud[0]}}
+                            </a>
+                        </li>
+
+                        <li ng-if="data.page.custom_fields.twitter[0]" class="pull-left">
+                            <a href="{{data.page.custom_fields.twitter[0]}}" class="twitter" target="_blank">{{data.page.custom_fields.twitter[0]}}
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+                
+            </div>
+            
+        </section>
+        
+    </div>
+    
+</div>

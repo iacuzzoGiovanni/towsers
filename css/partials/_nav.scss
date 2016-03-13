@@ -1,0 +1,211 @@
+// _nav.scss
+@import 'variables';
+@import 'mixins';
+
+.navbar-desktop{
+    height: 66px;
+    background-color: #fff !important;
+    z-index: 999999;
+    
+    h1{
+        a{
+            display: block;
+            position: relative;
+            bottom: 2px;
+            width: 41px;
+            height: 32px;
+            text-indent: -9999px;
+            margin-left: 40px;
+            background: url(../assets/logo@2x.png) no-repeat center;
+            background-size: 41px 32px;
+        }
+    }
+    
+    ul{
+        list-style: none;
+    }
+    
+    li{
+        position: relative;
+        padding: 0 20px;
+        height: 66px;
+        line-height: 66px;
+        &:last-child{
+            margin-right: 20px;
+        }
+        
+        a{
+            text-transform: uppercase;
+            font-size: 12px;
+            color: $red;
+            
+            &.active{
+                color: #ccc;
+                pointer-events: none;
+                
+                &:hover{
+                    color: #ccc;
+                    &:before{
+                        display: none;
+                    }
+                }
+            }
+            
+            &:before{
+                content: "";
+                position: absolute;
+                height: 0px;
+                width: 100%;
+                left: 0;
+                top: 0;
+                background-color: #fff;
+                @include transition();
+            }
+            
+            &:hover{
+                text-decoration: none;
+                color: $red-active;
+                
+                &:before{
+                    background-color: $red;
+                    height: 3px;
+                }
+                
+            }
+        }
+    }
+}
+
+.navbar-mobile{
+    height: 44px;
+    min-height: 44px;
+    background-color: #fff !important;
+    z-index: 999999;
+    
+    h1{
+        margin: 0;
+        height: 44px;
+        
+        a{
+            display: inline-block;
+            position: relative;
+            top: 6px;
+            width: 41px;
+            height: 32px;
+            text-indent: -9999px;
+            background: url(../assets/logo@2x.png) no-repeat center;
+            background-size: 41px 32px;
+        }
+    }
+    
+    button{
+        height: 44px;
+        background-color: #fff;
+        border: none;
+        color: $red;
+        
+        i{
+            font-size: 1.6em;
+            color: #ddd;
+            padding-left: 5px;
+            position: relative;
+            top: 2px;
+        }
+        
+        span{
+            text-transform: uppercase;
+            font-size: 10px;
+            margin-left: 5px;
+            line-height: 26px;
+        }
+    }
+}
+
+.modal-dialog{
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    
+    *{
+        -webkit-border-radius: 0 0 0 0;
+        border-radius: 0 0 0 0; 
+        border: none;
+    }
+    
+    h1{
+        margin: 0;
+        height: 44px;
+        
+        a{
+            display: inline-block;
+            position: relative;
+            top: 6px;
+            width: 41px;
+            height: 32px;
+            text-indent: -9999px;
+            background: url(../assets/logo-white@2x.png) no-repeat center;
+            background-size: 41px 32px;
+        }
+    }
+    
+    .modal-content{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        
+        .row{
+            
+            &:first-child{
+                background-color: #000;
+            }
+
+        }
+    }
+    
+    button{
+        height: 44px;
+        background-color: #000;
+        border: none;
+        color: #ddd;
+        
+        i{
+            font-size: 2.5em;
+            color: $red;
+            position: relative;
+            bottom: 9px;
+            margin-left: 5px;
+        }
+        
+        span{
+            text-transform: uppercase;
+            font-size: 10px;
+            margin-left: 5px;
+            line-height: 41px;
+        }
+    }
+    
+    ul{
+        list-style: none;
+        padding: 0;
+        
+        a{
+            display: block;
+            height: 88px;
+            line-height: 88px;
+            border-bottom: 1px solid #f8f8f8;
+            padding-left: 20px;
+            text-transform: uppercase;
+            font-size: 2em;
+            font-weight: 100;
+            color: $red;
+            
+            &:hover, &:active{
+                text-decoration: none;
+                background-color: $red;
+                border: none;
+                color: #fff;
+            }
+        }
+    }
+    
+}

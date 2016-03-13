@@ -1,0 +1,24 @@
+// _mixins.scss
+
+@mixin transition(){
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+
+@mixin respond-to($media) {
+  @if $media == xs {
+    @media(max-width:767px){@content;}
+  }
+  @else if $media == sm {
+    @media(min-width:768px) and (max-width:991px){@content;}
+  }
+  @else if $media == md {
+    @media(min-width:992px) and (max-width:1199px){@content;}
+  }
+  @else if $media == lg {
+    @media(min-width:1200px){@content;}
+  }
+}

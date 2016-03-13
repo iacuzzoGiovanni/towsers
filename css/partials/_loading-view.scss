@@ -1,0 +1,74 @@
+.loading-view{
+    position: absolute;
+    z-index: 100000;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    
+    .sk-rect{
+        background-color: #fff !important;
+    }
+    
+    &.lv-hide{
+        pointer-events: none;
+        opacity: .1;
+        -webkit-transition: all .5s ease-in-out;
+        -moz-transition: all .5s ease-in-out;
+        -ms-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+        -webkit-transform: translate3d(0px, -100%, 0px);
+        -moz-transform: translate3d(0px, -100%, 0px);
+        -o-transform: translate3d(0px, -100%, 0px);
+        -ms-transform: translate3d(0px, -100%, 0px);
+        transform: translate3d(0px, -100%, 0px);
+    }
+    
+    &.lv-show{
+        pointer-events: all;
+        opacity: 1;
+    }
+    
+    span{
+        color: #aaa;
+        font-size: 12px;
+        font-weight: 200;
+    }
+    
+    .wrap{
+        position: absolute;
+        top: calc(50% - 42px);
+        left: calc(50% - 32px);
+    }
+    
+    img{
+        display: inline-block;
+        width: 64px;
+        height: 64px;
+        -webkit-animation: spin 2.5s ease-in-out infinite;
+        -moz-animation: spin 2.5s ease-in-out infinite;
+        animation: spin 2.5s ease-in-out infinite;
+    }
+    
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    } 
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    } 
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg); 
+    } 
+}
