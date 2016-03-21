@@ -22,7 +22,7 @@ app.directive('customNavLink', function($timeout, $location, $rootScope) {
       return scope.goTo = function($event) {
         $event.preventDefault();
         $rootScope.showBanner = true;
-        return $timeout((function() {
+        $timeout((function() {
           $location.path($event.target.getAttribute('href'));
         }), 1000);
       };

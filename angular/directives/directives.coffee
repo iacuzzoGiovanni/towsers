@@ -12,13 +12,15 @@ app.directive 'customNavLink', ($timeout, $location, $rootScope) ->
         scope: active: '@', page: '@', link: '@'
         replace: true
         link: (scope, elem) ->
+          
           scope.goTo = ($event) ->
             $event.preventDefault()
             $rootScope.showBanner = true
             $timeout (->
-                $location.path $event.target.getAttribute('href')
-                return
+              $location.path $event.target.getAttribute('href')
+              return
             ), 1000
+            return
     }
 
 app.directive 'loadingView', ->
