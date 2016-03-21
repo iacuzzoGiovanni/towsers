@@ -5,7 +5,6 @@ app.controller 'Contact', [
   '$rootScope'
   ($scope, Contact, $timeout, $rootScope) ->
     $scope.myDirectory = myDirectory.directory
-    $rootScope.showBanner = true
     
     Contact.get().then (d) ->
       $scope.data = d

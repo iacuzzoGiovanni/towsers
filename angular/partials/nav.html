@@ -2,11 +2,11 @@
     <h1 class="pull-left"><a href="/towsers/">Towsers</a></h1>
     <nav class="pull-right" role="navigation">
         <ul class="navbar-nav">
-            <li><a href="/towsers/" ng-class="{'active disabled': menuItemActive == 'home'}">Home</a></li>
-            <li><a href="/towsers/music" ng-class="{'active disabled': menuItemActive == 'music'}" >Music</a></li>
-            <li><a href="/towsers/news" ng-class="{'active disabled': menuItemActive == 'news'}">News</a></li>
-            <li><a href="/towsers/tour-dates" ng-class="{'active disabled': menuItemActive == 'tour-dates'}">Tour dates</a></li>
-            <li><a href="/towsers/contact" ng-class="{'active disabled': menuItemActive == 'contact'}">Contact</a></li>
+            <li><div custom-nav-link link="/towsers" page="home" active="{{menuItemActive}}"></div></li>
+            <li><div custom-nav-link link="/music" page="music" active="{{menuItemActive}}"></div></li>
+            <li><div custom-nav-link link="/news" page="news" active="{{menuItemActive}}"></div></li>
+            <li><div custom-nav-link link="/tour-dates" page="tour-dates" active="{{menuItemActive}}"></div></li>
+            <li><div custom-nav-link link="/contact" page="contact" active="{{menuItemActive}}"></div></li>
         </ul>
     </nav>
 </header>

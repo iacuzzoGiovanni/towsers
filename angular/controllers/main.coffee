@@ -4,7 +4,6 @@ app.controller 'Main', [
   '$rootScope'
   ($scope, $timeout, $rootScope) ->
     $scope.myDirectory = myDirectory.directory
-    $rootScope.showBanner = true
     
     $scope.$on '$viewContentLoaded', ->
       $timeout (->
