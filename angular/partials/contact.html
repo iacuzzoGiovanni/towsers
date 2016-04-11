@@ -14,78 +14,34 @@
     
     <div class="container">
       
-      <section class="emails">
-       
-            <div class="row">
-
-                <div class="top-title col-sm-12">
-                    <h2>Contact information</h2>
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-sm-12">
-                    <h3 class="hidden-xs">Management</h3>
-                    <a href="mailto:{{data.page.custom_fields.management[0]}}">{{data.page.custom_fields.management[0]}}</a>
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-sm-12">
-                    <h3 class="hidden-xs">Booking</h3>
-                    <a href="mailto:{{data.page.custom_fields.bookings[0]}}">{{data.page.custom_fields.bookings[0]}}</a>
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="col-sm-12">
-                    <h3 class="hidden-xs">General information</h3>
-                    <a href="mailto:{{data.page.custom_fields.general[0]}}">{{data.page.custom_fields.general[0]}}</a>
-                </div>
-
-            </div>
+      <section class="emails row">
             
-        </section>
-        
-        <section class="socials">
-            
-            <div class="row">
-                
-                <div class="col-sm-12">
-                    <h3>Social</h3>
-                </div>
-                
-            </div>
+            <div class="col-sm-12 col-lg-4">
                
-            <div class="row">
+                <div class="box">
+                   <a href="mailto:{{data.page.custom_fields.general[0]}}">
+                       <h3 class="hidden-xs">General information</h3>
+                   </a>
+                </div>
                 
-                <div class="col-sm-12">
-                   
-                    <ul>
-                       
-                        <li ng-if="data.page.custom_fields.facebook[0]" class="pull-left">
-                            <a href="{{data.page.custom_fields.facebook[0]}}" class="facebook" target="_blank">        {{data.page.custom_fields.facebook[0]}}
-                            </a>
-                        </li>
+            </div>
 
-                        <li ng-if="data.page.custom_fields.soundcloud[0]" class="pull-left">
-                            <a href="{{data.page.custom_fields.soundcloud[0]}}" class="soundcloud" target="_blank">{{data.page.custom_fields.soundcloud[0]}}
-                            </a>
-                        </li>
+            <div class="col-sm-12 col-lg-4">
+               
+                <div class="box">
+                    <a href="mailto:{{data.page.custom_fields.management[0]}}">
+                        <h3 class="hidden-xs">Management</h3>
+                    </a>
+                </div>
+                
+            </div>
 
-                        <li ng-if="data.page.custom_fields.twitter[0]" class="pull-left">
-                            <a href="{{data.page.custom_fields.twitter[0]}}" class="twitter" target="_blank">{{data.page.custom_fields.twitter[0]}}
-                            </a>
-                        </li>
-                        
-                    </ul>
-                    
+            <div class="col-sm-12 col-lg-4">
+               
+                <div class="box">
+                    <a href="mailto:{{data.page.custom_fields.bookings[0]}}">
+                        <h3 class="hidden-xs">Booking</h3>
+                    </a>
                 </div>
                 
             </div>

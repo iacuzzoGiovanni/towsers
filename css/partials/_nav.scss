@@ -4,7 +4,7 @@
 
 .navbar-desktop{
     height: 66px;
-    background-color: rgba(255,255,255,.03);
+    background-color: transparent;
     z-index: 10000;
     
     nav{
@@ -29,19 +29,27 @@
         }
         
         a{
-            font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue";
+            font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
-            font-size: 16px;
-            color: rgba(255,255,255,.75);
+            font-size: 14px;
+            color: $primaryC;
+            font-weight: 700;
+            font-stretch: normal;
             
             &.active{
-                color: rgba(255,255,255,.25);
+                color: #444;
                 pointer-events: none;
                 
+                &:before{
+                    background-color: #444;
+                    height: 3px;
+                }
+                
                 &:hover{
-                    color: rgba(255,255,255,.25);
+                    color: #444;
                     &:before{
-                        display: none;
+                        background-color: #444;
+                        height: 3px;
                     }
                 }
             }
@@ -53,16 +61,16 @@
                 width: 100%;
                 left: 0;
                 top: 0;
-                background-color: #fff;
+                background-color: $primaryC;
                 @include transition();
             }
             
             &:hover{
                 text-decoration: none;
-                color: rgba(255,255,255, 1);
+                color: $primaryC;
                 
                 &:before{
-                    background-color: rgba(255,255,255, 1);
+                    background-color: $primaryC;
                     height: 3px;
                 }
                 
@@ -97,7 +105,7 @@
         height: 44px;
         background-color: #fff;
         border: none;
-        color: $red;
+        color: $primaryC;
         
         i{
             font-size: 1.6em;
@@ -165,7 +173,7 @@
         
         i{
             font-size: 2.5em;
-            color: $red;
+            color: $primaryC;
             position: relative;
             bottom: 9px;
             margin-left: 5px;
@@ -192,11 +200,11 @@
             text-transform: uppercase;
             font-size: 2em;
             font-weight: 100;
-            color: $red;
+            color: $primaryC;
             
             &:hover, &:active{
                 text-decoration: none;
-                background-color: $red;
+                background-color: $primaryC;
                 border: none;
                 color: #fff;
             }
