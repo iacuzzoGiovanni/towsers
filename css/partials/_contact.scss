@@ -16,6 +16,18 @@
     
     .emails{
         
+        @include respond-to(xs){
+            margin-top: 40px;
+        }
+        
+        @include respond-to(sm){
+            margin-top: 40px;
+        }
+        
+        @include respond-to(md){
+            margin-top: 40px;
+        }
+        
         .box{
             position: relative;
             width: 100%;
@@ -24,6 +36,33 @@
                 content: "";
                 display: block;
                 padding-top: 100%;
+            }
+            
+            @include respond-to(xs){
+                width: auto;
+                margin-bottom: 20px;
+                
+                &:before{
+                    padding: 0;
+                }
+            }
+            
+            @include respond-to(sm){
+                width: auto;
+                margin-bottom: 20px;
+                
+                &:before{
+                    padding: 0;
+                }
+            }
+            
+            @include respond-to(md){
+                width: auto;
+                margin-bottom: 20px;
+                
+                &:before{
+                    padding: 0;
+                }
             }
         }
         
@@ -40,6 +79,22 @@
             &:hover{
                 text-decoration: none;
             }
+            
+            @include respond-to(xs){
+                position: static;
+                padding: 0;
+            }
+            
+            @include respond-to(sm){
+                position: static;
+                padding: 0;
+            }
+            
+            @include respond-to(md){
+                position: static;
+                padding: 0;
+            }
+            
         }
         
         h3{
@@ -62,6 +117,30 @@
                 height: 4px;
                 width: 22px;
                 background-color: #000;
+            }
+            
+            @include respond-to(xs){
+                display: block !important;
+                position: static;
+                font-size: 22px;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            @include respond-to(sm){
+                display: block !important;
+                position: static;
+                font-size: 22px;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            @include respond-to(md){
+                display: block !important;
+                position: static;
+                font-size: 32px;
+                padding: 20px;
+                text-align: center;
             }
         }
     }   
