@@ -1,0 +1,45 @@
+<div class="tourdates page">
+   
+    <style>
+        html{
+            background: url({{myDirectory}}assets/bg/bgM-1.jpg) no-repeat center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+    
+    <div custom-nav menu-item-active="tour-dates"></div>
+    
+    <div class="container">
+            
+        <ul>
+            <li class="row" ng-repeat="tourdate in data.posts">
+
+                <div class="col-sm-2">
+                   
+                    <time datetime="{{tourdate.custom_fields.date[0] * 1000| date:'yyyy-MM-dd'}}">
+                       
+                        <span class="day">
+                            {{tourdate.custom_fields.date[0] * 1000| date:'dd'}}
+                        </span>
+                        
+                        <span class="month">
+                            {{tourdate.custom_fields.date[0] * 1000| date:'MMM'}}
+                        </span>
+                        
+                        <span class="year">
+                            {{tourdate.custom_fields.date[0] * 1000| date:'yyyy'}}
+                        </span>
+                        
+                    </time>
+                    
+                </div>
+
+            </li>
+        </ul>
+        
+    </div>
+    
+</div>

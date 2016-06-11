@@ -9,6 +9,10 @@ app.config([
       controller: 'Contact',
       controllerAs: 'contactCtrl',
       templateUrl: myLocalized.partials + 'contact.html'
+    }).when('/tour-dates', {
+      controller: 'Tourdates',
+      controllerAs: 'tourdatesCtrl',
+      templateUrl: myLocalized.partials + 'tourdates.html'
     }).otherwise({
       redirectTo: '/'
     });

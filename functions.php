@@ -9,7 +9,7 @@
         
         //STYLES
         wp_enqueue_style('main', get_template_directory_uri() . '/css/main.css');
-        //wp_enqueue_style('spinner-kit', get_template_directory_uri() . '/assets/SpinKit-master/css/spinners/3-wave.css');
+        wp_enqueue_style('hover', get_template_directory_uri() . '/css/hover-min.css');
         
     }
     add_action( 'init', 'towsers_setup' );
@@ -35,6 +35,8 @@
         wp_enqueue_script('main', get_stylesheet_directory_uri() . '/angular/controllers/main.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config', 'services'));
         
         wp_enqueue_script('contact', get_stylesheet_directory_uri() . '/angular/controllers/contact.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config', 'services'));
+        
+        wp_enqueue_script('tourdates', get_stylesheet_directory_uri() . '/angular/controllers/tourdates.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config', 'services'));
         
         //Angular directives
         wp_enqueue_script('directives', get_stylesheet_directory_uri() . '/angular/directives/directives.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config'));   
