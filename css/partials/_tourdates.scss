@@ -21,10 +21,12 @@
         
         @include respond-to(sm){
             height: auto;
+            text-align: center;
         }
         
         @include respond-to(xs){
             height: auto;
+            text-align: center;
         }
     }
     
@@ -44,11 +46,11 @@
         }
         
         @include respond-to(sm){
-            padding: 0;
+            padding: 20px 0;
         }
         
         @include respond-to(xs){
-            padding: 0;
+            padding: 20px 0;
         }
     }
     
@@ -60,12 +62,42 @@
         display: block;
         position: relative;
         top: 1px;
+        
+        @include respond-to(sm){
+            font-size: 14px;
+            float: none;
+            display: inline-block;
+            top: 0;
+            font-weight: 200;
+            color: #888;
+        }
+        
+        @include respond-to(xs){
+            font-size: 14px;
+            float: none;
+            display: inline-block;
+            top: 0;
+            font-weight: 200;
+            color: #888;
+        }
     }
     
     .cont{
         float: left;
         position: relative;
         max-width: 100px;
+        
+        @include respond-to(sm){
+            max-width: none;
+            float: none;
+            display: inline-block;
+        }
+        
+        @include respond-to(xs){
+            max-width: none;
+            float: none;
+            display: inline-block;
+        }
     }
     
     .month, .year{
@@ -77,6 +109,14 @@
         position: absolute;
         top: 12px;
         left: 10px;
+        
+        @include respond-to(sm){
+            position: static;
+        }
+        
+        @include respond-to(xs){
+            position: static;
+        }
     }
     
     .year{
@@ -88,6 +128,14 @@
         font-size: 16px;
         font-weight: 200;
         text-transform: uppercase;
+        
+         @include respond-to(sm){
+            font-size: 22px;
+        }
+        
+        @include respond-to(xs){
+            font-size: 22px;
+        }
     }
     
     .venue{
@@ -99,6 +147,15 @@
     .city, .venue{
         position: relative;
         top: 12px;
+        
+        @include respond-to(sm){
+            top: 0;
+        }
+        
+        @include respond-to(xs){
+            top: 0;
+        }
+        
     }
     
     .scheduled{    
@@ -110,11 +167,13 @@
         @include respond-to(sm){
             padding-top: 0;
             font-size: 16px;
+            margin-bottom: 20px;
         }
         
         @include respond-to(xs){
             padding-top: 0;
             font-size: 16px;
+            margin-bottom: 20px;
         }
     }
     
