@@ -1,0 +1,100 @@
+// _tourdates.scss
+@import 'variables';
+
+.page.tourdates{
+    
+    ul{
+        padding: 0;
+        list-style: none;
+    }
+    
+    li{
+        height: 66px;
+    }
+    
+    .odd {
+      background-color: #000;
+    }
+    
+    .even {
+      background-color: #222;
+    }
+    
+    .even, .odd{
+        padding: 0 100px;
+    }
+    
+    .day{
+        color: #fff;
+        font-size: 44px;
+        font-weight: 100;
+        float: left;
+        display: block;
+        position: relative;
+        top: 1px;
+    }
+    
+    .cont{
+        float: left;
+        max-width: 100px;
+    }
+    
+    .month, .year{
+        color: #666;
+        font-size: 14px;
+        font-weight: 200;
+        text-transform: uppercase;
+        display: inline-block;
+        position: relative;
+        top: 12px;
+        left: 10px;
+    }
+    
+    .month{
+        margin-right: 50px;
+    }
+    
+    .city{
+        color: #fff;
+        font-size: 16px;
+        font-weight: 200;
+        text-transform: uppercase;
+    }
+    
+    .venue{
+        color: #666;
+        font-size: 14px;
+        font-weight: 200;
+    }
+    
+    .city, .venue{
+        position: relative;
+        top: 12px;
+    }
+    
+    .scheduled{    
+        font-size: 24px;
+        font-weight: 100;
+        color: #666;
+        padding-top: 16px;
+    }
+    
+    .btnT{
+        display: inline-block;
+        height: 44px;
+        padding: 0 20px;
+        line-height: 44px;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #000;
+        background-color: $primaryC;
+        position: relative;
+        top: 10px;
+        
+        &:hover{
+            text-decoration: none;
+        }
+    }
+    
+}

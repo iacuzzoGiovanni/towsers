@@ -12,10 +12,10 @@
     
     <div custom-nav menu-item-active="tour-dates"></div>
     
-    <div class="container">
+    <div class="container-fluid">
             
         <ul>
-            <li class="row" ng-repeat="tourdate in data.posts">
+            <li class="row" ng-repeat="tourdate in data.posts" ng-class-odd="'odd'" ng-class-even="'even'">
 
                 <div class="col-sm-2">
                    
@@ -25,15 +25,53 @@
                             {{tourdate.custom_fields.date[0] * 1000| date:'dd'}}
                         </span>
                         
-                        <span class="month">
-                            {{tourdate.custom_fields.date[0] * 1000| date:'MMM'}}
-                        </span>
+                        <div class="cont">
+                           
+                            <span class="month">
+                                {{tourdate.custom_fields.date[0] * 1000| date:'MMM'}}
+                            </span>
                         
-                        <span class="year">
-                            {{tourdate.custom_fields.date[0] * 1000| date:'yyyy'}}
-                        </span>
+                            <span class="year">
+                                {{tourdate.custom_fields.date[0] * 1000| date:'yyyy'}}
+                            </span>
+                            
+                        </div>
                         
                     </time>
+                    
+                </div>
+                
+                <div class="col-sm-4">
+                    
+                    <div class="city">
+                        <span>{{tourdate.custom_fields.city[0]}}</span>
+                    </div>
+                    
+                    <div class="venue">
+                        <span>{{tourdate.custom_fields.venue[0]}}</span>
+                    </div>
+                    
+                </div>
+                
+                <div class="col-sm-4 scheduled">
+                    
+                    <time datetime="{{tourdate.custom_fields.starts_at[0]}}">
+                        {{tourdate.custom_fields.starts_at[0]}}
+                    </time>
+                    
+                    -
+                    
+                    <time datetime="{{tourdate.custom_fields.ends_at[0]}}">
+                        {{tourdate.custom_fields.ends_at[0]}}
+                    </time>
+                    
+                </div>
+                
+                <div class="col-sm-2">
+                    
+                    <a href="{{tourdate.custom_fields.tickets_links[0]}}" target="_blank" class="btnT hvr-bob">
+                        Buy tickets
+                    </a>
                     
                 </div>
 

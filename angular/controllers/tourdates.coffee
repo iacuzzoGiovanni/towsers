@@ -8,6 +8,7 @@ app.controller 'Tourdates', [
     
     Tourdates.get().then (d) ->
       $scope.data = d
+      console.log $scope.data
       return
     
     $scope.$on '$viewContentLoaded', ->
