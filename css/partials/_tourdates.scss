@@ -1,5 +1,6 @@
 // _tourdates.scss
 @import 'variables';
+@import 'mixins';
 
 .page.tourdates{
     
@@ -17,6 +18,14 @@
     
     li{
         height: 66px;
+        
+        @include respond-to(sm){
+            height: auto;
+        }
+        
+        @include respond-to(xs){
+            height: auto;
+        }
     }
     
     .odd {
@@ -29,6 +38,18 @@
     
     .even, .odd{
         padding: 0 100px;
+        
+        @include respond-to(md){
+            padding: 0;
+        }
+        
+        @include respond-to(sm){
+            padding: 0;
+        }
+        
+        @include respond-to(xs){
+            padding: 0;
+        }
     }
     
     .day{
@@ -43,6 +64,7 @@
     
     .cont{
         float: left;
+        position: relative;
         max-width: 100px;
     }
     
@@ -52,13 +74,13 @@
         font-weight: 200;
         text-transform: uppercase;
         display: inline-block;
-        position: relative;
+        position: absolute;
         top: 12px;
         left: 10px;
     }
     
-    .month{
-        margin-right: 50px;
+    .year{
+        top: 32px;
     }
     
     .city{
@@ -84,6 +106,16 @@
         font-weight: 100;
         color: #888;
         padding-top: 16px;
+        
+        @include respond-to(sm){
+            padding-top: 0;
+            font-size: 16px;
+        }
+        
+        @include respond-to(xs){
+            padding-top: 0;
+            font-size: 16px;
+        }
     }
     
     .btnT{
@@ -103,6 +135,17 @@
         &:hover{
             text-decoration: none;
         }
+        
+        @include respond-to(sm){
+            float: none;
+            top: 0;
+        }
+        
+        @include respond-to(xs){
+            float: none;
+            top: 0;
+        }
+        
     }
     
 }

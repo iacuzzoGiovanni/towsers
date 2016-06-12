@@ -17,7 +17,7 @@
         <ul>
             <li class="row" ng-repeat="tourdate in data.posts" ng-class-odd="'odd'" ng-class-even="'even'">
 
-                <div class="col-sm-2">
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
                    
                     <time datetime="{{tourdate.custom_fields.date[0] * 1000| date:'yyyy-MM-dd'}}">
                        
@@ -41,7 +41,7 @@
                     
                 </div>
                 
-                <div class="col-sm-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     
                     <div class="city">
                         <span>{{tourdate.custom_fields.city[0]}}</span>
@@ -53,7 +53,7 @@
                     
                 </div>
                 
-                <div class="col-sm-4 scheduled">
+                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-6 scheduled">
                     
                     <time datetime="{{tourdate.custom_fields.starts_at[0]}}">
                         {{tourdate.custom_fields.starts_at[0]}}
@@ -67,7 +67,7 @@
                     
                 </div>
                 
-                <div class="col-sm-2">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-6">
                     
                     <a href="{{tourdate.custom_fields.tickets_links[0]}}" target="_blank" class="btnT hvr-bob">
                         Buy tickets
