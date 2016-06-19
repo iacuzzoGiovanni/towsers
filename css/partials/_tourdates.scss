@@ -10,6 +10,14 @@
     
     padding-top: 66px;
     
+    @include respond-to(sm){
+        padding-top: 44px;
+    }
+
+    @include respond-to(xs){
+        padding-top: 44px;
+    }
+    
     ul{
         padding: 0;
         margin: 0;
