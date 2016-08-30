@@ -1,0 +1,28 @@
+<div class="music page">
+   
+    <style>
+        html{
+            background: url({{myDirectory}}assets/bg/bgM-1.jpg) no-repeat center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+    
+    <div custom-nav menu-item-active="music"></div>
+    
+    <div class="container">
+      
+      <ul>
+          <li ng-repeat="music in data.posts">
+              <a href="{{ music.url }}" target="_blank">
+                  <span class="artist">{{ music.custom_fields.artist[0] }}</span>
+                  <span class="artist">{{ music.custom_fields.title[0] }}</span>
+              </a>
+          </li>
+      </ul>
+        
+    </div>
+    
+</div>

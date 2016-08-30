@@ -20,6 +20,10 @@
         wp_enqueue_script('angularjs', get_stylesheet_directory_uri() . '/angular-js/angular.min.js');
         wp_enqueue_script('angularjs-route', get_stylesheet_directory_uri() . '/angular-js/angular-route.min.js');
         
+        //WAVESURFER
+        wp_enqueue_script('wavesurfer', get_stylesheet_directory_uri() . '/wavesurfer/dist/wavesurfer.min.js');
+        wp_enqueue_script('wavesurfer-custom', get_stylesheet_directory_uri() . '/angular/directives/wavesurfer.custom.js');
+        
         //Angular app
         wp_enqueue_script('towsers-app', get_stylesheet_directory_uri() . '/angular/app.js', array('angularjs', 'angularjs-route'));
                           
@@ -38,8 +42,10 @@
         
         wp_enqueue_script('tourdates', get_stylesheet_directory_uri() . '/angular/controllers/tourdates.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config', 'services'));
         
+        wp_enqueue_script('music', get_stylesheet_directory_uri() . '/angular/controllers/music.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config', 'services'));
+        
         //Angular directives
-        wp_enqueue_script('directives', get_stylesheet_directory_uri() . '/angular/directives/directives.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config'));   
+        wp_enqueue_script('directives', get_stylesheet_directory_uri() . '/angular/directives/directives.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config'));
         
         //PHP TO JS
         wp_localize_script(
@@ -73,6 +79,7 @@
                 'directory' => trailingslashit( get_template_directory_uri() )
                 )
 	    );
+
         
     }
     add_action( 'wp_enqueue_scripts', 'towsers_scripts' );

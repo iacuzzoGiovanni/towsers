@@ -29,3 +29,20 @@ app.service('Tourdates', [
     return myService;
   }
 ]);
+
+app.service('Music', [
+  '$http', function($http) {
+    var myService;
+    myService = {
+      get: function() {
+        var promise;
+        promise = $http.get('tracks').then(function(response) {
+          console.log(response);
+          return response.data;
+        });
+        return promise;
+      }
+    };
+    return myService;
+  }
+]);

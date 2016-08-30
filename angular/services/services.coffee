@@ -27,3 +27,20 @@ app.service 'Tourdates', [
       promise
     myService
 ]
+
+app.service 'Music', [
+  '$http'
+  ($http) ->
+    myService = get: ->
+      # $http returns a promise, which has a then function, which also returns a promise
+      #promise = $http.get('api/?json=get_posts&post_type=music').then((response) ->
+      promise = $http.get('tracks').then((response) ->
+        # The then function here is an opportunity to modify the response
+        # The return value gets picked up by the then in the controller.
+        console.log response
+        response.data
+      )
+      # Return the promise to the controller
+      promise
+    myService
+]

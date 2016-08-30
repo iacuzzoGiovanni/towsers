@@ -13,6 +13,10 @@ app.config([
       controller: 'Tourdates',
       controllerAs: 'tourdatesCtrl',
       templateUrl: myLocalized.partials + 'tourdates.html'
+    }).when('/music', {
+      controller: 'Music',
+      controllerAs: 'musicCtrl',
+      templateUrl: myLocalized.partials + 'music.html'
     }).otherwise({
       redirectTo: '/'
     });

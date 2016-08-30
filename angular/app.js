@@ -1,3 +1,3 @@
 var app;
 
-app = angular.module('app', ['ngRoute']);
+app = angular.module('app', ['ngRoute', 'custoWavesurfer']);
