@@ -37,7 +37,6 @@ app.service('Music', [
       get: function() {
         var promise;
         promise = $http.get('tracks').then(function(response) {
-          console.log(response);
           return response.data;
         });
         return promise;

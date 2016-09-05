@@ -1,0 +1,81 @@
+// _music.scss
+@import 'variables';
+@import 'mixins';
+
+.page.music{
+    
+    .navbar-desktop{
+        background-color: #000;
+    }
+    
+    #player{
+        
+        .actions{
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            padding-top: 66px;
+            padding-right: 400px;
+            background-color: #111;
+        }
+
+        .playlist{
+             
+            position: fixed;
+            height: 100%;
+            width: 400px;
+            right: 0;
+            top: 0;
+            padding-top: 66px !important;
+            background-color: $primaryC;
+            list-style: none;
+            padding: 0;
+            
+            .item{
+                border-bottom: 1px solid rgba(0,0,0, .1);
+            }
+            
+            a{
+                display: block;
+                padding: 20px 30px;
+                
+                &:hover{
+                    text-decoration: none;
+                    background-color: rgba(0,0,0, .05);
+                }
+            }
+            
+            .nb{
+                color: #000;
+                font-size: 22px;
+                font-weight: 200;
+                display: block;
+                float: left;
+                margin-right: 20px;
+                position: relative;
+                top: 5px;
+            }
+            
+            .title{
+                font-size: 14px;
+                font-weight: 400;
+                color: #000;
+                display: block;
+            }
+            
+            .artist{
+                font-size: 14px;
+                font-weight: 400;
+                color: #000;
+                opacity: .5;
+                display: block;
+            }
+            
+        }
+
+    }
+    
+}
+

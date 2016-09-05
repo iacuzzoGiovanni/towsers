@@ -13,15 +13,36 @@
     <div custom-nav menu-item-active="music"></div>
     
     <div class="container">
-      
-      <ul>
-          <li ng-repeat="music in data.posts">
-              <a href="{{ music.url }}" target="_blank">
-                  <span class="artist">{{ music.custom_fields.artist[0] }}</span>
-                  <span class="artist">{{ music.custom_fields.title[0] }}</span>
-              </a>
-          </li>
-      </ul>
+    
+        <div id="player">
+            
+            <div class="actions">
+                
+            </div>
+
+            <ul class="playlist">
+
+                <li ng-repeat="music in data" class="item">
+                    
+                    <a href="{{ music.url }}" target="_blank">
+                        <span class="nb">{{ $index + 1 }}</span>
+                        <span class="title">{{ music.title }}</span> 
+                        <span class="artist">{{ music.artist }}</span>
+                        
+                        <custom-audio-source url="{{ music.url }}"></custom-audio-source>
+                        
+                        <input type="hidden" name="nb" value="{{ $index + 1 }}">
+                        <input type="hidden" name="title" value="{{ music.title }}">
+                        <input type="hidden" name="artist" value="{{ music.artist }}">
+                        <input type="hidden" name="cover" value="{{ music.cover }}">
+                        <input type="hidden" name="url" value="{{ music.url }}">
+                    </a>
+                    
+                </li>
+
+            </ul>
+            
+        </div>
         
     </div>
     

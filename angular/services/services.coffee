@@ -37,7 +37,6 @@ app.service 'Music', [
       promise = $http.get('tracks').then((response) ->
         # The then function here is an opportunity to modify the response
         # The return value gets picked up by the then in the controller.
-        console.log response
         response.data
       )
       # Return the promise to the controller

@@ -79,6 +79,14 @@
                 'directory' => trailingslashit( get_template_directory_uri() )
                 )
 	    );
+        
+        wp_localize_script(
+            'wavesurfer-custom',
+            'myLocalized',
+            array(
+                'partials' => trailingslashit( get_template_directory_uri() ) . 'angular/partials/'
+                )
+	    );
 
         
     }
