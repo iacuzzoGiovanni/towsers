@@ -21,7 +21,7 @@
         wp_enqueue_script('angularjs-route', get_stylesheet_directory_uri() . '/angular-js/angular-route.min.js');
         
         //WAVESURFER
-        wp_enqueue_script('wavesurfer', get_stylesheet_directory_uri() . '/wavesurfer/dist/wavesurfer.min.js');
+        //wp_enqueue_script('wavesurfer', get_stylesheet_directory_uri() . //'/wavesurfer/dist/wavesurfer.min.js');
         wp_enqueue_script('wavesurfer-custom', get_stylesheet_directory_uri() . '/angular/directives/wavesurfer.custom.js');
         
         //Angular app

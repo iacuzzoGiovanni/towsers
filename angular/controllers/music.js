@@ -3,7 +3,6 @@ app.controller('Music', [
     $scope.myDirectory = myDirectory.directory;
     Music.get().then(function(d) {
       $scope.data = d;
-      console.log($scope.data);
     });
     $scope.$on('$viewContentLoaded', function() {
       $timeout((function() {

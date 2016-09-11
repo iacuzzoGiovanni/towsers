@@ -8,7 +8,6 @@ app.controller 'Music', [
     
     Music.get().then (d) ->
       $scope.data = d
-      console.log $scope.data
       return
     
     $scope.$on '$viewContentLoaded', ->
