@@ -19,6 +19,33 @@
             padding-top: 66px;
             padding-right: 400px;
             background-color: #111;
+            
+            .custom-container{
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            
+            button{
+                background-color: transparent;
+                border: none;
+                font-size: 44px;
+                color: #fff;
+                height: 88px;
+                width: 88px;
+                line-height: 88px;
+                text-decoration: none;
+                outline-style: none;
+            }
+            
+            .backward, .forward{
+                font-size: 28px;
+            }
+            
+            .play i{
+                position: relative;
+                top: 10px;
+            }
         }
 
         .playlist{

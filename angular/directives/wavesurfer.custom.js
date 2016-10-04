@@ -18,15 +18,23 @@
       audio.currentTrack = null;
       audio.track;
       audio.addTrack = function(trackScope) {
-        audio.tracks.push(trackScope);
+        return audio.tracks.push(trackScope);
       };
       audio.setTrack = function(t) {
         if (audio.track) {
           audio.track.src = '';
-          return audio.track = new Audio(audio.tracks[t].url);
+          audio.track = new Audio(audio.tracks[t].url);
+          return audio.setCurrentTrack(t);
         } else {
-          return audio.track = new Audio(audio.tracks[t].url);
+          audio.track = new Audio(audio.tracks[t].url);
+          return audio.setCurrentTrack(t);
         }
+      };
+      audio.setCurrentTrack = function(e) {
+        return audio.currentTrack = e;
+      };
+      audio.getCurrentTrack = function() {
+        return console.log(audio.currentTrack);
       };
       audio.play = function(e) {
         var idx;
@@ -35,6 +43,9 @@
         audio.setTrack(idx);
         return audio.track.play();
       };
+      audio.test = function() {
+        return console.log('play pause');
+      };
     }
   ]);
   cWavesurfer.directive('player', function() {
@@ -42,7 +53,7 @@
       restrict: 'E',
       templateUrl: myLocalized.partials + 'custom-player.html',
       controller: 'musicAudioPlayerController',
-      controllerAs: 'audio'
+      controllerAs: 'player'
     };
   });
   cWavesurfer.directive('customAudioSource', function() {

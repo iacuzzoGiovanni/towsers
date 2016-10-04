@@ -1,14 +1,32 @@
 <div id="player">
             
     <div class="actions">
-
+        
+        <div class="custom-container">
+            
+            <div class="cover">
+                <img src="empty" alt="" width="500" height="500">
+            </div>
+            
+            <div class="name">
+                <span class="artist"></span> - <span class="title"></span>
+            </div>
+            
+            <div class="buttons">
+                <button class="backward"><i class="glyphicon glyphicon-backward"></i></button>
+                <button class="play" ng-click="audio.btnPlay($event)"><i class="glyphicon glyphicon-play"></i></button>
+                <button class="forward"><i class="glyphicon glyphicon-forward"></i></button>
+            </div>
+            
+        </div>
+        
     </div>
 
     <ul class="playlist">
 
         <li ng-repeat="music in data" class="item">
 
-            <a href="{{ music.url }}" target="_blank" data-index="{{ $index }}" ng-click="audio.play($event)">
+            <a href="{{ music.url }}" target="_blank" data-index="{{ $index }}" ng-click="player.play($event)">
                 <span class="nb">{{ $index + 1 }}</span>
                 <span class="title">{{ music.title }}</span> 
                 <span class="artist">{{ music.artist }}</span>
@@ -22,6 +40,12 @@
                 <input type="hidden" name="url" value="{{ music.url }}">
             </a>
 
+        </li>
+        
+        <li class="item">
+            
+            <button ng-click="player.test()">testest</button>
+            
         </li>
 
     </ul>
