@@ -14,7 +14,7 @@
             
             <div class="buttons">
                 <button class="backward"><i class="glyphicon glyphicon-backward"></i></button>
-                <button class="play" ng-click="audio.btnPlay($event)"><i class="glyphicon glyphicon-play"></i></button>
+                <button class="play" ng-click="audio.play()"><i class="glyphicon glyphicon-play"></i></button>
                 <button class="forward"><i class="glyphicon glyphicon-forward"></i></button>
             </div>
             
@@ -26,7 +26,7 @@
 
         <li ng-repeat="music in data" class="item">
 
-            <a href="{{ music.url }}" target="_blank" data-index="{{ $index }}" ng-click="player.play($event)">
+            <a href="{{ music.url }}" target="_blank" data-index="{{ $index }}" ng-click="audio.addFromPlaylist($event)">
                 <span class="nb">{{ $index + 1 }}</span>
                 <span class="title">{{ music.title }}</span> 
                 <span class="artist">{{ music.artist }}</span>
@@ -40,12 +40,6 @@
                 <input type="hidden" name="url" value="{{ music.url }}">
             </a>
 
-        </li>
-        
-        <li class="item">
-            
-            <button ng-click="player.test()">testest</button>
-            
         </li>
 
     </ul>

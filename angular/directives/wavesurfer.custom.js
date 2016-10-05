@@ -24,27 +24,42 @@
         if (audio.track) {
           audio.track.src = '';
           audio.track = new Audio(audio.tracks[t].url);
+          audio.track.addEventListener('canplaythrough', (function() {
+            console.log(Math.round(this.duration % 60) / 100);
+          }), false);
           return audio.setCurrentTrack(t);
         } else {
           audio.track = new Audio(audio.tracks[t].url);
+          audio.track.addEventListener('canplaythrough', (function() {
+            console.log(Math.round(this.duration % 60) / 100);
+          }), false);
           return audio.setCurrentTrack(t);
         }
       };
-      audio.setCurrentTrack = function(e) {
-        return audio.currentTrack = e;
+      audio.setCurrentTrack = function(ct) {
+        return audio.currentTrack = ct;
       };
       audio.getCurrentTrack = function() {
-        return console.log(audio.currentTrack);
+        return audio.currentTrack;
       };
-      audio.play = function(e) {
+      audio.addFromPlaylist = function(e) {
         var idx;
         e.preventDefault();
         idx = angular.element(e.target).data('index');
         audio.setTrack(idx);
-        return audio.track.play();
+        return audio.play();
       };
-      audio.test = function() {
-        return console.log('play pause');
+      audio.play = function() {
+        if (audio.getCurrentTrack() === null) {
+          audio.setTrack(0);
+          return audio.track.play();
+        } else {
+          if (audio.track.paused) {
+            return audio.track.play();
+          } else {
+            return audio.track.pause();
+          }
+        }
       };
     }
   ]);
@@ -53,7 +68,7 @@
       restrict: 'E',
       templateUrl: myLocalized.partials + 'custom-player.html',
       controller: 'musicAudioPlayerController',
-      controllerAs: 'player'
+      controllerAs: 'audio'
     };
   });
   cWavesurfer.directive('customAudioSource', function() {

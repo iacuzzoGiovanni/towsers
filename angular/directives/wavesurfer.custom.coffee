@@ -29,32 +29,44 @@ do ->
             if audio.track
                 audio.track.src = ''
                 audio.track = new Audio(audio.tracks[t].url)
+                audio.track.addEventListener 'canplaythrough', (->
+                  console.log Math.round(@duration % 60) / 100
+                  return
+                ), false
                 audio.setCurrentTrack(t)
             else
                 audio.track = new Audio(audio.tracks[t].url)
+                audio.track.addEventListener 'canplaythrough', (->
+                  console.log Math.round(@duration % 60) / 100
+                  return
+                ), false
                 audio.setCurrentTrack(t)
         
-                
-                
         #Set current track
-        audio.setCurrentTrack = (e) ->
-            audio.currentTrack = e
+        audio.setCurrentTrack = (ct) ->
+            audio.currentTrack = ct
         
         #Get current track
         audio.getCurrentTrack = () ->
-            console.log audio.currentTrack
+            audio.currentTrack
                 
-        #play music
-        audio.play = (e) ->
+        #Add music from the playlist section
+        audio.addFromPlaylist = (e) ->
             e.preventDefault()
             idx = angular.element(e.target).data('index')
             audio.setTrack(idx)
-            audio.track.play()
+            audio.play()
     
         #play/pause btn
-        audio.test = () ->
-            console.log 'play pause'
-        
+        audio.play = () ->
+            if audio.getCurrentTrack() == null
+                audio.setTrack(0)
+                audio.track.play()
+            else
+                if audio.track.paused
+                    audio.track.play()
+                else
+                    audio.track.pause()
         return
     ]
     
@@ -63,7 +75,7 @@ do ->
         restrict: 'E'
         templateUrl: myLocalized.partials + 'custom-player.html'
         controller: 'musicAudioPlayerController'
-        controllerAs: 'player'
+        controllerAs: 'audio'
     } 
   
   cWavesurfer.directive 'customAudioSource', ->
