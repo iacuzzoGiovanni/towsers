@@ -24,15 +24,9 @@
         if (audio.track) {
           audio.track.src = '';
           audio.track = new Audio(audio.tracks[t].url);
-          audio.track.addEventListener('canplaythrough', (function() {
-            console.log(Math.round(this.duration % 60) / 100);
-          }), false);
           return audio.setCurrentTrack(t);
         } else {
           audio.track = new Audio(audio.tracks[t].url);
-          audio.track.addEventListener('canplaythrough', (function() {
-            console.log(Math.round(this.duration % 60) / 100);
-          }), false);
           return audio.setCurrentTrack(t);
         }
       };
@@ -52,14 +46,29 @@
       audio.play = function() {
         if (audio.getCurrentTrack() === null) {
           audio.setTrack(0);
-          return audio.track.play();
+          audio.track.play();
+          return audio.getTrackDuration();
         } else {
           if (audio.track.paused) {
-            return audio.track.play();
+            audio.track.play();
+            return audio.getTrackDuration();
           } else {
+            audio.getTrackDuration();
             return audio.track.pause();
           }
         }
+      };
+      audio.getTrackDuration = function() {
+        return audio.track.addEventListener('canplaythrough', (function() {
+          var d, mm, ss;
+          d = this.duration;
+          mm = Math.floor(d / 60);
+          ss = Math.round(d % 60);
+          if (!ss > 10) {
+            ss = '0' + ss;
+          }
+          console.log(ss);
+        }), false);
       };
     }
   ]);

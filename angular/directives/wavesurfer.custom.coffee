@@ -29,17 +29,9 @@ do ->
             if audio.track
                 audio.track.src = ''
                 audio.track = new Audio(audio.tracks[t].url)
-                audio.track.addEventListener 'canplaythrough', (->
-                  console.log Math.round(@duration % 60) / 100
-                  return
-                ), false
                 audio.setCurrentTrack(t)
             else
                 audio.track = new Audio(audio.tracks[t].url)
-                audio.track.addEventListener 'canplaythrough', (->
-                  console.log Math.round(@duration % 60) / 100
-                  return
-                ), false
                 audio.setCurrentTrack(t)
         
         #Set current track
@@ -62,11 +54,28 @@ do ->
             if audio.getCurrentTrack() == null
                 audio.setTrack(0)
                 audio.track.play()
+                audio.getTrackDuration()
             else
                 if audio.track.paused
                     audio.track.play()
+                    audio.getTrackDuration()
                 else
+                    audio.getTrackDuration()
                     audio.track.pause()
+                    
+        audio.getTrackDuration = () ->
+            audio.track.addEventListener 'canplaythrough', (->
+                d = @duration
+                mm = Math.floor(d / 60)
+                ss = Math.round(d % 60)
+                
+                if ss > 10
+                    ss = '0'+ss
+                
+                console.log ss
+                    
+                return
+            ), false
         return
     ]
     
