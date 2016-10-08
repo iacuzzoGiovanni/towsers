@@ -13,16 +13,17 @@ do ->
   cWavesurfer.controller 'musicAudioPlayerController', [
       '$attrs', 
       '$element',
-      (attributes, $element) ->
-        audio = this
+      '$scope'
+      (attributes, $element, $scope) ->
+        audio = @
         audio.tracks = []
         audio.currentTrack = null
         audio.track
+        audio.currentTrackDuration
         
         #add audio tracks
         audio.addTrack = (trackScope) ->
           audio.tracks.push trackScope
-          #myMusic = new Audio(audio.tracks[audio.tracks.indexOf(trackScope)].url)
         
         #set the track to a new audio
         audio.setTrack = (t) ->
@@ -54,28 +55,24 @@ do ->
             if audio.getCurrentTrack() == null
                 audio.setTrack(0)
                 audio.track.play()
-                audio.getTrackDuration()
+                audio.listenForDuration()
             else
                 if audio.track.paused
+                    audio.listenForDuration()
                     audio.track.play()
-                    audio.getTrackDuration()
                 else
-                    audio.getTrackDuration()
+                    audio.listenForDuration()
                     audio.track.pause()
                     
+        audio.listenForDuration = () ->
+            audio.track.addEventListener 'canplaythrough', audio.getTrackDuration, false
+            
         audio.getTrackDuration = () ->
-            audio.track.addEventListener 'canplaythrough', (->
-                d = @duration
-                mm = Math.floor(d / 60)
-                ss = Math.round(d % 60)
-                
-                if ss > 10
-                    ss = '0'+ss
-                
-                console.log ss
-                    
-                return
-            ), false
+            d = @duration
+            mm = Math.floor(d / 60)
+            ss = Math.round(d % 60)
+            if ss < 10 then ss = '0'+ss
+            audio.currentTrackDuration = mm + ':' + ss
         return
     ]
     
