@@ -20,7 +20,11 @@
       audio.track;
       audio.currentTrackDuration;
       audio.addTrack = function(trackScope) {
-        return audio.tracks.push(trackScope);
+        var tmpDuration, tmpTrack;
+        audio.tracks.push(trackScope);
+        tmpTrack = new Audio(audio.tracks[audio.tracks.length - 1].url);
+        tmpDuration = audio.getTrackDuration().listen(tmpTrack);
+        return console.log(tmpDuration);
       };
       audio.setTrack = function(t) {
         if (audio.track) {
@@ -48,30 +52,33 @@
       audio.play = function() {
         if (audio.getCurrentTrack() === null) {
           audio.setTrack(0);
-          audio.track.play();
-          return audio.listenForDuration();
+          return audio.track.play();
         } else {
           if (audio.track.paused) {
-            audio.listenForDuration();
             return audio.track.play();
           } else {
-            audio.listenForDuration();
             return audio.track.pause();
           }
         }
       };
-      audio.listenForDuration = function() {
-        return audio.track.addEventListener('canplaythrough', audio.getTrackDuration, false);
-      };
-      audio.getTrackDuration = function() {
-        var d, mm, ss;
-        d = this.duration;
-        mm = Math.floor(d / 60);
-        ss = Math.round(d % 60);
-        if (ss < 10) {
-          ss = '0' + ss;
-        }
-        return audio.currentTrackDuration = mm + ':' + ss;
+      audio.getTrackDuration = function(sound) {
+        var init, theTrack;
+        theTrack = sound;
+        init = {
+          listen: function(music) {
+            music.addEventListener('canplaythrough', this.get, false);
+          },
+          get: function() {
+            var d, dur, mm, ss;
+            d = this.duration;
+            mm = Math.floor(d / 60);
+            ss = Math.round(d % 60);
+            if (ss < 10) {
+              ss = '0' + ss;
+            }
+            return dur = mm + ':' + ss;
+          }
+        };
       };
     }
   ]);

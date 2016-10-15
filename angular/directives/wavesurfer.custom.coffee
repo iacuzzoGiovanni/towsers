@@ -21,9 +21,16 @@ do ->
         audio.track
         audio.currentTrackDuration
         
+        
         #add audio tracks
         audio.addTrack = (trackScope) ->
-          audio.tracks.push trackScope
+            audio.tracks.push trackScope
+            tmpTrack = new Audio(audio.tracks[audio.tracks.length - 1].url)
+            tmpDuration = audio.getTrackDuration().listen(tmpTrack)
+            console.log tmpDuration
+        #  tmpDuration = audio.listenForDuration(tmpTrack)
+        #  audio.tracks[audio.tracks.length - 1].duration = tmpTrack
+
         
         #set the track to a new audio
         audio.setTrack = (t) ->
@@ -55,24 +62,29 @@ do ->
             if audio.getCurrentTrack() == null
                 audio.setTrack(0)
                 audio.track.play()
-                audio.listenForDuration()
             else
                 if audio.track.paused
-                    audio.listenForDuration()
                     audio.track.play()
                 else
-                    audio.listenForDuration()
                     audio.track.pause()
                     
-        audio.listenForDuration = () ->
-            audio.track.addEventListener 'canplaythrough', audio.getTrackDuration, false
+        audio.getTrackDuration = (sound) ->
+
+            theTrack = sound
             
-        audio.getTrackDuration = () ->
-            d = @duration
-            mm = Math.floor(d / 60)
-            ss = Math.round(d % 60)
-            if ss < 10 then ss = '0'+ss
-            audio.currentTrackDuration = mm + ':' + ss
+            init = 
+                listen: (music) ->
+                    music.addEventListener 'canplaythrough', @get, false
+                    return
+                
+                get: ->
+                    d = @duration
+                    mm = Math.floor(d / 60)
+                    ss = Math.round(d % 60)
+                    if ss < 10 then ss = '0'+ss
+                    dur = mm + ':' + ss  
+            return        
+
         return
     ]
     
@@ -91,6 +103,6 @@ do ->
         scope: url: '@'
         link: (scope, element, attrs, audio) ->
             audio.addTrack(scope)
-    }  
+    }
 
   return 
