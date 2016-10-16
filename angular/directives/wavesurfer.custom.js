@@ -19,12 +19,15 @@
       audio.currentTrack = null;
       audio.track;
       audio.currentTrackDuration;
+      audio.tmpDuration;
       audio.addTrack = function(trackScope) {
-        var tmpDuration, tmpTrack;
+        var tmpTrack;
         audio.tracks.push(trackScope);
         tmpTrack = new Audio(audio.tracks[audio.tracks.length - 1].url);
-        tmpDuration = audio.getTrackDuration().listen(tmpTrack);
-        return console.log(tmpDuration);
+        return tmpTrack.addEventListener('canplaythrough', function() {
+          audio.tracks[audio.tracks.length - 1].duration = audio.convertToHumanMinutes(this.duration);
+          return console.log(audio.convertToHumanMinutes(this.duration));
+        }, false);
       };
       audio.setTrack = function(t) {
         if (audio.track) {
@@ -61,24 +64,14 @@
           }
         }
       };
-      audio.getTrackDuration = function(sound) {
-        var init, theTrack;
-        theTrack = sound;
-        init = {
-          listen: function(music) {
-            music.addEventListener('canplaythrough', this.get, false);
-          },
-          get: function() {
-            var d, dur, mm, ss;
-            d = this.duration;
-            mm = Math.floor(d / 60);
-            ss = Math.round(d % 60);
-            if (ss < 10) {
-              ss = '0' + ss;
-            }
-            return dur = mm + ':' + ss;
-          }
-        };
+      audio.convertToHumanMinutes = function(d) {
+        var dur, mm, ss;
+        mm = Math.floor(d / 60);
+        ss = Math.round(d % 60);
+        if (ss < 10) {
+          ss = '0' + ss;
+        }
+        return dur = mm + ':' + ss;
       };
     }
   ]);

@@ -20,16 +20,17 @@ do ->
         audio.currentTrack = null
         audio.track
         audio.currentTrackDuration
+        audio.tmpDuration
         
         
         #add audio tracks
         audio.addTrack = (trackScope) ->
             audio.tracks.push trackScope
             tmpTrack = new Audio(audio.tracks[audio.tracks.length - 1].url)
-            tmpDuration = audio.getTrackDuration().listen(tmpTrack)
-            console.log tmpDuration
-        #  tmpDuration = audio.listenForDuration(tmpTrack)
-        #  audio.tracks[audio.tracks.length - 1].duration = tmpTrack
+            tmpTrack.addEventListener 'canplaythrough', ->
+                audio.tracks[audio.tracks.length - 1].duration = audio.convertToHumanMinutes(@duration)
+                console.log audio.convertToHumanMinutes(@duration)
+            , false
 
         
         #set the track to a new audio
@@ -67,23 +68,13 @@ do ->
                     audio.track.play()
                 else
                     audio.track.pause()
-                    
-        audio.getTrackDuration = (sound) ->
+        
+        audio.convertToHumanMinutes = (d) ->
+            mm = Math.floor(d / 60)
+            ss = Math.round(d % 60)
+            if ss < 10 then ss = '0'+ss
+            dur = mm + ':' + ss
 
-            theTrack = sound
-            
-            init = 
-                listen: (music) ->
-                    music.addEventListener 'canplaythrough', @get, false
-                    return
-                
-                get: ->
-                    d = @duration
-                    mm = Math.floor(d / 60)
-                    ss = Math.round(d % 60)
-                    if ss < 10 then ss = '0'+ss
-                    dur = mm + ':' + ss  
-            return        
 
         return
     ]
