@@ -11,8 +11,44 @@
    */
   var cWavesurfer;
   cWavesurfer = angular.module('custoWavesurfer', []);
+  cWavesurfer.factory('mdWavesurferUtils', [
+    '$q', '$document', '$timeout', function($q, $document, $timeout) {
+      return {
+        getLength: function(object) {
+          var deferred, estimateLength;
+          deferred = $q.defer();
+          estimateLength = function(url) {
+            var audio;
+            audio = $document[0].createElement('audio');
+            audio.src = url;
+            audio.addEventListener('loadeddata', function() {
+              deferred.resolve(this.duration);
+              audio.removeEventListener('loadeddata', this);
+              audio.src = 'data:audio/mpeg,0';
+            });
+            audio.addEventListener('error', function(e) {
+              deferred.resolve(e.target.error);
+            });
+          };
+          estimateLength(object);
+          return deferred.promise;
+        }
+      };
+    }
+  ]);
+  cWavesurfer.filter('convertToHumanMinutes', function() {
+    return function(d) {
+      var dur, mm, ss;
+      mm = Math.floor(d / 60);
+      ss = Math.round(d % 60);
+      if (ss < 10) {
+        ss = '0' + ss;
+      }
+      return dur = mm + ':' + ss;
+    };
+  });
   cWavesurfer.controller('musicAudioPlayerController', [
-    '$attrs', '$element', '$scope', function(attributes, $element, $scope) {
+    '$attrs', '$element', '$scope', '$interval', function(attributes, $element, $scope, $interval) {
       var audio;
       audio = this;
       audio.tracks = [];
@@ -20,21 +56,18 @@
       audio.track;
       audio.currentTrackDuration;
       audio.addTrack = function(trackScope) {
-        var tmpTrack;
-        audio.tracks.push(trackScope);
-        return tmpTrack = new Audio(audio.tracks[audio.tracks.length - 1].url);
+        if (audio.tracks.indexOf(trackScope) < 0) {
+          return audio.tracks.push(trackScope);
+        }
       };
       audio.setTrack = function(t) {
         if (audio.track) {
           audio.track.src = '';
-          audio.track = new Audio(audio.tracks[t].url);
-          audio.setTrackDuration(audio.track);
-          return audio.setCurrentTrack(t);
-        } else {
-          audio.track = new Audio(audio.tracks[t].url);
-          audio.setTrackDuration(audio.track);
-          return audio.setCurrentTrack(t);
         }
+        audio.track = new Audio(audio.tracks[t].url);
+        audio.currentTrackDuration = audio.tracks[t].duration;
+        audio.setCurrentTrack(t);
+        return $scope.digest();
       };
       audio.setCurrentTrack = function(ct) {
         return audio.currentTrack = ct;
@@ -52,10 +85,12 @@
       audio.play = function() {
         if (audio.getCurrentTrack() === null) {
           audio.setTrack(0);
-          return audio.track.play();
+          audio.track.play();
+          return audio.getCurrentTrackPosition();
         } else {
           if (audio.track.paused) {
-            return audio.track.play();
+            audio.track.play();
+            return audio.getCurrentTrackPosition();
           } else {
             return audio.track.pause();
           }
@@ -73,8 +108,14 @@
       audio.setTrackDuration = function(t) {
         return t.addEventListener('canplaythrough', function() {
           audio.currentTrackDuration = audio.convertToHumanMinutes(this.duration);
+          console.log(this.currentTime);
           return $scope.$digest();
         }, false);
+      };
+      audio.startInterval = function() {
+        return audio.track.addEventListener('ontimeupdate', (function() {
+          console.log(this);
+        }), false);
       };
     }
   ]);
@@ -86,16 +127,30 @@
       controllerAs: 'audio'
     };
   });
-  cWavesurfer.directive('customAudioSource', function() {
-    return {
-      restrict: 'E',
-      require: '^player',
-      scope: {
-        url: '@'
-      },
-      link: function(scope, element, attrs, audio) {
-        return audio.addTrack(scope);
-      }
-    };
-  });
+  cWavesurfer.directive('customAudioSource', [
+    'mdWavesurferUtils', function(mdWavesurferUtils) {
+      return {
+        restrict: 'E',
+        require: '^player',
+        scope: {
+          url: '@',
+          title: '@',
+          artist: '@',
+          cover: '@'
+        },
+        link: function(scope, element, attrs, audio) {
+          var thepromise;
+          audio.addTrack(scope);
+          console.log(scope.url);
+          thepromise = mdWavesurferUtils.getLength(scope.url);
+          return thepromise.then((function(duration) {
+            console.log('Success: ' + duration);
+            scope.duration = duration;
+          }), function(reason) {
+            console.log('Failed: ' + reason);
+          });
+        }
+      };
+    }
+  ]);
 })();

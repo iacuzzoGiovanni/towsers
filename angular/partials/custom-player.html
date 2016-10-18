@@ -9,7 +9,7 @@
             </div>
             
             <div class="name">
-                <span class="artist">{{ audio.currentTrackDuration }}</span> - <span class="title"></span>
+                <span class="artist">{{ audio.currentTrackDuration | convertToHumanMinutes }}</span> - <span class="title"></span>
             </div>
             
             <div class="buttons">
@@ -31,7 +31,7 @@
                 <span class="title">{{ music.title }}</span> 
                 <span class="artist">{{ music.artist }}</span>
 
-                <custom-audio-source url="{{ music.url }}"></custom-audio-source>
+                <custom-audio-source url="{{ music.url }}" title="{{ music.title }}" artist="{{ music.artist }}" cover="{{ music.cover }}"></custom-audio-source>
 
                 <input type="hidden" name="nb" value="{{ $index + 1 }}">
                 <input type="hidden" name="title" value="{{ music.title }}">
