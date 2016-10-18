@@ -19,18 +19,7 @@ do ->
         audio.tracks = []
         audio.currentTrack = null
         audio.track
-        audio.currentTrackDuration = null
-        audio.tmpDuration
-
-        ###
-        $scope.$watch angular.bind(audio, ->
-            audio.currentTrackDuration
-            # `this` IS the `this` above!!
-        ), (newVal, oldVal) ->
-            console.log newVal
-            return
-        ###
-        
+        audio.currentTrackDuration
         
         #add audio tracks
         audio.addTrack = (trackScope) ->
@@ -42,17 +31,11 @@ do ->
             if audio.track
                 audio.track.src = ''
                 audio.track = new Audio(audio.tracks[t].url)
-                audio.track.addEventListener 'canplaythrough', ->
-                    audio.currentTrackDuration = audio.convertToHumanMinutes(@duration)
-                    $scope.$digest()
-                , false
+                audio.setTrackDuration(audio.track)
                 audio.setCurrentTrack(t)
             else
                 audio.track = new Audio(audio.tracks[t].url)
-                audio.track.addEventListener 'canplaythrough', ->
-                    audio.currentTrackDuration = audio.convertToHumanMinutes(@duration)
-                    $scope.$digest()
-                , false
+                audio.setTrackDuration(audio.track)
                 audio.setCurrentTrack(t)
         
         #Set current track
@@ -87,7 +70,12 @@ do ->
             if ss < 10 then ss = '0'+ss
             dur = mm + ':' + ss
 
-
+        audio.setTrackDuration = (t) ->
+            t.addEventListener 'canplaythrough', ->
+                audio.currentTrackDuration = audio.convertToHumanMinutes(@duration) 
+                $scope.$digest()
+            , false
+        
         return
     ]
     

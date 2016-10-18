@@ -18,17 +18,7 @@
       audio.tracks = [];
       audio.currentTrack = null;
       audio.track;
-      audio.currentTrackDuration = null;
-      audio.tmpDuration;
-
-      /*
-      $scope.$watch angular.bind(audio, ->
-          audio.currentTrackDuration
-           * `this` IS the `this` above!!
-      ), (newVal, oldVal) ->
-          console.log newVal
-          return
-       */
+      audio.currentTrackDuration;
       audio.addTrack = function(trackScope) {
         var tmpTrack;
         audio.tracks.push(trackScope);
@@ -38,17 +28,11 @@
         if (audio.track) {
           audio.track.src = '';
           audio.track = new Audio(audio.tracks[t].url);
-          audio.track.addEventListener('canplaythrough', function() {
-            audio.currentTrackDuration = audio.convertToHumanMinutes(this.duration);
-            return $scope.$digest();
-          }, false);
+          audio.setTrackDuration(audio.track);
           return audio.setCurrentTrack(t);
         } else {
           audio.track = new Audio(audio.tracks[t].url);
-          audio.track.addEventListener('canplaythrough', function() {
-            audio.currentTrackDuration = audio.convertToHumanMinutes(this.duration);
-            return $scope.$digest();
-          }, false);
+          audio.setTrackDuration(audio.track);
           return audio.setCurrentTrack(t);
         }
       };
@@ -85,6 +69,12 @@
           ss = '0' + ss;
         }
         return dur = mm + ':' + ss;
+      };
+      audio.setTrackDuration = function(t) {
+        return t.addEventListener('canplaythrough', function() {
+          audio.currentTrackDuration = audio.convertToHumanMinutes(this.duration);
+          return $scope.$digest();
+        }, false);
       };
     }
   ]);
