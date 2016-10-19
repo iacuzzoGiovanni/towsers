@@ -9,7 +9,15 @@
             </div>
             
             <div class="name">
-                <span class="artist">{{ audio.currentTrackDuration | convertToHumanMinutes }}</span> - <span class="title"></span>
+                <span class="artist">{{ audio.currentTrackArtist }}</span> - <span class="title">{{ audio.currentTrackTitle }}</span>
+
+            </div>
+
+            <div class="progressbar">
+                <span class="currentTimeTrackDuration">{{ audio.currentTimeTrackDuration | convertToHumanMinutes }}</span>
+                <span class="trackduration" ng-if="audio.currentTrackDuration">{{ audio.currentTrackDuration | convertToHumanMinutes }}</span>
+                <span class="trackduration" ng-if="!audio.currentTrackDuration">0:00</span>
+                <span class="trackcurrenttime"></span>
             </div>
             
             <div class="buttons">

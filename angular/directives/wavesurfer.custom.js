@@ -55,6 +55,9 @@
       audio.currentTrack = null;
       audio.track;
       audio.currentTrackDuration;
+      audio.currentTimeTrackDuration;
+      audio.currentTrackArtist;
+      audio.currentTrackTitle;
       audio.addTrack = function(trackScope) {
         if (audio.tracks.indexOf(trackScope) < 0) {
           return audio.tracks.push(trackScope);
@@ -62,12 +65,14 @@
       };
       audio.setTrack = function(t) {
         if (audio.track) {
-          audio.track.src = '';
+          audio.track.src = 'data:audio/mpeg,0';
         }
         audio.track = new Audio(audio.tracks[t].url);
         audio.currentTrackDuration = audio.tracks[t].duration;
-        audio.setCurrentTrack(t);
-        return $scope.digest();
+        audio.currentTrackArtist = audio.tracks[t].artist;
+        audio.currentTrackTitle = audio.tracks[t].title;
+        audio.startInterval();
+        return audio.setCurrentTrack(t);
       };
       audio.setCurrentTrack = function(ct) {
         return audio.currentTrack = ct;
@@ -85,14 +90,13 @@
       audio.play = function() {
         if (audio.getCurrentTrack() === null) {
           audio.setTrack(0);
-          audio.track.play();
-          return audio.getCurrentTrackPosition();
+          return audio.track.play();
         } else {
           if (audio.track.paused) {
-            audio.track.play();
-            return audio.getCurrentTrackPosition();
+            return audio.track.play();
           } else {
-            return audio.track.pause();
+            audio.track.pause();
+            return audio.track.removeEventListener('timeupdate', audio.getCurrentTimeTrack);
           }
         }
       };
@@ -105,17 +109,21 @@
         }
         return dur = mm + ':' + ss;
       };
-      audio.setTrackDuration = function(t) {
-        return t.addEventListener('canplaythrough', function() {
-          audio.currentTrackDuration = audio.convertToHumanMinutes(this.duration);
-          console.log(this.currentTime);
-          return $scope.$digest();
-        }, false);
-      };
       audio.startInterval = function() {
-        return audio.track.addEventListener('ontimeupdate', (function() {
-          console.log(this);
-        }), false);
+
+        /*
+        audio.timeInterval = $interval((->
+            audio.currentTimeTrackDuration = audio.track.currentTime
+            console.log audio.currentTimeTrackDuration
+            return
+        ), 1000)
+        return
+         */
+        return audio.track.addEventListener('timeupdate', audio.getCurrentTimeTrack, false);
+      };
+      audio.getCurrentTimeTrack = function() {
+        audio.currentTimeTrackDuration = this.currentTime;
+        return $scope.$digest();
       };
     }
   ]);
@@ -144,11 +152,8 @@
           console.log(scope.url);
           thepromise = mdWavesurferUtils.getLength(scope.url);
           return thepromise.then((function(duration) {
-            console.log('Success: ' + duration);
             scope.duration = duration;
-          }), function(reason) {
-            console.log('Failed: ' + reason);
-          });
+          }), function(reason) {});
         }
       };
     }

@@ -52,6 +52,9 @@ do ->
         audio.currentTrack = null
         audio.track
         audio.currentTrackDuration
+        audio.currentTimeTrackDuration
+        audio.currentTrackArtist
+        audio.currentTrackTitle
         
         #add audio tracks
         audio.addTrack = (trackScope) ->
@@ -61,12 +64,14 @@ do ->
         #set the track to a new audio
         audio.setTrack = (t) ->
             if audio.track
-                audio.track.src = ''
+                audio.track.src = 'data:audio/mpeg,0'
 
             audio.track = new Audio(audio.tracks[t].url)
             audio.currentTrackDuration = audio.tracks[t].duration
+            audio.currentTrackArtist = audio.tracks[t].artist
+            audio.currentTrackTitle = audio.tracks[t].title
+            audio.startInterval()
             audio.setCurrentTrack(t)
-            $scope.digest()
         
         #Set current track
         audio.setCurrentTrack = (ct) ->
@@ -88,13 +93,12 @@ do ->
             if audio.getCurrentTrack() == null
                 audio.setTrack(0)
                 audio.track.play()
-                audio.getCurrentTrackPosition()
             else
                 if audio.track.paused
                     audio.track.play()
-                    audio.getCurrentTrackPosition()
                 else
                     audio.track.pause()
+                    audio.track.removeEventListener 'timeupdate', audio.getCurrentTimeTrack 
         
         audio.convertToHumanMinutes = (d) ->
             mm = Math.floor(d / 60)
@@ -102,19 +106,20 @@ do ->
             if ss < 10 then ss = '0'+ss
             dur = mm + ':' + ss
 
-        audio.setTrackDuration = (t) ->
-            t.addEventListener 'canplaythrough', ->
-                audio.currentTrackDuration = audio.convertToHumanMinutes(@duration)
-                console.log @currentTime 
-                $scope.$digest()
-            , false
-
         audio.startInterval = () ->
-            #console.log t 
-            audio.track.addEventListener 'ontimeupdate', (->
-                console.log @
+            ###
+            audio.timeInterval = $interval((->
+                audio.currentTimeTrackDuration = audio.track.currentTime
+                console.log audio.currentTimeTrackDuration
                 return
-            ), false
+            ), 1000)
+            return
+            ###
+            audio.track.addEventListener 'timeupdate', audio.getCurrentTimeTrack, false 
+
+        audio.getCurrentTimeTrack = () ->
+            audio.currentTimeTrackDuration = @.currentTime
+            $scope.$digest()
 
         
         
@@ -141,11 +146,9 @@ do ->
                 console.log scope.url
                 thepromise = mdWavesurferUtils.getLength(scope.url)
                 thepromise.then ((duration) ->
-                    console.log 'Success: ' + duration
                     scope.duration = duration
                     return
                 ), (reason) ->
-                    console.log 'Failed: ' + reason
                     return
         }
   ]
