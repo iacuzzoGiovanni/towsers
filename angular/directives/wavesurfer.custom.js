@@ -58,6 +58,8 @@
       audio.currentTimeTrackDuration;
       audio.currentTrackArtist;
       audio.currentTrackTitle;
+      audio.currentTrackCover;
+      audio.progessBarWidth = 0;
       audio.addTrack = function(trackScope) {
         if (audio.tracks.indexOf(trackScope) < 0) {
           return audio.tracks.push(trackScope);
@@ -71,6 +73,7 @@
         audio.currentTrackDuration = audio.tracks[t].duration;
         audio.currentTrackArtist = audio.tracks[t].artist;
         audio.currentTrackTitle = audio.tracks[t].title;
+        audio.currentTrackCover = audio.tracks[t].cover;
         audio.startInterval();
         return audio.setCurrentTrack(t);
       };
@@ -123,7 +126,11 @@
       };
       audio.getCurrentTimeTrack = function() {
         audio.currentTimeTrackDuration = this.currentTime;
+        audio.setProgressBarPosition();
         return $scope.$digest();
+      };
+      audio.setProgressBarPosition = function() {
+        return audio.progessBarWidth = Math.round((audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100);
       };
     }
   ]);
@@ -149,11 +156,22 @@
         link: function(scope, element, attrs, audio) {
           var thepromise;
           audio.addTrack(scope);
-          console.log(scope.url);
           thepromise = mdWavesurferUtils.getLength(scope.url);
           return thepromise.then((function(duration) {
             scope.duration = duration;
           }), function(reason) {});
+        }
+      };
+    }
+  ]);
+  cWavesurfer.directive('playerProgressBar', [
+    function() {
+      return {
+        restrict: 'E',
+        templateUrl: myLocalized.partials + 'player-progress-bar.html',
+        require: '^player',
+        link: function(scope, element, attrs, audio) {
+          return audio.progressBar = element;
         }
       };
     }

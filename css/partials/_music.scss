@@ -9,6 +9,29 @@
     }
     
     #player{
+
+        .progressbar{
+            width: 450px;
+            height: 16px;
+            margin: 0 auto;
+            position: relative;
+
+            .current, .duration{
+                color: #fff;
+                font-weight: 300;
+                font-size: 12px;
+                display: inline-block;
+                position: absolute;
+            }
+
+            .current{
+                left: 0;
+            }
+
+            .duration{
+                right: 0;
+            }
+        }
         
         .actions{
             position: fixed;

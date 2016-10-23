@@ -22,3 +22,8 @@
     @media(min-width:1200px){@content;}
   }
 }
+
+@mixin border-radius($radius){
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}

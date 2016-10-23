@@ -598,6 +598,25 @@
 .page.music .navbar-desktop {
   background-color: #000; }
 
+.page.music #player .progressbar {
+  width: 450px;
+  height: 16px;
+  margin: 0 auto;
+  position: relative; }
+
+.page.music #player .progressbar .current, .page.music #player .progressbar .duration {
+  color: #fff;
+  font-weight: 300;
+  font-size: 12px;
+  display: inline-block;
+  position: absolute; }
+
+.page.music #player .progressbar .current {
+  left: 0; }
+
+.page.music #player .progressbar .duration {
+  right: 0; }
+
 .page.music #player .actions {
   position: fixed;
   height: 100%;
@@ -679,6 +698,38 @@
   color: #000;
   opacity: .5;
   display: block; }
+
+#progressBar {
+  position: absolute;
+  width: 380px;
+  height: 16px;
+  left: 35px; }
+
+#progressBar #bar-outer {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 7px; }
+
+#progressBar #bar-inner {
+  position: absolute;
+  width: 50%;
+  height: 4px;
+  background-color: #ffc600; }
+
+#progressBar button {
+  background-color: #ffc600 !important;
+  width: 16px !important;
+  height: 16px !important;
+  padding: 0 !important;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+  font-size: 12px;
+  text-indent: -9999px;
+  position: absolute;
+  left: -8px;
+  top: -5px; }
 
 body {
   background-color: transparent !important; }

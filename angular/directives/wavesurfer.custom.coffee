@@ -55,6 +55,8 @@ do ->
         audio.currentTimeTrackDuration
         audio.currentTrackArtist
         audio.currentTrackTitle
+        audio.currentTrackCover
+        audio.progessBarWidth = 0
         
         #add audio tracks
         audio.addTrack = (trackScope) ->
@@ -70,6 +72,7 @@ do ->
             audio.currentTrackDuration = audio.tracks[t].duration
             audio.currentTrackArtist = audio.tracks[t].artist
             audio.currentTrackTitle = audio.tracks[t].title
+            audio.currentTrackCover = audio.tracks[t].cover
             audio.startInterval()
             audio.setCurrentTrack(t)
         
@@ -119,7 +122,12 @@ do ->
 
         audio.getCurrentTimeTrack = () ->
             audio.currentTimeTrackDuration = @.currentTime
+            audio.setProgressBarPosition()
             $scope.$digest()
+
+        audio.setProgressBarPosition = () ->
+            #barInner = angular.element(audio.progressBar).find('#bar-inner')
+            audio.progessBarWidth = Math.round((audio.currentTimeTrackDuration/audio.currentTrackDuration) * 100)
 
         
         
@@ -143,13 +151,23 @@ do ->
             scope: url: '@', title: '@', artist: '@', cover: '@'
             link: (scope, element, attrs, audio) ->
                 audio.addTrack(scope)
-                console.log scope.url
                 thepromise = mdWavesurferUtils.getLength(scope.url)
                 thepromise.then ((duration) ->
                     scope.duration = duration
                     return
                 ), (reason) ->
                     return
+        }
+  ]
+
+  cWavesurfer.directive 'playerProgressBar', [
+      () ->
+        {
+            restrict: 'E'
+            templateUrl: myLocalized.partials + 'player-progress-bar.html'
+            require: '^player'
+            link: (scope, element, attrs, audio) ->
+                audio.progressBar = element
         }
   ]
 

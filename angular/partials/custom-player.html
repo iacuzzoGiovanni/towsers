@@ -4,8 +4,8 @@
         
         <div class="custom-container">
             
-            <div class="cover">
-                <img src="empty" alt="" width="500" height="500">
+            <div class="cover text-center">
+                <img src="{{ audio.currentTrackCover }}" alt="" width="450" height="450">
             </div>
             
             <div class="name">
@@ -14,10 +14,19 @@
             </div>
 
             <div class="progressbar">
-                <span class="currentTimeTrackDuration">{{ audio.currentTimeTrackDuration | convertToHumanMinutes }}</span>
-                <span class="trackduration" ng-if="audio.currentTrackDuration">{{ audio.currentTrackDuration | convertToHumanMinutes }}</span>
-                <span class="trackduration" ng-if="!audio.currentTrackDuration">0:00</span>
-                <span class="trackcurrenttime"></span>
+
+                <div class="current">
+                    <span class="currentTimeTrackDuration" ng-if="audio.currentTimeTrackDuration">{{ audio.currentTimeTrackDuration | convertToHumanMinutes }}</span>
+                    <span class="currentTimeTrackDuration" ng-if="!audio.currentTimeTrackDuration">0:00</span>
+                </div>
+
+                <player-progress-bar></player-progress-bar>
+
+                <div class="duration">
+                    <span class="trackduration" ng-if="audio.currentTrackDuration">{{ audio.currentTrackDuration | convertToHumanMinutes }}</span>
+                    <span class="trackduration" ng-if="!audio.currentTrackDuration">0:00</span>
+                </div>
+
             </div>
             
             <div class="buttons">
