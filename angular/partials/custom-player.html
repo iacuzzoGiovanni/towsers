@@ -1,42 +1,43 @@
 <div id="player">
-            
+
     <div class="actions">
-        
+
         <div class="custom-container">
-            
-            <div class="cover text-center">
-                <img src="{{ audio.currentTrackCover }}" alt="" width="450" height="450">
-            </div>
-            
-            <div class="name">
-                <span class="artist">{{ audio.currentTrackArtist }}</span> - <span class="title">{{ audio.currentTrackTitle }}</span>
 
-            </div>
-
-            <div class="progressbar">
-
-                <div class="current">
-                    <span class="currentTimeTrackDuration" ng-if="audio.currentTimeTrackDuration">{{ audio.currentTimeTrackDuration | convertToHumanMinutes }}</span>
-                    <span class="currentTimeTrackDuration" ng-if="!audio.currentTimeTrackDuration">0:00</span>
+            <div class="vertical-align">
+                <div class="cover text-center">
+                    <img src="{{ audio.currentTrackCover }}" alt="" width="450" height="450">
                 </div>
 
-                <player-progress-bar></player-progress-bar>
-
-                <div class="duration">
-                    <span class="trackduration" ng-if="audio.currentTrackDuration">{{ audio.currentTrackDuration | convertToHumanMinutes }}</span>
-                    <span class="trackduration" ng-if="!audio.currentTrackDuration">0:00</span>
+                <div class="name text-center">
+                    <span class="artist">{{ audio.currentTrackArtist }}</span> - <span class="title">{{ audio.currentTrackTitle }}</span>
                 </div>
 
+                <div class="progressbar">
+
+                    <div class="current">
+                        <span class="currentTimeTrackDuration" ng-if="audio.currentTimeTrackDuration">{{ audio.currentTimeTrackDuration | convertToHumanMinutes }}</span>
+                        <span class="currentTimeTrackDuration" ng-if="!audio.currentTimeTrackDuration">0:00</span>
+                    </div>
+
+                    <player-progress-bar></player-progress-bar>
+
+                    <div class="duration">
+                        <span class="trackduration" ng-if="audio.currentTrackDuration">{{ audio.currentTrackDuration | convertToHumanMinutes }}</span>
+                        <span class="trackduration" ng-if="!audio.currentTrackDuration">0:00</span>
+                    </div>
+
+                </div>
+
+                <div class="buttons text-center">
+                    <button class="backward"><i class="glyphicon glyphicon-backward"></i></button>
+                    <button class="play" ng-click="audio.play()"><i class="glyphicon glyphicon-play"></i></button>
+                    <button class="forward"><i class="glyphicon glyphicon-forward"></i></button>
+                </div>
             </div>
-            
-            <div class="buttons">
-                <button class="backward"><i class="glyphicon glyphicon-backward"></i></button>
-                <button class="play" ng-click="audio.play()"><i class="glyphicon glyphicon-play"></i></button>
-                <button class="forward"><i class="glyphicon glyphicon-forward"></i></button>
-            </div>
-            
+
         </div>
-        
+
     </div>
 
     <ul class="playlist">

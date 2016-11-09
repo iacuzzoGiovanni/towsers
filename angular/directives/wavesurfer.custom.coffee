@@ -7,7 +7,7 @@ do ->
   ###
   # @module {custoWavesurfer}
   ###
-    
+
   cWavesurfer = angular.module('custoWavesurfer', [])
 
   cWavesurfer.factory 'mdWavesurferUtils', [
@@ -36,16 +36,13 @@ do ->
 
   cWavesurfer.filter 'convertToHumanMinutes', ->
     (d) ->
-        mm = Math.floor(d / 60)
-        ss = Math.round(d % 60)
-        if ss < 10 then ss = '0'+ss
-        dur = mm + ':' + ss
-    
+      mm = Math.floor(d / 60)
+      ss = Math.round(d % 60)
+      if ss < 10 then ss = '0'+ss
+      dur = mm + ':' + ss
+
   cWavesurfer.controller 'musicAudioPlayerController', [
-      '$attrs', 
-      '$element',
-      '$scope'
-      '$interval'
+      '$attrs', '$element', '$scope', '$interval',
       (attributes, $element, $scope, $interval) ->
         audio = @
         audio.tracks = []
@@ -57,16 +54,17 @@ do ->
         audio.currentTrackTitle
         audio.currentTrackCover
         audio.progessBarWidth = 0
-        
+
         #add audio tracks
         audio.addTrack = (trackScope) ->
             if audio.tracks.indexOf(trackScope) < 0
                 audio.tracks.push trackScope
-        
+
         #set the track to a new audio
         audio.setTrack = (t) ->
             if audio.track
                 audio.track.src = 'data:audio/mpeg,0'
+                audio.track.removeEventListener 'timeupdate', audio.getCurrentTimeTrack
 
             audio.track = new Audio(audio.tracks[t].url)
             audio.currentTrackDuration = audio.tracks[t].duration
@@ -75,22 +73,22 @@ do ->
             audio.currentTrackCover = audio.tracks[t].cover
             audio.startInterval()
             audio.setCurrentTrack(t)
-        
+
         #Set current track
         audio.setCurrentTrack = (ct) ->
             audio.currentTrack = ct
-        
+
         #Get current track
         audio.getCurrentTrack = () ->
             audio.currentTrack
-                
+
         #Add music from the playlist section
         audio.addFromPlaylist = (e) ->
             e.preventDefault()
             idx = angular.element(e.target).data('index')
             audio.setTrack(idx)
             audio.play()
-    
+
         #play/pause btn
         audio.play = () ->
             if audio.getCurrentTrack() == null
@@ -101,8 +99,7 @@ do ->
                     audio.track.play()
                 else
                     audio.track.pause()
-                    audio.track.removeEventListener 'timeupdate', audio.getCurrentTimeTrack 
-        
+
         audio.convertToHumanMinutes = (d) ->
             mm = Math.floor(d / 60)
             ss = Math.round(d % 60)
@@ -110,15 +107,7 @@ do ->
             dur = mm + ':' + ss
 
         audio.startInterval = () ->
-            ###
-            audio.timeInterval = $interval((->
-                audio.currentTimeTrackDuration = audio.track.currentTime
-                console.log audio.currentTimeTrackDuration
-                return
-            ), 1000)
-            return
-            ###
-            audio.track.addEventListener 'timeupdate', audio.getCurrentTimeTrack, false 
+            audio.track.addEventListener 'timeupdate', audio.getCurrentTimeTrack, false
 
         audio.getCurrentTimeTrack = () ->
             audio.currentTimeTrackDuration = @.currentTime
@@ -126,22 +115,22 @@ do ->
             $scope.$digest()
 
         audio.setProgressBarPosition = () ->
-            #barInner = angular.element(audio.progressBar).find('#bar-inner')
-            audio.progessBarWidth = Math.round((audio.currentTimeTrackDuration/audio.currentTrackDuration) * 100)
+            audio.progessBarWidth = (audio.currentTimeTrackDuration/audio.currentTrackDuration) * 100 + '%'
 
-        
-        
+        audio.getProgressBarPosition = (e) ->
+            console.log Math.round(e.layerX / @.offsetWidth * 100)
+
         return
     ]
-    
+
   cWavesurfer.directive 'player', ->
     {
-        restrict: 'E'
-        templateUrl: myLocalized.partials + 'custom-player.html'
-        controller: 'musicAudioPlayerController'
-        controllerAs: 'audio'
-    } 
-  
+      restrict: 'E'
+      templateUrl: myLocalized.partials + 'custom-player.html'
+      controller: 'musicAudioPlayerController'
+      controllerAs: 'audio'
+    }
+
   cWavesurfer.directive 'customAudioSource', [
       'mdWavesurferUtils'
       (mdWavesurferUtils) ->
@@ -168,7 +157,10 @@ do ->
             require: '^player'
             link: (scope, element, attrs, audio) ->
                 audio.progressBar = element
+                barOuter = element.find('#progressBar')[0]
+                barOuter.addEventListener 'click', audio.getProgressBarPosition, false
+                return
         }
   ]
 
-  return 
+  return

@@ -18,13 +18,12 @@
 
     #bar-inner{
         position: absolute;
-        width: 50%;
         height: 4px;
         background-color: $primaryC;
     }
 
-    button{
-        background-color: $primaryC !important;
+    #position{
+        background-color: #fff !important;
         width: 16px !important;
         height: 16px !important;
         padding: 0 !important;
@@ -33,6 +32,10 @@
         text-indent: -9999px;
         position: absolute;
         left: -8px;
-        top: -5px;
+        top: -6px;
+        -webkit-box-shadow: 2px 0 2px 0 rgba(0,0,0,.1);
+        box-shadow: 2px 0 2px 0 rgba(0,0,0,.1);
+
+       
     }
 }

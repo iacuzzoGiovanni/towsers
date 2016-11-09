@@ -68,6 +68,7 @@
       audio.setTrack = function(t) {
         if (audio.track) {
           audio.track.src = 'data:audio/mpeg,0';
+          audio.track.removeEventListener('timeupdate', audio.getCurrentTimeTrack);
         }
         audio.track = new Audio(audio.tracks[t].url);
         audio.currentTrackDuration = audio.tracks[t].duration;
@@ -98,8 +99,7 @@
           if (audio.track.paused) {
             return audio.track.play();
           } else {
-            audio.track.pause();
-            return audio.track.removeEventListener('timeupdate', audio.getCurrentTimeTrack);
+            return audio.track.pause();
           }
         }
       };
@@ -113,15 +113,6 @@
         return dur = mm + ':' + ss;
       };
       audio.startInterval = function() {
-
-        /*
-        audio.timeInterval = $interval((->
-            audio.currentTimeTrackDuration = audio.track.currentTime
-            console.log audio.currentTimeTrackDuration
-            return
-        ), 1000)
-        return
-         */
         return audio.track.addEventListener('timeupdate', audio.getCurrentTimeTrack, false);
       };
       audio.getCurrentTimeTrack = function() {
@@ -130,7 +121,10 @@
         return $scope.$digest();
       };
       audio.setProgressBarPosition = function() {
-        return audio.progessBarWidth = Math.round((audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100);
+        return audio.progessBarWidth = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100 + '%';
+      };
+      audio.getProgressBarPosition = function(e) {
+        return console.log(Math.round(e.layerX / this.offsetWidth * 100));
       };
     }
   ]);
@@ -171,7 +165,10 @@
         templateUrl: myLocalized.partials + 'player-progress-bar.html',
         require: '^player',
         link: function(scope, element, attrs, audio) {
-          return audio.progressBar = element;
+          var barOuter;
+          audio.progressBar = element;
+          barOuter = element.find('#progressBar')[0];
+          barOuter.addEventListener('click', audio.getProgressBarPosition, false);
         }
       };
     }

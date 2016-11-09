@@ -630,7 +630,10 @@
 .page.music #player .actions .custom-container {
   position: relative;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 .page.music #player .actions button {
   background-color: transparent;
@@ -649,6 +652,13 @@
 .page.music #player .actions .play i {
   position: relative;
   top: 10px; }
+
+.page.music #player .actions .name {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 200;
+  margin-top: 40px;
+  margin-bottom: 10px; }
 
 .page.music #player .playlist {
   position: fixed;
@@ -714,12 +724,11 @@
 
 #progressBar #bar-inner {
   position: absolute;
-  width: 50%;
   height: 4px;
   background-color: #ffc600; }
 
-#progressBar button {
-  background-color: #ffc600 !important;
+#progressBar #position {
+  background-color: #fff !important;
   width: 16px !important;
   height: 16px !important;
   padding: 0 !important;
@@ -729,7 +738,9 @@
   text-indent: -9999px;
   position: absolute;
   left: -8px;
-  top: -5px; }
+  top: -6px;
+  -webkit-box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.1); }
 
 body {
   background-color: transparent !important; }
