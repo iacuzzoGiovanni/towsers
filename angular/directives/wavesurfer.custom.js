@@ -127,8 +127,24 @@
       audio.setProgressBarPosition = function() {
         return audio.progessBarWidth = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100 + '%';
       };
-      audio.getProgressBarPosition = function(e) {
-        return console.log(Math.round(e.layerX / this.offsetWidth * 100));
+      audio.onSlideDown = function(e) {
+        this.addEventListener('mousemove', audio.onSlideMove, false);
+        return this.addEventListener('mouseup', audio.onSlideUp, false);
+      };
+      audio.onSlideMove = function(e) {
+        var barInner, position;
+        position = angular.element(this).find('#position')[0];
+        barInner = angular.element(this).find('#bar-inner')[0];
+        position.style.marginLeft = Math.round(e.layerX / this.offsetWidth * 100) + '%';
+        return barInner.style.width = Math.round(e.layerX / this.offsetWidth * 100) + '%';
+      };
+      audio.onSlideUp = function(e) {
+        var barInner, position;
+        this.removeEventListener('mousemove', audio.onSlideMove);
+        position = angular.element(this).find('#position')[0];
+        barInner = angular.element(this).find('#bar-inner')[0];
+        position.style.marginLeft = Math.round(e.layerX / this.offsetWidth * 100) + '%';
+        return barInner.style.width = Math.round(e.layerX / this.offsetWidth * 100) + '%';
       };
     }
   ]);
@@ -172,7 +188,7 @@
           var barOuter;
           audio.progressBar = element;
           barOuter = element.find('#progressBar')[0];
-          barOuter.addEventListener('click', audio.getProgressBarPosition, false);
+          barOuter.addEventListener('mousedown', audio.onSlideDown, false);
         }
       };
     }

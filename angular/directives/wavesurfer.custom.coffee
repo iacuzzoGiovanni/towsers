@@ -116,14 +116,30 @@ do ->
         audio.getCurrentTimeTrack = () ->
             audio.currentTimeTrackDuration = @.currentTime
             audio.setProgressBarPosition()
-            #console.log audio.currentTrack
             $scope.$digest()
 
         audio.setProgressBarPosition = () ->
             audio.progessBarWidth = (audio.currentTimeTrackDuration/audio.currentTrackDuration) * 100 + '%'
 
-        audio.getProgressBarPosition = (e) ->
-            console.log Math.round(e.layerX / @.offsetWidth * 100)
+        #audio.getProgressBarPosition = (e) ->
+            #console.log Math.round(e.layerX / @.offsetWidth * 100)
+
+        audio.onSlideDown = (e) ->
+            @addEventListener 'mousemove', audio.onSlideMove, false
+            @addEventListener 'mouseup', audio.onSlideUp, false
+
+        audio.onSlideMove = (e) ->
+            position = angular.element(@).find('#position')[0]
+            barInner = angular.element(@).find('#bar-inner')[0]
+            position.style.marginLeft = Math.round(e.layerX / @.offsetWidth * 100) + '%'
+            barInner.style.width = Math.round(e.layerX / @.offsetWidth * 100) + '%'
+
+        audio.onSlideUp = (e) ->
+            @removeEventListener 'mousemove', audio.onSlideMove
+            position = angular.element(@).find('#position')[0]
+            barInner = angular.element(@).find('#bar-inner')[0]
+            position.style.marginLeft = Math.round(e.layerX / @.offsetWidth * 100) + '%'
+            barInner.style.width = Math.round(e.layerX / @.offsetWidth * 100) + '%'
 
         return
     ]
@@ -163,7 +179,8 @@ do ->
             link: (scope, element, attrs, audio) ->
                 audio.progressBar = element
                 barOuter = element.find('#progressBar')[0]
-                barOuter.addEventListener 'click', audio.getProgressBarPosition, false
+                barOuter.addEventListener 'mousedown', audio.onSlideDown, false
+
                 return
         }
   ]
