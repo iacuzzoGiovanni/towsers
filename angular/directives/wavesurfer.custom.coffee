@@ -54,6 +54,7 @@ do ->
         audio.currentTrackTitle
         audio.currentTrackCover
         audio.progessBarWidth = 0
+        audio.paused = true
 
         #add audio tracks
         audio.addTrack = (trackScope) ->
@@ -94,11 +95,14 @@ do ->
             if audio.getCurrentTrack() == null
                 audio.setTrack(0)
                 audio.track.play()
+                audio.paused = false
             else
                 if audio.track.paused
                     audio.track.play()
+                    audio.paused = false
                 else
                     audio.track.pause()
+                    audio.paused = true
 
         audio.convertToHumanMinutes = (d) ->
             mm = Math.floor(d / 60)
@@ -112,6 +116,7 @@ do ->
         audio.getCurrentTimeTrack = () ->
             audio.currentTimeTrackDuration = @.currentTime
             audio.setProgressBarPosition()
+            #console.log audio.currentTrack
             $scope.$digest()
 
         audio.setProgressBarPosition = () ->

@@ -60,6 +60,7 @@
       audio.currentTrackTitle;
       audio.currentTrackCover;
       audio.progessBarWidth = 0;
+      audio.paused = true;
       audio.addTrack = function(trackScope) {
         if (audio.tracks.indexOf(trackScope) < 0) {
           return audio.tracks.push(trackScope);
@@ -94,12 +95,15 @@
       audio.play = function() {
         if (audio.getCurrentTrack() === null) {
           audio.setTrack(0);
-          return audio.track.play();
+          audio.track.play();
+          return audio.paused = false;
         } else {
           if (audio.track.paused) {
-            return audio.track.play();
+            audio.track.play();
+            return audio.paused = false;
           } else {
-            return audio.track.pause();
+            audio.track.pause();
+            return audio.paused = true;
           }
         }
       };

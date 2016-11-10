@@ -31,10 +31,12 @@
 
                 <div class="buttons text-center">
                     <button class="backward"><i class="glyphicon glyphicon-backward"></i></button>
-                    <button class="play" ng-click="audio.play()"><i class="glyphicon glyphicon-play"></i></button>
+                    <button class="play" ng-click="audio.play()"><i class="glyphicon" ng-class="{'glyphicon-play': audio.paused == true, 'glyphicon-pause': audio.paused == false}"></i></button>
                     <button class="forward"><i class="glyphicon glyphicon-forward"></i></button>
                 </div>
             </div>
+
+            <div class="background" style="background: url({{audio.currentTrackCover}}) no-repeat;"></div>
 
         </div>
 
@@ -44,8 +46,9 @@
 
         <li ng-repeat="music in data" class="item">
 
-            <a href="{{ music.url }}" target="_blank" data-index="{{ $index }}" ng-click="audio.addFromPlaylist($event)">
-                <span class="nb">{{ $index + 1 }}</span>
+            <a href="{{ music.url }}" target="_blank" data-index="{{ $index }}" ng-click="audio.addFromPlaylist($event)" ng-class="{'current': audio.currentTrack == $index}">
+                <span class="nb" ng-if="audio.currentTrack != $index">{{ $index + 1 }}</span>
+                <span class="nb" ng-if="audio.currentTrack == $index"><i class="glyphicon" ng-class="{'glyphicon-play': audio.paused == false, 'glyphicon-pause': audio.paused == true}"></i></span>
                 <span class="title">{{ music.title }}</span> 
                 <span class="artist">{{ music.artist }}</span>
 

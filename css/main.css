@@ -118,7 +118,7 @@
   height: 0px;
   width: 100%;
   left: 0;
-  top: 0;
+  bottom: 0;
   background-color: #ffc600;
   -webkit-transition: all .1s ease-in-out;
   -moz-transition: all .1s ease-in-out;
@@ -635,6 +635,25 @@
   align-items: center;
   justify-content: center; }
 
+.page.music #player .actions .vertical-align {
+  z-index: 10; }
+
+.page.music #player .actions .background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+  -webkit-filter: blur(25px);
+  -moz-filter: blur(25px);
+  -o-filter: blur(25px);
+  -ms-filter: blur(25px);
+  filter: blur(25px); }
+
 .page.music #player .actions button {
   background-color: transparent;
   border: none;
@@ -655,10 +674,10 @@
 
 .page.music #player .actions .name {
   color: #fff;
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 200;
   margin-top: 40px;
-  margin-bottom: 10px; }
+  margin-bottom: 0; }
 
 .page.music #player .playlist {
   position: fixed;
@@ -685,6 +704,12 @@
 .page.music #player .playlist a:hover {
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.05); }
+
+.page.music #player .playlist a.current {
+  background-color: #e5b200; }
+
+.page.music #player .playlist a.current:hover {
+  background-color: #e5b200; }
 
 .page.music #player .playlist .nb {
   color: #000;
