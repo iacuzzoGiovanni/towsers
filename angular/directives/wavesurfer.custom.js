@@ -59,8 +59,8 @@
       audio.currentTrackArtist;
       audio.currentTrackTitle;
       audio.currentTrackCover;
-      audio.progessBarWidth = 0;
       audio.paused = true;
+      audio.progressBar;
       audio.addTrack = function(trackScope) {
         if (audio.tracks.indexOf(trackScope) < 0) {
           return audio.tracks.push(trackScope);
@@ -125,26 +125,39 @@
         return $scope.$digest();
       };
       audio.setProgressBarPosition = function() {
-        return audio.progessBarWidth = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100 + '%';
+        audio.progessBarWidth = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100 + '%';
+        return console.log(audio.progessBarWidth);
       };
-      audio.onSlideDown = function(e) {
-        this.addEventListener('mousemove', audio.onSlideMove, false);
-        return this.addEventListener('mouseup', audio.onSlideUp, false);
-      };
-      audio.onSlideMove = function(e) {
-        var barInner, position;
-        position = angular.element(this).find('#position')[0];
-        barInner = angular.element(this).find('#bar-inner')[0];
-        position.style.marginLeft = Math.round(e.layerX / this.offsetWidth * 100) + '%';
-        return barInner.style.width = Math.round(e.layerX / this.offsetWidth * 100) + '%';
-      };
-      audio.onSlideUp = function(e) {
-        var barInner, position;
-        this.removeEventListener('mousemove', audio.onSlideMove);
-        position = angular.element(this).find('#position')[0];
-        barInner = angular.element(this).find('#bar-inner')[0];
-        position.style.marginLeft = Math.round(e.layerX / this.offsetWidth * 100) + '%';
-        return barInner.style.width = Math.round(e.layerX / this.offsetWidth * 100) + '%';
+      audio.onSlide = function(el) {
+        var barInner, down, dragger, draggerWidth, range, rangeLeft, rangeParent, rangeWidth, updateDragger;
+        range = el.find('#progressBar')[0];
+        rangeParent = el.parent()[0];
+        dragger = angular.element(range).find('#position')[0];
+        barInner = angular.element(range).find('#bar-inner')[0];
+        draggerWidth = 16;
+        down = false;
+        rangeWidth = range.offsetWidth;
+        rangeLeft = range.offsetLeft + rangeParent.offsetLeft;
+        dragger.style.width = draggerWidth + 'px';
+        dragger.style.left = -draggerWidth + 'px';
+        dragger.style.marginLeft = draggerWidth / 2 + 'px';
+        range.addEventListener('mousedown', function(e) {
+          down = true;
+          updateDragger(e);
+          return false;
+        });
+        document.addEventListener('mousemove', function(e) {
+          updateDragger(e);
+        });
+        document.addEventListener('mouseup', function() {
+          down = false;
+        });
+        return updateDragger = function(e) {
+          if (down && e.pageX >= rangeLeft && e.pageX <= rangeLeft + rangeWidth) {
+            dragger.style.left = e.pageX - rangeLeft - draggerWidth + 'px';
+            barInner.style.width = e.pageX - rangeLeft + 'px';
+          }
+        };
       };
     }
   ]);
@@ -185,10 +198,8 @@
         templateUrl: myLocalized.partials + 'player-progress-bar.html',
         require: '^player',
         link: function(scope, element, attrs, audio) {
-          var barOuter;
           audio.progressBar = element;
-          barOuter = element.find('#progressBar')[0];
-          barOuter.addEventListener('mousedown', audio.onSlideDown, false);
+          audio.onSlide(audio.progressBar);
         }
       };
     }

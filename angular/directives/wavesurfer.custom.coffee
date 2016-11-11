@@ -53,8 +53,8 @@ do ->
         audio.currentTrackArtist
         audio.currentTrackTitle
         audio.currentTrackCover
-        audio.progessBarWidth = 0
         audio.paused = true
+        audio.progressBar
 
         #add audio tracks
         audio.addTrack = (trackScope) ->
@@ -119,27 +119,44 @@ do ->
             $scope.$digest()
 
         audio.setProgressBarPosition = () ->
-            audio.progessBarWidth = (audio.currentTimeTrackDuration/audio.currentTrackDuration) * 100 + '%'
+            audio.progessBarWidth = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100 + '%'
+            console.log audio.progessBarWidth
 
         #audio.getProgressBarPosition = (e) ->
             #console.log Math.round(e.layerX / @.offsetWidth * 100)
 
-        audio.onSlideDown = (e) ->
-            @addEventListener 'mousemove', audio.onSlideMove, false
-            @addEventListener 'mouseup', audio.onSlideUp, false
+        audio.onSlide = (el) ->
+            range = el.find('#progressBar')[0]
+            rangeParent = el.parent()[0]
+            dragger = angular.element(range).find('#position')[0]
+            barInner = angular.element(range).find('#bar-inner')[0]
+            draggerWidth = 16
+            down = false
+            rangeWidth = range.offsetWidth
+            rangeLeft = range.offsetLeft + rangeParent.offsetLeft
 
-        audio.onSlideMove = (e) ->
-            position = angular.element(@).find('#position')[0]
-            barInner = angular.element(@).find('#bar-inner')[0]
-            position.style.marginLeft = Math.round(e.layerX / @.offsetWidth * 100) + '%'
-            barInner.style.width = Math.round(e.layerX / @.offsetWidth * 100) + '%'
+            dragger.style.width = draggerWidth + 'px'
+            dragger.style.left = -draggerWidth + 'px'
+            dragger.style.marginLeft = draggerWidth / 2 + 'px'
 
-        audio.onSlideUp = (e) ->
-            @removeEventListener 'mousemove', audio.onSlideMove
-            position = angular.element(@).find('#position')[0]
-            barInner = angular.element(@).find('#bar-inner')[0]
-            position.style.marginLeft = Math.round(e.layerX / @.offsetWidth * 100) + '%'
-            barInner.style.width = Math.round(e.layerX / @.offsetWidth * 100) + '%'
+            range.addEventListener 'mousedown', (e) ->
+                down = true
+                updateDragger e
+                false
+
+            document.addEventListener 'mousemove', (e) ->
+                updateDragger e
+                return
+
+            document.addEventListener 'mouseup', ->
+                down = false
+                return
+
+            updateDragger = (e) ->
+                if down and e.pageX >= rangeLeft and e.pageX <= rangeLeft + rangeWidth
+                    dragger.style.left = e.pageX - rangeLeft - draggerWidth + 'px'
+                    barInner.style.width = e.pageX - rangeLeft + 'px'
+                return
 
         return
     ]
@@ -178,9 +195,7 @@ do ->
             require: '^player'
             link: (scope, element, attrs, audio) ->
                 audio.progressBar = element
-                barOuter = element.find('#progressBar')[0]
-                barOuter.addEventListener 'mousedown', audio.onSlideDown, false
-
+                audio.onSlide(audio.progressBar)
                 return
         }
   ]
