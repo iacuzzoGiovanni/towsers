@@ -55,6 +55,7 @@ do ->
         audio.currentTrackCover
         audio.paused = true
         audio.progressBar
+        audio.isBtnPressed = false
 
         #add audio tracks
         audio.addTrack = (trackScope) ->
@@ -92,6 +93,7 @@ do ->
 
         #play/pause btn
         audio.play = () ->
+            audio.isBtnPressed = true
             if audio.getCurrentTrack() == null
                 audio.setTrack(0)
                 audio.track.play()
@@ -99,9 +101,11 @@ do ->
             else
                 if audio.track.paused
                     audio.track.play()
+                    audio.startInterval()
                     audio.paused = false
                 else
                     audio.track.pause()
+                    audio.track.removeEventListener 'timeupdate', audio.getCurrentTimeTrack
                     audio.paused = true
 
         audio.convertToHumanMinutes = (d) ->
@@ -111,19 +115,34 @@ do ->
             dur = mm + ':' + ss
 
         audio.startInterval = () ->
-            audio.track.addEventListener 'timeupdate', audio.getCurrentTimeTrack, false
+            if audio.track
+                audio.track.addEventListener 'timeupdate', audio.getCurrentTimeTrack, false
 
         audio.getCurrentTimeTrack = () ->
-            audio.currentTimeTrackDuration = @.currentTime
+            audio.currentTimeTrackDuration = @currentTime
             audio.setProgressBarPosition()
             $scope.$digest()
 
         audio.setProgressBarPosition = () ->
-            audio.progessBarWidth = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100 + '%'
-            console.log audio.progessBarWidth
-
-        #audio.getProgressBarPosition = (e) ->
             #console.log Math.round(e.layerX / @.offsetWidth * 100)
+            position =  (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100
+            oWidth =  audio.progressBar.find('#progressBar')[0].offsetWidth
+            dragger = audio.progressBar.find('#position')[0]
+            barInner = audio.progressBar.find('#bar-inner')[0]
+            dragger.style.left = oWidth / 100 * position - dragger.offsetWidth + 'px'
+            barInner.style.width = oWidth / 100 * position + 'px'
+
+        audio.setTrackPosition = (e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner) ->
+            position = audio.currentTrackDuration * ((e.pageX - rangeLeft) / rangeWidth)
+            audio.track.currentTime = position
+            audio.currentTimeTrackDuration = position
+            $scope.$digest()
+
+        audio.updateDragger = (e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner) ->
+            if down and e.pageX >= rangeLeft and e.pageX <= rangeLeft + rangeWidth
+                dragger.style.left = e.pageX - rangeLeft - draggerWidth + 'px'
+                barInner.style.width = e.pageX - rangeLeft + 'px'
+            return
 
         audio.onSlide = (el) ->
             range = el.find('#progressBar')[0]
@@ -140,22 +159,22 @@ do ->
             dragger.style.marginLeft = draggerWidth / 2 + 'px'
 
             range.addEventListener 'mousedown', (e) ->
-                down = true
-                updateDragger e
-                false
+                if e.which == 1 and audio.track
+                    audio.updateDragger e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner
+                    audio.track.removeEventListener 'timeupdate', audio.getCurrentTimeTrack
+                    down = true
+                    false
 
             document.addEventListener 'mousemove', (e) ->
-                updateDragger e
+                audio.updateDragger e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner
                 return
 
-            document.addEventListener 'mouseup', ->
+            document.addEventListener 'mouseup', (e) ->
+                if audio.track and down == true
+                    if audio.isBtnPressed
+                        audio.startInterval()
+                        audio.setTrackPosition e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner
                 down = false
-                return
-
-            updateDragger = (e) ->
-                if down and e.pageX >= rangeLeft and e.pageX <= rangeLeft + rangeWidth
-                    dragger.style.left = e.pageX - rangeLeft - draggerWidth + 'px'
-                    barInner.style.width = e.pageX - rangeLeft + 'px'
                 return
 
         return

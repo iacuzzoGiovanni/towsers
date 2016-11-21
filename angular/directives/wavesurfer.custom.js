@@ -61,6 +61,7 @@
       audio.currentTrackCover;
       audio.paused = true;
       audio.progressBar;
+      audio.isBtnPressed = false;
       audio.addTrack = function(trackScope) {
         if (audio.tracks.indexOf(trackScope) < 0) {
           return audio.tracks.push(trackScope);
@@ -93,6 +94,7 @@
         return audio.play();
       };
       audio.play = function() {
+        audio.isBtnPressed = true;
         if (audio.getCurrentTrack() === null) {
           audio.setTrack(0);
           audio.track.play();
@@ -100,9 +102,11 @@
         } else {
           if (audio.track.paused) {
             audio.track.play();
+            audio.startInterval();
             return audio.paused = false;
           } else {
             audio.track.pause();
+            audio.track.removeEventListener('timeupdate', audio.getCurrentTimeTrack);
             return audio.paused = true;
           }
         }
@@ -117,7 +121,9 @@
         return dur = mm + ':' + ss;
       };
       audio.startInterval = function() {
-        return audio.track.addEventListener('timeupdate', audio.getCurrentTimeTrack, false);
+        if (audio.track) {
+          return audio.track.addEventListener('timeupdate', audio.getCurrentTimeTrack, false);
+        }
       };
       audio.getCurrentTimeTrack = function() {
         audio.currentTimeTrackDuration = this.currentTime;
@@ -125,11 +131,29 @@
         return $scope.$digest();
       };
       audio.setProgressBarPosition = function() {
-        audio.progessBarWidth = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100 + '%';
-        return console.log(audio.progessBarWidth);
+        var barInner, dragger, oWidth, position;
+        position = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100;
+        oWidth = audio.progressBar.find('#progressBar')[0].offsetWidth;
+        dragger = audio.progressBar.find('#position')[0];
+        barInner = audio.progressBar.find('#bar-inner')[0];
+        dragger.style.left = oWidth / 100 * position - dragger.offsetWidth + 'px';
+        return barInner.style.width = oWidth / 100 * position + 'px';
+      };
+      audio.setTrackPosition = function(e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner) {
+        var position;
+        position = audio.currentTrackDuration * ((e.pageX - rangeLeft) / rangeWidth);
+        audio.track.currentTime = position;
+        audio.currentTimeTrackDuration = position;
+        return $scope.$digest();
+      };
+      audio.updateDragger = function(e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner) {
+        if (down && e.pageX >= rangeLeft && e.pageX <= rangeLeft + rangeWidth) {
+          dragger.style.left = e.pageX - rangeLeft - draggerWidth + 'px';
+          barInner.style.width = e.pageX - rangeLeft + 'px';
+        }
       };
       audio.onSlide = function(el) {
-        var barInner, down, dragger, draggerWidth, range, rangeLeft, rangeParent, rangeWidth, updateDragger;
+        var barInner, down, dragger, draggerWidth, range, rangeLeft, rangeParent, rangeWidth;
         range = el.find('#progressBar')[0];
         rangeParent = el.parent()[0];
         dragger = angular.element(range).find('#position')[0];
@@ -142,22 +166,25 @@
         dragger.style.left = -draggerWidth + 'px';
         dragger.style.marginLeft = draggerWidth / 2 + 'px';
         range.addEventListener('mousedown', function(e) {
-          down = true;
-          updateDragger(e);
-          return false;
+          if (e.which === 1 && audio.track) {
+            audio.updateDragger(e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner);
+            audio.track.removeEventListener('timeupdate', audio.getCurrentTimeTrack);
+            down = true;
+            return false;
+          }
         });
         document.addEventListener('mousemove', function(e) {
-          updateDragger(e);
+          audio.updateDragger(e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner);
         });
-        document.addEventListener('mouseup', function() {
+        return document.addEventListener('mouseup', function(e) {
+          if (audio.track && down === true) {
+            if (audio.isBtnPressed) {
+              audio.startInterval();
+              audio.setTrackPosition(e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner);
+            }
+          }
           down = false;
         });
-        return updateDragger = function(e) {
-          if (down && e.pageX >= rangeLeft && e.pageX <= rangeLeft + rangeWidth) {
-            dragger.style.left = e.pageX - rangeLeft - draggerWidth + 'px';
-            barInner.style.width = e.pageX - rangeLeft + 'px';
-          }
-        };
       };
     }
   ]);
