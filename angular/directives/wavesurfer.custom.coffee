@@ -55,7 +55,6 @@ do ->
         audio.currentTrackCover
         audio.paused = true
         audio.progressBar
-        audio.isBtnPressed = false
 
         #add audio tracks
         audio.addTrack = (trackScope) ->
@@ -93,7 +92,6 @@ do ->
 
         #play/pause btn
         audio.play = () ->
-            audio.isBtnPressed = true
             if audio.getCurrentTrack() == null
                 audio.setTrack(0)
                 audio.track.play()
@@ -107,6 +105,32 @@ do ->
                     audio.track.pause()
                     audio.track.removeEventListener 'timeupdate', audio.getCurrentTimeTrack
                     audio.paused = true
+
+        audio.backward = (e) ->
+            if audio.getCurrentTrack() == null
+                audio.setTrack(0)
+                audio.track.play()
+                audio.paused = false
+            else
+                if audio.currentTrack - 1 < 0
+                    audio.setTrack(audio.tracks.length - 1)
+                    audio.track.play()
+                else
+                    audio.setTrack(audio.currentTrack - 1)
+                    audio.track.play()
+
+        audio.forward = (e) ->
+            if audio.getCurrentTrack() == null
+                audio.setTrack(0)
+                audio.track.play()
+                audio.paused = false
+            else
+                if audio.currentTrack + 1 <= audio.tracks.length - 1
+                    audio.setTrack(audio.currentTrack + 1)
+                    audio.track.play()
+                else
+                    audio.setTrack(0)
+                    audio.track.play()
 
         audio.convertToHumanMinutes = (d) ->
             mm = Math.floor(d / 60)
@@ -171,9 +195,8 @@ do ->
 
             document.addEventListener 'mouseup', (e) ->
                 if audio.track and down == true
-                    if audio.isBtnPressed
-                        audio.startInterval()
-                        audio.setTrackPosition e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner
+                    audio.startInterval()
+                    audio.setTrackPosition e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner
                 down = false
                 return
 

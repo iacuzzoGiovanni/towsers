@@ -61,7 +61,6 @@
       audio.currentTrackCover;
       audio.paused = true;
       audio.progressBar;
-      audio.isBtnPressed = false;
       audio.addTrack = function(trackScope) {
         if (audio.tracks.indexOf(trackScope) < 0) {
           return audio.tracks.push(trackScope);
@@ -94,7 +93,6 @@
         return audio.play();
       };
       audio.play = function() {
-        audio.isBtnPressed = true;
         if (audio.getCurrentTrack() === null) {
           audio.setTrack(0);
           audio.track.play();
@@ -108,6 +106,36 @@
             audio.track.pause();
             audio.track.removeEventListener('timeupdate', audio.getCurrentTimeTrack);
             return audio.paused = true;
+          }
+        }
+      };
+      audio.backward = function(e) {
+        if (audio.getCurrentTrack() === null) {
+          audio.setTrack(0);
+          audio.track.play();
+          return audio.paused = false;
+        } else {
+          if (audio.currentTrack - 1 < 0) {
+            audio.setTrack(audio.tracks.length - 1);
+            return audio.track.play();
+          } else {
+            audio.setTrack(audio.currentTrack - 1);
+            return audio.track.play();
+          }
+        }
+      };
+      audio.forward = function(e) {
+        if (audio.getCurrentTrack() === null) {
+          audio.setTrack(0);
+          audio.track.play();
+          return audio.paused = false;
+        } else {
+          if (audio.currentTrack + 1 <= audio.tracks.length - 1) {
+            audio.setTrack(audio.currentTrack + 1);
+            return audio.track.play();
+          } else {
+            audio.setTrack(0);
+            return audio.track.play();
           }
         }
       };
@@ -178,10 +206,8 @@
         });
         return document.addEventListener('mouseup', function(e) {
           if (audio.track && down === true) {
-            if (audio.isBtnPressed) {
-              audio.startInterval();
-              audio.setTrackPosition(e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner);
-            }
+            audio.startInterval();
+            audio.setTrackPosition(e, down, rangeLeft, rangeWidth, dragger, draggerWidth, barInner);
           }
           down = false;
         });

@@ -30,9 +30,9 @@
                 </div>
 
                 <div class="buttons text-center">
-                    <button class="backward"><i class="glyphicon glyphicon-backward"></i></button>
+                    <button class="backward" ng-click="audio.backward($event)"><i class="glyphicon glyphicon-fast-backward"></i></button>
                     <button class="play" ng-click="audio.play()"><i class="glyphicon" ng-class="{'glyphicon-play': audio.paused == true, 'glyphicon-pause': audio.paused == false}"></i></button>
-                    <button class="forward"><i class="glyphicon glyphicon-forward"></i></button>
+                    <button class="forward" ng-click="audio.forward($event)"><i class="glyphicon glyphicon-fast-forward"></i></button>
                 </div>
             </div>
 
