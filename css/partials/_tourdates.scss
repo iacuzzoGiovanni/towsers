@@ -4,215 +4,121 @@
 
 .page.tourdates{
     
-    .navbar-desktop{
-        background-color: #000;
-    }
-    
     padding-top: 66px;
-    
-    @include respond-to(sm){
-        padding-top: 44px;
-    }
 
-    @include respond-to(xs){
-        padding-top: 44px;
-    }
-    
     ul{
-        padding: 0;
-        margin: 0;
         list-style: none;
-    }
-    
-    li{
-        height: 66px;
-        
-        @include respond-to(sm){
-            height: auto;
-            text-align: center;
-        }
-        
-        @include respond-to(xs){
-            height: auto;
-            text-align: center;
-        }
-    }
-    
-    .odd {
-      background-color: #222;
-    }
-    
-    .even {
-      background-color: #111;
-    }
-    
-    .even, .odd{
-        padding: 0 100px;
-        
-        @include respond-to(md){
-            padding: 0;
-        }
-        
-        @include respond-to(sm){
-            padding: 20px 0;
-        }
-        
-        @include respond-to(xs){
-            padding: 20px 0;
-        }
-    }
-    
-    .day{
-        color: #fff;
-        font-size: 44px;
-        font-weight: 100;
-        float: left;
-        display: block;
-        position: relative;
-        top: 1px;
-        
-        @include respond-to(sm){
-            font-size: 14px;
-            float: none;
+        padding: 0;
+
+        .restrict{
             display: inline-block;
-            top: 0;
-            font-weight: 200;
-            color: #888;
+            margin-left: 40px;
+            height: 44px;
+            line-height: 44px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            @include transition();
+
+
+            &:hover{
+                background-color: $primaryC;
+                cursor: pointer;
+                padding-left: 20px;
+
+                .date, .location, .time{
+                    color: #000;
+                }
+
+                .button{
+                    display: inline-block;
+
+                    a{
+                        border-left: 1px solid rgba(0,0,0, .2);
+                        color: #000;
+                    }
+                }
+
+            }
         }
-        
-        @include respond-to(xs){
-            font-size: 14px;
-            float: none;
-            display: inline-block;
-            top: 0;
-            font-weight: 200;
-            color: #888;
-        }
-    }
-    
-    .cont{
-        float: left;
-        position: relative;
-        max-width: 100px;
-        
-        @include respond-to(sm){
-            max-width: none;
-            float: none;
-            display: inline-block;
-        }
-        
-        @include respond-to(xs){
-            max-width: none;
-            float: none;
-            display: inline-block;
-        }
-    }
-    
-    .month, .year{
-        color: #888;
-        font-size: 14px;
-        font-weight: 200;
-        text-transform: uppercase;
-        display: inline-block;
-        position: absolute;
-        top: 12px;
-        left: 10px;
-        
-        @include respond-to(sm){
-            position: static;
-        }
-        
-        @include respond-to(xs){
-            position: static;
-        }
-    }
-    
-    .year{
-        top: 32px;
-    }
-    
-    .city{
-        color: #fff;
-        font-size: 16px;
-        font-weight: 200;
-        text-transform: uppercase;
-        
-         @include respond-to(sm){
-            font-size: 22px;
-        }
-        
-        @include respond-to(xs){
-            font-size: 22px;
-        }
-    }
-    
-    .venue{
-        color: #888;
-        font-size: 14px;
-        font-weight: 200;
-    }
-    
-    .city, .venue{
-        position: relative;
-        top: 12px;
-        
-        @include respond-to(sm){
-            top: 0;
-        }
-        
-        @include respond-to(xs){
-            top: 0;
-        }
-        
-    }
-    
-    .scheduled{    
-        font-size: 24px;
-        font-weight: 100;
-        color: #888;
-        padding-top: 16px;
-        
-        @include respond-to(sm){
-            padding-top: 0;
+
+        .tourdate{
+            font-family: 'Oswald', sans-serif;
             font-size: 16px;
-            margin-bottom: 20px;
+
+            &:first-child{
+                margin-top: 44px;
+            }
         }
-        
-        @include respond-to(xs){
-            padding-top: 0;
-            font-size: 16px;
-            margin-bottom: 20px;
+
+        .date, .location, .time, .button{
+            color: #aaa;
+            display: inline-block;
         }
-    }
-    
-    .btnT{
-        display: inline-block;
-        height: 44px;
-        padding: 0 20px;
-        line-height: 44px;
-        font-size: 12px;
-        text-transform: uppercase;
-        font-weight: 600;
-        color: #000;
-        background-color: $primaryC;
-        position: relative;
-        top: 10px;
-        float: right;
-        
-        &:hover{
-            text-decoration: none;
+
+        .time{
+            width: 90px;
         }
-        
-        @include respond-to(sm){
-            float: none;
-            top: 0;
+
+        .date{
+            &:after{
+                content: "";
+                display: inline-block;
+                width: 4px;
+                height: 4px;
+                -webkit-border-radius: 4px;
+                border-radius: 4px;
+                background-color: #fff;
+                margin: 0 22px;
+                position: relative;
+                bottom: 4px;
+            }
         }
-        
-        @include respond-to(xs){
-            float: none;
-            top: 0;
+
+        .day{
+            display: inline-block;
+            min-width: 75px;
         }
-        
+
+        .location{
+
+            min-width: 350px;
+
+            .venue{
+                color: #444;
+                margin-left: 10px;
+            }
+
+            .city, .venue {
+                display: inline-block;
+            }
+
+        }
+
+        .button {
+            //display: none;
+
+            a{
+                font-size: 12px;
+                height: 44px;
+                //border-left: 1px solid rgba(255,255,255, .2);
+                text-transform: uppercase;
+                font-weight: 900;
+                padding: 0 20px;
+                margin-left: 20px;
+                color: $primaryC;
+                display: block;
+                position: relative;
+                bottom: 2px;
+                -webkit-border-radius: 0 4px 4px 0;
+                border-radius: 0 4px 4px 0;
+
+                &:hover{
+                    text-decoration: none;
+                    background-color: #e1ac00;
+                }
+            }
+        }
+
     }
     
 }

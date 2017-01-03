@@ -12,7 +12,7 @@ app.directive 'customNavLink', ($timeout, $location, $rootScope) ->
         scope: active: '@', page: '@', link: '@'
         replace: true
         link: (scope, elem) ->
-          
+
           scope.goTo = ($event) ->
             $event.preventDefault()
             $rootScope.showBanner = true

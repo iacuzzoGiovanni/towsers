@@ -1,0 +1,130 @@
+{
+  "name": "mfg",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "9ea28ba01d59a4410fa3db9c02cce157",
+      "css": "github",
+      "code": 61525,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "3261112d66c6462ea20893f42b6f799b",
+      "css": "github-circled",
+      "code": 61524,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "3c2cfcbad5062929d63a249f3858e38b",
+      "css": "github-circled-alt",
+      "code": 61523,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "8669af50382b53c48b9b803692828dd0",
+      "css": "github-circled-alt2",
+      "code": 61526,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "ec3648a34c41b70671dc38dbb72deb04",
+      "css": "twitter",
+      "code": 61528,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "ccf7ed45e7f05a89376f38abaa9d7d13",
+      "css": "twitter-circled",
+      "code": 61527,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "53d4dc777eeba379412efba3ee1cac9e",
+      "css": "facebook",
+      "code": 61522,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "c37cda0d4ee654abafc9a896da259977",
+      "css": "mfg-logo-circled",
+      "code": 61536,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "ca4775510f9b79d63d9ad7d258f31af9",
+      "css": "mfg-logo",
+      "code": 61535,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "a12362e50cbf1078c509d85bc3e4431f",
+      "css": "soundcloud-circled",
+      "code": 61578,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "c7715df42d0413b3cae83d4bc3943a3e",
+      "css": "soundcloud",
+      "code": 61577,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "0a16125788558bcc5d70ae3f10effce5",
+      "css": "instagram-circled",
+      "code": 61534,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "603ebbc4040323ef53ba1dc37de67717",
+      "css": "instagram",
+      "code": 61533,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "c5fa38a7b77f4efad5d8691b05035c7b",
+      "css": "dribbble-circled",
+      "code": 61519,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "2653481d01fec1b76247dbeffb74033e",
+      "css": "dribbble",
+      "code": 61520,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "d0c177a8e1688175c3445cc6b25bcc90",
+      "css": "linkedin-circled",
+      "code": 61531,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "f09340446e327a78969ea1bfac29c1a6",
+      "css": "linkedin",
+      "code": 61532,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "96aafeab29734d1510805687f7695f8f",
+      "css": "facebook-circled",
+      "code": 61521,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "fef29532e2318a0c604f34947024b990",
+      "css": "gplus-circled",
+      "code": 61529,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "c896fd4e287aebcf79803e0ece001ec1",
+      "css": "gplus",
+      "code": 61530,
+      "src": "mfglabs"
+    }
+  ]
+}

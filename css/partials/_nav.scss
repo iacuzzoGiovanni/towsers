@@ -6,77 +6,123 @@
     height: 66px;
     background-color: transparent;
     z-index: 10000;
+    padding-left: 20px;
+    padding-right: 40px;
 
-    nav{
-        text-align: center;
-    }
-
-    ul{
+    .navbar-nav{
         list-style: none;
         padding: 0;
         display: inline-block;
         float: none;
         vertical-align: top;
-    }
 
-    li{
-        position: relative;
-        padding: 0 20px;
-        height: 66px;
-        line-height: 66px;
-        &:last-child{
-            margin-right: 20px;
-        }
+        li{
+            position: relative;
+            padding: 0 20px;
+            height: 66px;
+            line-height: 66px;
+            &:last-child{
+                margin-right: 20px;
+            }
 
-        a{
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            font-size: 14px;
-            color: $primaryC;
-            font-weight: 700;
-            font-stretch: normal;
+            a{
+                font-family: 'Oswald', sans-serif;
+                text-transform: uppercase;
+                font-size: 14px;
+                color: $primaryC;
+                font-weight: 700;
+                font-stretch: normal;
 
-            &.active{
-                color: #444;
-                pointer-events: none;
-
-                &:before{
-                    background-color: #444;
-                    height: 3px;
-                }
-
-                &:hover{
+                &.active{
                     color: #444;
+                    pointer-events: none;
+
                     &:before{
                         background-color: #444;
                         height: 3px;
                     }
+
+                    &:hover{
+                        color: #444;
+                        &:before{
+                            background-color: #444;
+                            height: 3px;
+                        }
+                    }
                 }
-            }
-
-            &:before{
-                content: "";
-                position: absolute;
-                height: 0px;
-                width: 100%;
-                left: 0;
-                bottom: 0;
-                background-color: $primaryC;
-                @include transition();
-            }
-
-            &:hover{
-                text-decoration: none;
-                color: $primaryC;
 
                 &:before{
+                    content: "";
+                    position: absolute;
+                    height: 0px;
+                    width: 22px;
+                    left: calc(50% - 11px);
+                    bottom: 10px;
                     background-color: $primaryC;
-                    height: 3px;
+                    @include transition();
                 }
 
+                &:hover{
+                    text-decoration: none;
+                    color: $primaryC;
+
+                    &:before{
+                        background-color: $primaryC;
+                        height: 3px;
+                    }
+
+                }
             }
         }
     }
+
+    .social{
+
+        list-style: none;
+        padding: 0;
+        display: inline-block;
+        float: right;
+        position: relative;
+
+        li{
+            float: left;
+            height: 66px;
+            line-height: 66px;
+        }
+
+        a{
+            font-size: 22px;
+
+            &.facebook{
+                color: #3b5998;
+            }
+
+            &.twitter{
+                color: #1da1f2;
+            }
+
+            &.soundcloud{
+                color: #ff3300;
+            }
+
+            &.instagram{
+                color: #ffdc80;
+            }
+        }
+
+        &:before{
+            content: "Follow us";
+            position: absolute;
+            left: -60px;
+            top: 23px;
+            width: 100px;
+            color: rgba(255,255,255, .2);
+            font-weight: 200;
+        }
+
+    }
+
+
 }
 
 .navbar-mobile{

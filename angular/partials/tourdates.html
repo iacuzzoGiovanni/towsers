@@ -13,66 +13,58 @@
     <div custom-nav menu-item-active="tour-dates"></div>
     
     <div class="container-fluid">
-            
-        <ul>
-            <li class="row" ng-repeat="tourdate in data.posts" ng-class-odd="'odd'" ng-class-even="'even'">
 
-                <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
-                   
-                    <time datetime="{{tourdate.custom_fields.date[0] * 1000| date:'yyyy-MM-dd'}}">
-                       
+        <ul>
+            <li class="tourdate row" ng-repeat="tourdate in data.posts" ng-class-odd="'odd'" ng-class-even="'even'">
+
+                <div class="restrict">
+
+                    <div class="date">
+
+                        <time datetime="{{tourdate.custom_fields.date[0] * 1000| date:'yyyy-MM-dd'}}">
+
                         <span class="day">
-                            {{tourdate.custom_fields.date[0] * 1000| date:'dd'}}
+                            {{tourdate.custom_fields.date[0] * 1000| date:'dd'}}/{{tourdate.custom_fields.date[0] * 1000| date:'MM'}}/{{tourdate.custom_fields.date[0] * 1000| date:'yyyy'}}
                         </span>
-                        
-                        <div class="cont">
-                           
-                            <span class="month">
-                                {{tourdate.custom_fields.date[0] * 1000| date:'MMM'}}
-                            </span>
-                        
-                            <span class="year">
-                                {{tourdate.custom_fields.date[0] * 1000| date:'yyyy'}}
-                            </span>
-                            
+
+                        </time>
+
+                    </div>
+
+                    <div class="location">
+
+                        <div class="city">
+                            <span>{{tourdate.custom_fields.city[0]}}</span>
                         </div>
-                        
-                    </time>
-                    
-                </div>
-                
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    
-                    <div class="city">
-                        <span>{{tourdate.custom_fields.city[0]}}</span>
+
+                        <div class="venue">
+                            <span>{{tourdate.custom_fields.venue[0]}}</span>
+                        </div>
+
                     </div>
-                    
-                    <div class="venue">
-                        <span>{{tourdate.custom_fields.venue[0]}}</span>
+
+                    <div class="time">
+
+                        <time datetime="{{tourdate.custom_fields.starts_at[0]}}">
+                            {{tourdate.custom_fields.starts_at[0]}}
+                        </time>
+
+                        -
+
+                        <time datetime="{{tourdate.custom_fields.ends_at[0]}}">
+                            {{tourdate.custom_fields.ends_at[0]}}
+                        </time>
+
                     </div>
-                    
-                </div>
-                
-                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 scheduled">
-                    
-                    <time datetime="{{tourdate.custom_fields.starts_at[0]}}">
-                        {{tourdate.custom_fields.starts_at[0]}}
-                    </time>
-                    
-                    -
-                    
-                    <time datetime="{{tourdate.custom_fields.ends_at[0]}}">
-                        {{tourdate.custom_fields.ends_at[0]}}
-                    </time>
-                    
-                </div>
-                
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    
-                    <a href="{{tourdate.custom_fields.tickets_links[0]}}" target="_blank" class="btnT hvr-bob">
-                        Buy tickets
-                    </a>
-                    
+
+                    <div class="button">
+
+                        <a href="{{tourdate.custom_fields.tickets_links[0]}}" target="_blank" class="btnT">
+                            Buy tickets
+                        </a>
+
+                    </div>
+
                 </div>
 
             </li>

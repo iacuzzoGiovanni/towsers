@@ -42,8 +42,8 @@ do ->
       dur = mm + ':' + ss
 
   cWavesurfer.controller 'musicAudioPlayerController', [
-      '$attrs', '$element', '$scope', '$interval',
-      (attributes, $element, $scope, $interval) ->
+      '$attrs', '$element', '$scope', '$interval', '$location', '$rootScope', '$routeParams'
+      (attributes, $element, $scope, $interval, $location, $rootScope, $routeParams) ->
         audio = @
         audio.tracks = []
         audio.currentTrack = null
@@ -55,6 +55,12 @@ do ->
         audio.currentTrackCover
         audio.paused = true
         audio.progressBar
+
+        $rootScope.$on '$routeChangeStart', (e, current, pre) ->
+            if $location.path() != '/music'
+                audio.track.src = 'data:audio/mpeg,0'
+                audio.track.removeEventListener 'timeupdate', audio.getCurrentTimeTrack
+            return
 
         #add audio tracks
         audio.addTrack = (trackScope) ->

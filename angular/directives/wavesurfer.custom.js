@@ -48,7 +48,7 @@
     };
   });
   cWavesurfer.controller('musicAudioPlayerController', [
-    '$attrs', '$element', '$scope', '$interval', function(attributes, $element, $scope, $interval) {
+    '$attrs', '$element', '$scope', '$interval', '$location', '$rootScope', '$routeParams', function(attributes, $element, $scope, $interval, $location, $rootScope, $routeParams) {
       var audio;
       audio = this;
       audio.tracks = [];
@@ -61,6 +61,12 @@
       audio.currentTrackCover;
       audio.paused = true;
       audio.progressBar;
+      $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+        if ($location.path() !== '/music') {
+          audio.track.src = 'data:audio/mpeg,0';
+          audio.track.removeEventListener('timeupdate', audio.getCurrentTimeTrack);
+        }
+      });
       audio.addTrack = function(trackScope) {
         if (audio.tracks.indexOf(trackScope) < 0) {
           return audio.tracks.push(trackScope);
