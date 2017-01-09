@@ -6,162 +6,139 @@
 
     #player{
 
-        .progressbar{
-            width: 450px;
-            height: 16px;
-            margin: 0 auto;
-            position: relative;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
 
-            .current, .duration{
-                color: #fff;
-                font-weight: 300;
-                font-size: 12px;
-                display: inline-block;
-                position: absolute;
-            }
+        .cover{
+            margin-right: 20px;
+            -webkit-box-shadow: 0 0 25px 0 rgba(0,0,0,.2);
+            box-shadow: 0 0 25px 0 rgba(0,0,0,.2);
+        }
+
+        .cta{
+            width: 400px;
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255, .1);
 
             .current{
-                left: 0;
-            }
-
-            .duration{
-                right: 0;
+                color: #fff;
+                font-weight: 400;
+                font-size: 12px;
+                display: inline-block;
+                position: relative;
+                margin-left: 10px;
+                bottom: 3px;
             }
         }
 
-        .actions{
-            position: fixed;
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            padding-top: 66px;
-            padding-right: 400px;
-            background-color: #111;
+        .buttons{
+            display: inline-block;
+        }
 
-            .custom-container{
-                position: relative;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .vertical-align{
-                z-index: 10;
-            }
-
-            .background{
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                -webkit-background-size: cover !important;
-                -moz-background-size: cover !important;
-                -o-background-size: cover !important;
-                background-size: cover !important;
-                -webkit-filter: blur(25px);
-                -moz-filter: blur(25px);
-                -o-filter: blur(25px);
-                -ms-filter: blur(25px);
-                filter: blur(25px);
-            }
+        #actions{
 
             button{
                 background-color: transparent;
                 border: none;
-                font-size: 44px;
+                font-size: 16px;
                 color: #fff;
-                height: 88px;
-                width: 88px;
-                line-height: 88px;
+                height: 44px;
+                width: 44px;
+                line-height: 44px;
                 text-decoration: none;
                 outline-style: none;
             }
 
-            .backward, .forward{
-                font-size: 28px;
+            .play{
+                border: 1px solid $primaryC;
+                @include border-radius(44px);
+
+                i{
+                    position: relative;
+                    bottom: 1px;
+                    left: 1px;
+                    top: inherit;
+                }
             }
 
-            .play i{
-                position: relative;
-                top: 10px;
-            }
-
-            .name{
-                color: #fff;
-                font-size: 16px;
-                font-weight: 200;
-                margin-top: 40px;
-                margin-bottom: 0;
-            }
         }
 
         .playlist{
-
-            position: fixed;
-            height: 100%;
             width: 400px;
-            right: 0;
-            top: 0;
-            padding-top: 66px !important;
-            background-color: $primaryC;
             list-style: none;
             padding: 0;
 
-            .item{
-                border-bottom: 1px solid rgba(0,0,0, .1);
-            }
-
             a{
                 display: block;
-                padding: 20px 30px;
+                height: 32px;
+                line-height: 32px;
                 text-decoration: none;
+                color: #888;
+                font-size: 12px;
+                @include border-radius(3px);
+                padding: 0 10px;
+                margin-bottom: 1px;
+                @include transition;
 
                 span{
                     pointer-events: none;
                 }
 
-                &:hover{
-                    text-decoration: none;
-                    background-color: rgba(0,0,0, .05);
-                }
-
                 &.current{
-                    background-color: #e5b200;
+                    background-color: rgba(255,255,255, 1);
+                    color: #000;
 
                     &:hover{
-                        background-color: #e5b200;
+                        background-color: rgba(255,255,255, 1);
+                    }
+
+                    .nb{
+                        &:after{
+                            background-color: #000 !important;
+                        }
+                    }
+                }
+
+                &:hover{
+                    background-color: $primaryC;
+                    color: #000;
+
+                    .nb{
+                        &:after{
+                            background-color: #fff;
+                        }
                     }
                 }
             }
 
             .nb{
-                color: #000;
-                font-size: 22px;
-                font-weight: 200;
-                display: block;
-                float: left;
-                margin-right: 20px;
-                position: relative;
-                top: 5px;
-            }
-
-            .title{
-                font-size: 14px;
-                font-weight: 400;
-                color: #000;
-                display: block;
-            }
-
-            .artist{
-                font-size: 14px;
-                font-weight: 400;
-                color: #000;
-                opacity: .5;
-                display: block;
+                &:after{
+                    content: "";
+                    display: inline-block;
+                    width: 4px;
+                    height: 4px;
+                    background-color: #888;
+                    @include border-radius(4px);
+                    margin-left: 10px;
+                    margin-right: 8px;
+                    position: relative;
+                    bottom: 2px;
+                }
             }
 
         }

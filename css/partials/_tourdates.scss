@@ -33,7 +33,6 @@
                     display: inline-block;
 
                     a{
-                        border-left: 1px solid rgba(0,0,0, .2);
                         color: #000;
                     }
                 }
@@ -95,12 +94,10 @@
         }
 
         .button {
-            //display: none;
 
             a{
                 font-size: 12px;
                 height: 44px;
-                //border-left: 1px solid rgba(255,255,255, .2);
                 text-transform: uppercase;
                 font-weight: 900;
                 padding: 0 20px;
@@ -111,6 +108,7 @@
                 bottom: 2px;
                 -webkit-border-radius: 0 4px 4px 0;
                 border-radius: 0 4px 4px 0;
+                @include transition();
 
                 &:hover{
                     text-decoration: none;

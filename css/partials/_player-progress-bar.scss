@@ -3,10 +3,11 @@
 @import 'mixins';
 
 #progressBar{
-    position: absolute;
-    width: 380px;
+    position: relative;
+    width: 200px;
     height: 16px;
-    left: 35px;
+    display: inline-block;
+    margin-left: 10px;
 
     #bar-outer{
         position: absolute;
@@ -35,5 +36,17 @@
         top: -6px;
         -webkit-box-shadow: 2px 0 2px 0 rgba(0,0,0,.1);
         box-shadow: 2px 0 2px 0 rgba(0,0,0,.1);
+
+        &:before{
+            content: "";
+            display: block;
+            background-color: #000;
+            width: 8px;
+            height: 8px;
+            @include border-radius(8px);
+            position: absolute;
+            top: calc(50% - 4px);
+            left: calc(50% - 4px);
+        }
     }
 }

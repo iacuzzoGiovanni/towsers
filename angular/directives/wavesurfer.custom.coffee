@@ -154,7 +154,6 @@ do ->
             $scope.$digest()
 
         audio.setProgressBarPosition = () ->
-            #console.log Math.round(e.layerX / @.offsetWidth * 100)
             position =  (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100
             oWidth =  audio.progressBar.find('#progressBar')[0].offsetWidth
             dragger = audio.progressBar.find('#position')[0]

@@ -1,68 +1,57 @@
 <div id="player">
 
-    <div class="actions">
+    <div>
 
-        <div class="custom-container">
+        <div class="cover pull-left">
+            <img ng-if="audio.currentTrackCover" src="{{ audio.currentTrackCover }}" alt="" width="450" height="450">
+            <img ng-if="!audio.currentTrackCover" src="{{myDirectory}}assets/player/logo-noMusic.jpg" alt="no music cover" width="450" height="450">
+        </div>
 
-            <div class="vertical-align">
-                <div class="cover text-center">
-                    <img src="{{ audio.currentTrackCover }}" alt="" width="450" height="450">
-                </div>
+        <div id="actions" class="pull-left">
 
-                <div class="name text-center">
-                    <span class="artist">{{ audio.currentTrackArtist }}</span> - <span class="title">{{ audio.currentTrackTitle }}</span>
-                </div>
+            <div class="cta">
 
-                <div class="progressbar">
-
-                    <div class="current">
-                        <span class="currentTimeTrackDuration" ng-if="audio.currentTimeTrackDuration">{{ audio.currentTimeTrackDuration | convertToHumanMinutes }}</span>
-                        <span class="currentTimeTrackDuration" ng-if="!audio.currentTimeTrackDuration">0:00</span>
-                    </div>
-
-                    <player-progress-bar></player-progress-bar>
-
-                    <div class="duration">
-                        <span class="trackduration" ng-if="audio.currentTrackDuration">{{ audio.currentTrackDuration | convertToHumanMinutes }}</span>
-                        <span class="trackduration" ng-if="!audio.currentTrackDuration">0:00</span>
-                    </div>
-
-                </div>
-
-                <div class="buttons text-center">
-                    <button class="backward" ng-click="audio.backward($event)"><i class="glyphicon glyphicon-fast-backward"></i></button>
+                <div class="buttons">
+                    <button class="backward" ng-click="audio.backward($event)"><i class="glyphicon glyphicon-backward"></i></button>
                     <button class="play" ng-click="audio.play()"><i class="glyphicon" ng-class="{'glyphicon-play': audio.paused == true, 'glyphicon-pause': audio.paused == false}"></i></button>
-                    <button class="forward" ng-click="audio.forward($event)"><i class="glyphicon glyphicon-fast-forward"></i></button>
+                    <button class="forward" ng-click="audio.forward($event)"><i class="glyphicon glyphicon-forward"></i></button>
                 </div>
+
+                <player-progress-bar></player-progress-bar>
+
+                <div class="current">
+                    <span class="currentTimeTrackDuration" ng-if="audio.currentTimeTrackDuration">{{ audio.currentTimeTrackDuration | convertToHumanMinutes }}</span>
+                    <span class="currentTimeTrackDuration" ng-if="!audio.currentTimeTrackDuration">0:00</span>
+                </div>
+
             </div>
 
-            <div class="background" style="background: url({{audio.currentTrackCover}}) no-repeat;"></div>
+            <ul class="playlist">
+
+                <li ng-repeat="music in data" class="item">
+
+                    <a href="{{ music.url }}" target="_blank" data-index="{{ $index }}" ng-click="audio.addFromPlaylist($event)" ng-class="{'current': audio.currentTrack == $index}">
+                        <span class="nb">{{ $index + 1 }}</span>
+                        <span class="artist">{{ music.artist }}</span>
+                        <span>-</span>
+                        <span class="title">{{ music.title }}</span>
+                        <span class="duration pull-right">{{ audio.tracks[$index].duration | convertToHumanMinutes }}</span>
+
+                        <custom-audio-source url="{{ music.url }}" title="{{ music.title }}" artist="{{ music.artist }}" cover="{{ music.cover }}"></custom-audio-source>
+
+                        <input type="hidden" name="nb" value="{{ $index + 1 }}">
+                        <input type="hidden" name="title" value="{{ music.title }}">
+                        <input type="hidden" name="artist" value="{{ music.artist }}">
+                        <input type="hidden" name="cover" value="{{ music.cover }}">
+                        <input type="hidden" name="url" value="{{ music.url }}">
+                    </a>
+
+                </li>
+
+            </ul>
 
         </div>
 
     </div>
-
-    <ul class="playlist">
-
-        <li ng-repeat="music in data" class="item">
-
-            <a href="{{ music.url }}" target="_blank" data-index="{{ $index }}" ng-click="audio.addFromPlaylist($event)" ng-class="{'current': audio.currentTrack == $index}">
-                <span class="nb" ng-if="audio.currentTrack != $index">{{ $index + 1 }}</span>
-                <span class="nb" ng-if="audio.currentTrack == $index"><i class="glyphicon" ng-class="{'glyphicon-play': audio.paused == false, 'glyphicon-pause': audio.paused == true}"></i></span>
-                <span class="title">{{ music.title }}</span> 
-                <span class="artist">{{ music.artist }}</span>
-
-                <custom-audio-source url="{{ music.url }}" title="{{ music.title }}" artist="{{ music.artist }}" cover="{{ music.cover }}"></custom-audio-source>
-
-                <input type="hidden" name="nb" value="{{ $index + 1 }}">
-                <input type="hidden" name="title" value="{{ music.title }}">
-                <input type="hidden" name="artist" value="{{ music.artist }}">
-                <input type="hidden" name="cover" value="{{ music.cover }}">
-                <input type="hidden" name="url" value="{{ music.url }}">
-            </a>
-
-        </li>
-
-    </ul>
 
 </div>

@@ -1,1 +1,1 @@
-app = angular.module('app', ['ngRoute', 'custoWavesurfer'])
+app = angular.module('app', ['ngRoute', 'custoWavesurfer', 'customContact'])

@@ -8,10 +8,10 @@ app.config [
       controller: 'Main'
       controllerAs: 'mainCtrl'
       templateUrl: myLocalized.partials + 'main.html')
-    .when('/contact',
-      controller: 'Contact'
-      controllerAs: 'contactCtrl'
-      templateUrl: myLocalized.partials + 'contact.html')
+    #.when('/contact',
+      #controller: 'Contact'
+      #controllerAs: 'contactCtrl'
+      #templateUrl: myLocalized.partials + 'contact.html')
     .when('/tour-dates',
       controller: 'Tourdates'
       controllerAs: 'tourdatesCtrl'
