@@ -12,13 +12,12 @@
   var cContact;
   cContact = angular.module('customContact', ['angular-click-outside']);
   cContact.controller('contactController', [
-    '$scope', 'Contact', function($scope, Contact) {
+    '$scope', 'Contact', '$location', function($scope, Contact, $location) {
       var contact;
       contact = this;
       contact.isOpen = false;
       Contact.get().then(function(d) {
         contact.data = d;
-        console.log(contact.data.page);
       });
       contact.onOpen = function() {
         if (contact.isOpen === false) {
@@ -36,7 +35,6 @@
     function() {
       return {
         restrict: 'E',
-        replace: true,
         templateUrl: myLocalized.partials + 'contact.html',
         controller: 'contactController',
         controllerAs: 'contact',
@@ -52,9 +50,7 @@
         restrict: 'E',
         require: '^?contactModal',
         templateUrl: myLocalized.partials + 'contact-nav-link.html',
-        link: function(scope, element, attrs) {
-          console.log('contactNavLink Loaded');
-        }
+        link: function(scope, element, attrs) {}
       };
     }
   ]);

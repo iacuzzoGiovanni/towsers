@@ -94,7 +94,7 @@
       audio.addFromPlaylist = function(e) {
         var idx;
         e.preventDefault();
-        idx = angular.element(e.target).data('index');
+        idx = e.target.getAttribute('data-index');
         audio.setTrack(idx);
         return audio.play();
       };
@@ -167,9 +167,9 @@
       audio.setProgressBarPosition = function() {
         var barInner, dragger, oWidth, position;
         position = (audio.currentTimeTrackDuration / audio.currentTrackDuration) * 100;
-        oWidth = audio.progressBar.find('#progressBar')[0].offsetWidth;
-        dragger = audio.progressBar.find('#position')[0];
-        barInner = audio.progressBar.find('#bar-inner')[0];
+        oWidth = audio.progressBar[0].querySelector('#progressBar').offsetWidth;
+        dragger = audio.progressBar[0].querySelector('#position');
+        barInner = audio.progressBar[0].querySelector('#bar-inner');
         dragger.style.left = oWidth / 100 * position - dragger.offsetWidth + 'px';
         return barInner.style.width = oWidth / 100 * position + 'px';
       };
@@ -188,10 +188,10 @@
       };
       audio.onSlide = function(el) {
         var barInner, down, dragger, draggerWidth, range, rangeLeft, rangeParent, rangeWidth;
-        range = el.find('#progressBar')[0];
+        range = el[0].querySelector('#progressBar');
         rangeParent = el.parent()[0];
-        dragger = angular.element(range).find('#position')[0];
-        barInner = angular.element(range).find('#bar-inner')[0];
+        dragger = range.querySelector('#position');
+        barInner = range.querySelector('#bar-inner');
         draggerWidth = 16;
         down = false;
         rangeWidth = range.offsetWidth;

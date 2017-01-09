@@ -8,7 +8,6 @@
         add_action( 'init', 'register_nav_menus' );
 
         //STYLES
-        wp_enqueue_style('bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css');
         wp_enqueue_style('main', get_template_directory_uri() . '/css/main.css');
         wp_enqueue_style('fontello', get_template_directory_uri() . '/assets/fontelloS/css/mfg.css');
 
@@ -17,15 +16,13 @@
 
     function towsers_scripts() {
 
-        //Bootstrap js
-        //wp_enqueue_script('bootstrapjs', get_stylesheet_directory_uri() . '/bootstrap/js/bootstrap.min.js', array(), false, true);
-
         //Angular files
         wp_enqueue_script('angularjs', get_stylesheet_directory_uri() . '/angular-js/angular.min.js');
         wp_enqueue_script('angularjs-route', get_stylesheet_directory_uri() . '/angular-js/angular-route.min.js');
 
+        wp_enqueue_script('clickOutside', get_stylesheet_directory_uri() . '/angular-click-outside-master/clickoutside.directive.js');
+
         //WAVESURFER
-        //wp_enqueue_script('wavesurfer', get_stylesheet_directory_uri() . //'/wavesurfer/dist/wavesurfer.min.js');
         wp_enqueue_script('wavesurfer-custom', get_stylesheet_directory_uri() . '/angular/directives/wavesurfer.custom.js');
 
         //Custom Contact
@@ -49,7 +46,6 @@
 
         //Angular directives
         wp_enqueue_script('directives', get_stylesheet_directory_uri() . '/angular/directives/directives.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config'));
-        wp_enqueue_script('clickOutside', get_stylesheet_directory_uri() . '/angular-click-outside-master/clickoutside.directive.js', array( 'angularjs', 'angularjs-route', 'towsers-app', 'config'));
 
         //PHP TO JS
         wp_localize_script(
