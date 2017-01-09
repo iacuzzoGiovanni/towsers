@@ -12,12 +12,13 @@
   var cContact;
   cContact = angular.module('customContact', ['angular-click-outside']);
   cContact.controller('contactController', [
-    '$scope', 'Contact', '$location', function($scope, Contact, $location) {
+    '$scope', 'Contact', function($scope, Contact) {
       var contact;
       contact = this;
       contact.isOpen = false;
       Contact.get().then(function(d) {
-        contact.data = d;
+        contact.data = d.page.custom_fields;
+        console.log(contact.data);
       });
       contact.onOpen = function() {
         if (contact.isOpen === false) {
@@ -39,7 +40,11 @@
         controller: 'contactController',
         controllerAs: 'contact',
         link: function(scope, element, attrs, contact) {
-          contact.modalDialog = element[0];
+          contact.modalDialog = element[0].querySelector('#contactModal');
+          contact.modalDialog.style.left = Math.round((window.innerWidth - contact.modalDialog.offsetWidth) / 2) + 'px';
+          window.addEventListener('resize', function() {
+            return contact.modalDialog.style.left = Math.round((window.innerWidth - contact.modalDialog.offsetWidth) / 2) + 'px';
+          }, false);
         }
       };
     }

@@ -316,12 +316,15 @@
 #contactModal {
   z-index: 100000 !important;
   background-color: #fff;
-  max-width: 800px;
-  min-width: 800px;
-  min-height: 400px;
   margin: 0 auto;
   position: fixed;
+  width: 600px;
   top: 0;
+  -moz-transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -342,9 +345,75 @@
   -ms-transform: translateY(-100%);
   transform: translateY(-100%); }
 
-@media (min-width: 1200px) {
-  #contactModal {
-    left: calc(50% - 400px); } }
+#contactModal h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+  padding: 30px;
+  border-bottom: 1px solid #eee; }
+
+#contactModal .content {
+  padding: 30px; }
+
+#contactModal .card {
+  margin-bottom: 40px; }
+
+#contactModal .card.last {
+  margin-bottom: 0; }
+
+#contactModal .card h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #aaa;
+  padding-top: 0;
+  padding-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 10px !important;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.05); }
+
+#contactModal .card a {
+  font-size: 16px;
+  color: #e1ac00; }
+
+#contactModal .social h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #aaa;
+  padding-top: 0;
+  padding-bottom: 10px;
+  margin-top: 0;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.05); }
+
+#contactModal .social ul {
+  list-style: none;
+  padding: 0;
+  display: inline-block;
+  position: relative; }
+
+#contactModal .social li {
+  float: left; }
+
+#contactModal .social a {
+  font-size: 44px; }
+
+#contactModal .social a.facebook {
+  color: #3b5998; }
+
+#contactModal .social a.twitter {
+  color: #1da1f2; }
+
+#contactModal .social a.soundcloud {
+  color: #ff3300; }
+
+#contactModal .social a.instagram {
+  color: #ffdc80; }
+
+#contactModal .social a.youtube {
+  color: #cd201f; }
 
 .page.tourdates {
   padding-top: 66px; }

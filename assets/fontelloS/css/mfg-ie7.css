@@ -30,3 +30,4 @@
 .icon-mfg-logo-circled { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf060;&nbsp;'); }
 .icon-soundcloud { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf089;&nbsp;'); }
 .icon-soundcloud-circled { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf08a;&nbsp;'); }
+.icon-youtube-play { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf16a;&nbsp;'); }
