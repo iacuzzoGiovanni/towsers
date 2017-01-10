@@ -10,26 +10,26 @@
     height: 220px;
     
     @include respond-to(xs){
-        top: calc(50% - 55px);
-        left: calc(50% - 125px);
-        width: 250px;
-        height: 110px;
+        top: calc(50% - 53px);
+        left: calc(50% - 102px);
+        width: 203px;
+        height: 106px;
         
         img{
-            width: 250px;
-            height: 110px; 
+            width: 203px;
+            height: 106px;
         }
     }
     
     @include respond-to(sm){
-        top: calc(50% - 55px);
-        left: calc(50% - 125px);
-        width: 250px;
-        height: 110px;
+        top: calc(50% - 53px);
+        left: calc(50% - 102px);
+        width: 203px;
+        height: 106px;
         
         img{
-            width: 250px;
-            height: 110px; 
+            width: 203px;
+            height: 106px;
         }
     }
     

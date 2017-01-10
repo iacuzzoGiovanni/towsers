@@ -8,6 +8,7 @@
         add_action( 'init', 'register_nav_menus' );
 
         //STYLES
+        wp_enqueue_style('bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css');
         wp_enqueue_style('main', get_template_directory_uri() . '/css/main.css');
         wp_enqueue_style('fontello', get_template_directory_uri() . '/assets/fontelloS/css/mfg.css');
 
