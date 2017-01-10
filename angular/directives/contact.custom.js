@@ -18,17 +18,40 @@
       contact.isOpen = false;
       Contact.get().then(function(d) {
         contact.data = d.page.custom_fields;
-        console.log(contact.data);
       });
       contact.onOpen = function() {
         if (contact.isOpen === false) {
-          return contact.isOpen = true;
+          contact.isOpen = true;
+          return contact.webpage.classList.add('contactModalIsOpen');
         }
       };
       contact.onClose = function() {
         if (contact.isOpen === true) {
-          return contact.isOpen = false;
+          contact.isOpen = false;
+          return contact.webpage.classList.remove('contactModalIsOpen');
         }
+      };
+      contact.collectionHas = function(a, b) {
+        var i, len;
+        i = 0;
+        len = a.length;
+        while (i < len) {
+          if (a[i] === b) {
+            return true;
+          }
+          i++;
+        }
+        return false;
+      };
+      contact.findParentBySelector = function(elm, selector) {
+        var all, cur;
+        all = document.querySelectorAll(selector);
+        cur = elm.parentNode;
+        while (cur && !contact.collectionHas(all, cur)) {
+          cur = cur.parentNode;
+        }
+        console.log(cur);
+        return cur;
       };
     }
   ]);
@@ -41,6 +64,7 @@
         controllerAs: 'contact',
         link: function(scope, element, attrs, contact) {
           contact.modalDialog = element[0].querySelector('#contactModal');
+          contact.webpage = contact.findParentBySelector(element[0], '.page');
           contact.modalDialog.style.left = Math.round((window.innerWidth - contact.modalDialog.offsetWidth) / 2) + 'px';
           window.addEventListener('resize', function() {
             return contact.modalDialog.style.left = Math.round((window.innerWidth - contact.modalDialog.offsetWidth) / 2) + 'px';

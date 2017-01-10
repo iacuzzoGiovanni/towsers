@@ -2,6 +2,30 @@
 @import 'variables';
 @import 'mixins';
 
+.main.page{
+
+    .navbar-main{
+        @include timed-transition(.3s);
+    }
+
+    &.contactModalIsOpen{
+
+        .centered-img{
+            display: none;
+        }
+
+        .navbar-main{
+            -moz-transform: translateY(44px);
+            -webkit-transform: translateY(44px);
+            -o-transform: translateY(44px);
+            -ms-transform: translateY(44px);
+            transform: translateY(44px);
+        }
+
+    }
+
+}
+
 .centered-img{
     position: absolute;
     top: calc(50% - 106px);
