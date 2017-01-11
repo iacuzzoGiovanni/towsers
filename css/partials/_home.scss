@@ -11,15 +11,58 @@
     &.contactModalIsOpen{
 
         .centered-img{
-            display: none;
+
+            @include respond-to(lg){
+                -webkit-opacity: .1;
+                -moz-opacity: .1;
+                opacity: .1;
+            }
+
+            @include respond-to(sm){
+                -webkit-opacity: 0;
+                -moz-opacity: 0;
+                opacity: 0;
+            }
+
+            @include respond-to(xs){
+                -webkit-opacity: 0;
+                -moz-opacity: 0;
+                opacity: 0;
+            }
         }
 
-        .navbar-main{
-            -moz-transform: translateY(44px);
-            -webkit-transform: translateY(44px);
-            -o-transform: translateY(44px);
-            -ms-transform: translateY(44px);
-            transform: translateY(44px);
+        @include respond-to(lg){
+
+            .navbar-main{
+                -webkit-opacity: .1;
+                -moz-opacity: .1;
+                opacity: .1;
+            }
+
+        }
+
+        @include respond-to(sm){
+
+            .navbar-main{
+                -moz-transform: translateY(44px);
+                -webkit-transform: translateY(44px);
+                -o-transform: translateY(44px);
+                -ms-transform: translateY(44px);
+                transform: translateY(44px);
+            }
+
+        }
+
+        @include respond-to(xs){
+
+            .navbar-main{
+                -moz-transform: translateY(44px);
+                -webkit-transform: translateY(44px);
+                -o-transform: translateY(44px);
+                -ms-transform: translateY(44px);
+                transform: translateY(44px);
+            }
+
         }
 
     }
@@ -27,6 +70,7 @@
 }
 
 .centered-img{
+    @include timed-transition(.3s);
     position: absolute;
     top: calc(50% - 106px);
     left: calc(50% - 203px);

@@ -1,6 +1,6 @@
 <div id="contactModal" class="customModal" click-outside="contact.onClose()" outside-if-not="contactModalLink" ng-class="{'isOpen': contact.isOpen == true, 'isNotOpen': contact.isOpen == false}">
 
-    <h1>Contact information<button class="pull-right hidden-lg hidden-md" ng-click="contact.onClose()"><i class="glyphicon glyphicon-remove"></i></button></h1>
+    <h1>Contact information<button class="pull-right" ng-click="contact.onClose()"><i class="glyphicon glyphicon-remove"></i></button></h1>
 
     <div class="row content">
 
@@ -53,7 +53,7 @@
 
                     <div class="social">
 
-                        <h2>Keep in touch</h2>
+                        <h2 class="hidden-xs hidden-sm">Keep in touch</h2>
 
                         <ul>
                             <li ng-if="contact.data.facebook[0]"><a href="{{ contact.data.facebook[0] }}" class="facebook" target="_blank"><i class="icon-facebook-circled"></i></a></li>

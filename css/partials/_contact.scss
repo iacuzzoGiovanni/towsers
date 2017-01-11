@@ -88,12 +88,14 @@
         }
 
         button{
-            font-size: 18px;
+            font-size: 14px;
             border: none;
             margin: 0;
             padding: 0;
             background-color: transparent;
             color: #ccc;
+            position: relative;
+            top: 3px;
 
             &:hover, &:active, &:focus{
                 color: #000;
@@ -124,18 +126,6 @@
             margin-bottom: 0;
         }
 
-        @include respond-to(sm){
-            &.last{
-                margin-bottom: 40px;
-            }
-        }
-
-        @include respond-to(xs){
-            &.last{
-                margin-bottom: 40px;
-            }
-        }
-
         h2{
             font-family: 'Oswald', sans-serif;
             font-size: 12px;
@@ -153,14 +143,29 @@
             @include  respond-to(md){
                 font-size: 22px;
                 font-weight: 400;
+
+                &:hover, &:active, &:focus{
+                    color: $primaryC;
+                    text-decoration: none;
+                }
             }
 
             @include respond-to(sm){
                 font-size: 22px;
+
+                &:hover, &:active, &:focus{
+                    color: $primaryC;
+                    text-decoration: none;
+                }
             }
 
             @include respond-to(xs){
                 font-size: 22px;
+
+                &:hover, &:active, &:focus{
+                    color: $primaryC;
+                    text-decoration: none;
+                }
             }
         }
     }
@@ -181,10 +186,52 @@
             padding: 0;
             display: inline-block;
             position: relative;
+
+            @include  respond-to(md){
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                padding: 0 20px;
+            }
+
+            @include respond-to(sm){
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                padding: 0 20px;
+            }
+
+            @include respond-to(xs){
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                padding: 0 20px;
+            }
         }
 
         li{
             float: left;
+
+            @include  respond-to(md){
+                width: 25%;
+            }
+
+            @include respond-to(sm){
+                width: 25%;
+            }
+
+            @include respond-to(xs){
+                width: 25%;
+            }
         }
 
         a{

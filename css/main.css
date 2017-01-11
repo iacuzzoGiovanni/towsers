@@ -279,17 +279,52 @@
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
 
-.main.page.contactModalIsOpen .centered-img {
-  display: none; }
+@media (min-width: 1200px) {
+  .main.page.contactModalIsOpen .centered-img {
+    -webkit-opacity: .1;
+    -moz-opacity: .1;
+    opacity: .1; } }
 
-.main.page.contactModalIsOpen .navbar-main {
-  -moz-transform: translateY(44px);
-  -webkit-transform: translateY(44px);
-  -o-transform: translateY(44px);
-  -ms-transform: translateY(44px);
-  transform: translateY(44px); }
+@media (min-width: 768px) and (max-width: 991px) {
+  .main.page.contactModalIsOpen .centered-img {
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0; } }
+
+@media (max-width: 767px) {
+  .main.page.contactModalIsOpen .centered-img {
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0; } }
+
+@media (min-width: 1200px) {
+  .main.page.contactModalIsOpen .navbar-main {
+    -webkit-opacity: .1;
+    -moz-opacity: .1;
+    opacity: .1; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .main.page.contactModalIsOpen .navbar-main {
+    -moz-transform: translateY(44px);
+    -webkit-transform: translateY(44px);
+    -o-transform: translateY(44px);
+    -ms-transform: translateY(44px);
+    transform: translateY(44px); } }
+
+@media (max-width: 767px) {
+  .main.page.contactModalIsOpen .navbar-main {
+    -moz-transform: translateY(44px);
+    -webkit-transform: translateY(44px);
+    -o-transform: translateY(44px);
+    -ms-transform: translateY(44px);
+    transform: translateY(44px); } }
 
 .centered-img {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   position: absolute;
   top: calc(50% - 106px);
   left: calc(50% - 203px);
@@ -403,12 +438,14 @@
     border-bottom-color: rgba(255, 255, 255, 0.1); } }
 
 #contactModal h1 button {
-  font-size: 18px;
+  font-size: 14px;
   border: none;
   margin: 0;
   padding: 0;
   background-color: transparent;
-  color: #ccc; }
+  color: #ccc;
+  position: relative;
+  top: 3px; }
 
 #contactModal h1 button:hover, #contactModal h1 button:active, #contactModal h1 button:focus {
   color: #000; }
@@ -434,14 +471,6 @@
 #contactModal .card.last {
   margin-bottom: 0; }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  #contactModal .card.last {
-    margin-bottom: 40px; } }
-
-@media (max-width: 767px) {
-  #contactModal .card.last {
-    margin-bottom: 40px; } }
-
 #contactModal .card h2 {
   font-family: 'Oswald', sans-serif;
   font-size: 12px;
@@ -458,15 +487,24 @@
 @media (min-width: 992px) and (max-width: 1199px) {
   #contactModal .card a {
     font-size: 22px;
-    font-weight: 400; } }
+    font-weight: 400; }
+  #contactModal .card a:hover, #contactModal .card a:active, #contactModal .card a:focus {
+    color: #ffc600;
+    text-decoration: none; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   #contactModal .card a {
-    font-size: 22px; } }
+    font-size: 22px; }
+  #contactModal .card a:hover, #contactModal .card a:active, #contactModal .card a:focus {
+    color: #ffc600;
+    text-decoration: none; } }
 
 @media (max-width: 767px) {
   #contactModal .card a {
-    font-size: 22px; } }
+    font-size: 22px; }
+  #contactModal .card a:hover, #contactModal .card a:active, #contactModal .card a:focus {
+    color: #ffc600;
+    text-decoration: none; } }
 
 #contactModal .social h2 {
   font-family: 'Oswald', sans-serif;
@@ -482,8 +520,50 @@
   display: inline-block;
   position: relative; }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  #contactModal .social ul {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #contactModal .social ul {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px; } }
+
+@media (max-width: 767px) {
+  #contactModal .social ul {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px; } }
+
 #contactModal .social li {
   float: left; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  #contactModal .social li {
+    width: 25%; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #contactModal .social li {
+    width: 25%; } }
+
+@media (max-width: 767px) {
+  #contactModal .social li {
+    width: 25%; } }
 
 #contactModal .social a {
   font-size: 44px; }
