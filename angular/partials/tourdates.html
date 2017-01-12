@@ -14,61 +14,67 @@
     
     <div class="container-fluid">
 
-        <ul>
-            <li class="tourdate row" ng-repeat="tourdate in data.posts" ng-class-odd="'odd'" ng-class-even="'even'">
+        <div class="mobileOverflow">
 
-                <div class="restrict">
+            <div class="relativePos">
 
-                    <div class="date">
+                <ul>
+                    <li class="tourdate row" ng-repeat="tourdate in data.posts" ng-class-odd="'odd'" ng-class-even="'even'">
 
-                        <time datetime="{{tourdate.custom_fields.date[0] * 1000| date:'yyyy-MM-dd'}}">
+                        <a href="{{tourdate.custom_fields.tickets_links[0]}}" class="restrict" target="_blank">
 
-                        <span class="day">
-                            {{tourdate.custom_fields.date[0] * 1000| date:'dd'}}/{{tourdate.custom_fields.date[0] * 1000| date:'MM'}}/{{tourdate.custom_fields.date[0] * 1000| date:'yyyy'}}
-                        </span>
+                            <div class="date">
 
-                        </time>
+                                <time datetime="{{tourdate.custom_fields.date[0] * 1000| date:'yyyy-MM-dd'}}">
 
-                    </div>
+                                    <span class="day">
+                                        {{tourdate.custom_fields.date[0] * 1000| date:'dd'}}/{{tourdate.custom_fields.date[0] * 1000| date:'MM'}}/{{tourdate.custom_fields.date[0] * 1000| date:'yyyy'}}
+                                    </span>
 
-                    <div class="location">
+                                </time>
 
-                        <div class="city">
-                            <span>{{tourdate.custom_fields.city[0]}}</span>
-                        </div>
+                            </div>
 
-                        <div class="venue">
-                            <span>{{tourdate.custom_fields.venue[0]}}</span>
-                        </div>
+                            <div class="location">
 
-                    </div>
+                                <div class="venue">
+                                    <span>{{tourdate.custom_fields.venue[0]}}</span>
+                                </div>
 
-                    <div class="time">
+                                <div class="city">
+                                    <span>{{tourdate.custom_fields.city[0]}}</span>
+                                </div>
 
-                        <time datetime="{{tourdate.custom_fields.starts_at[0]}}">
-                            {{tourdate.custom_fields.starts_at[0]}}
-                        </time>
+                            </div>
 
-                        -
+                            <div class="time hidden-xs hidden-sm hidden-md">
 
-                        <time datetime="{{tourdate.custom_fields.ends_at[0]}}">
-                            {{tourdate.custom_fields.ends_at[0]}}
-                        </time>
+                                <time datetime="{{tourdate.custom_fields.starts_at[0]}}">
+                                    {{tourdate.custom_fields.starts_at[0]}}
+                                </time>
 
-                    </div>
+                                -
 
-                    <div class="button">
+                                <time datetime="{{tourdate.custom_fields.ends_at[0]}}">
+                                    {{tourdate.custom_fields.ends_at[0]}}
+                                </time>
 
-                        <a href="{{tourdate.custom_fields.tickets_links[0]}}" target="_blank" class="btnT">
-                            Buy tickets
+                            </div>
+
+                            <div class="button">
+
+                                <button>Buy tickets</button>
+
+                            </div>
+
                         </a>
 
-                    </div>
+                    </li>
+                </ul>
 
-                </div>
+            </div>
 
-            </li>
-        </ul>
+        </div>
         
     </div>
     

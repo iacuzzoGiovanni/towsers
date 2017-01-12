@@ -18,8 +18,12 @@
     }
 
     @include respond-to(md){
-        height: 66px;
-        top: 0;
+        bottom: 0;
+        padding: 0;
+        border: none;
+        border-top: 1px solid rgba(255,255,255, .1);
+        height: 44px;
+        margin: 0;
     }
 
     @include respond-to(sm){
@@ -47,6 +51,11 @@
         float: none;
         vertical-align: top;
 
+        @include respond-to(md){
+            display: block;
+            margin: 0;
+        }
+
         @include respond-to(sm){
             display: block;
             margin: 0;
@@ -65,6 +74,21 @@
 
             &:last-child{
                 margin-right: 20px;
+            }
+
+            @include respond-to(md){
+                height: 44px;
+                line-height: 44px;
+                padding: 0;
+                float: left;
+                width: 25%;
+                text-align: center;
+                border-right: 1px solid rgba(255,255,255, .1);
+
+                &:last-child{
+                    margin-right: 0;
+                    border-right: none;
+                }
             }
 
             @include respond-to(sm){
@@ -104,6 +128,23 @@
                 color: $primaryC;
                 font-weight: 500;
                 font-stretch: normal;
+
+                @include respond-to(md){
+                    font-size: 12px;
+                    padding: 0;
+                    display: block;
+                    height: 44px;
+                    line-height: 44px;
+
+                    &:before{
+                        display: none;
+                    }
+
+                    &:hover, &:focus, &:active{
+                        background-color: $primaryC;
+                        color: #000 !important;
+                    }
+                }
 
                 @include respond-to(sm){
                     font-size: 12px;

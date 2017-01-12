@@ -82,8 +82,12 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .navbar-main {
-    height: 66px;
-    top: 0; } }
+    bottom: 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    height: 44px;
+    margin: 0; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .navbar-main {
@@ -110,6 +114,11 @@
   float: none;
   vertical-align: top; }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar-main .navbar-nav {
+    display: block;
+    margin: 0; } }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .navbar-main .navbar-nav {
     display: block;
@@ -128,6 +137,19 @@
 
 .navbar-main .navbar-nav li:last-child {
   margin-right: 20px; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar-main .navbar-nav li {
+    height: 44px;
+    line-height: 44px;
+    padding: 0;
+    float: left;
+    width: 25%;
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.1); }
+  .navbar-main .navbar-nav li:last-child {
+    margin-right: 0;
+    border-right: none; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .navbar-main .navbar-nav li {
@@ -162,6 +184,19 @@
   color: #ffc600;
   font-weight: 500;
   font-stretch: normal; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar-main .navbar-nav li a {
+    font-size: 12px;
+    padding: 0;
+    display: block;
+    height: 44px;
+    line-height: 44px; }
+  .navbar-main .navbar-nav li a:before {
+    display: none; }
+  .navbar-main .navbar-nav li a:hover, .navbar-main .navbar-nav li a:focus, .navbar-main .navbar-nav li a:active {
+    background-color: #ffc600;
+    color: #000 !important; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .navbar-main .navbar-nav li a {
@@ -369,6 +404,12 @@
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  #contactModal {
+    width: 100%;
+    height: 100%;
+    background-color: transparent; } }
+
 @media (min-width: 768px) and (max-width: 991px) {
   #contactModal {
     width: 100%;
@@ -390,6 +431,12 @@
   -webkit-box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.5); }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  #contactModal.isOpen {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   #contactModal.isOpen {
@@ -524,7 +571,7 @@
   #contactModal .social ul {
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -568,6 +615,10 @@
 #contactModal .social a {
   font-size: 44px; }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  #contactModal .social a {
+    font-size: 66px; } }
+
 #contactModal .social a.facebook {
   color: #3b5998; }
 
@@ -586,6 +637,167 @@
 .page.tourdates {
   padding-top: 66px; }
 
+.page.tourdates .navbar-main {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+
+@media (min-width: 1200px) {
+  .page.tourdates.contactModalIsOpen .container-fluid {
+    -webkit-opacity: .1;
+    -moz-opacity: .1;
+    opacity: .1; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates.contactModalIsOpen .container-fluid {
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates.contactModalIsOpen .container-fluid {
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0; } }
+
+@media (max-width: 767px) {
+  .page.tourdates.contactModalIsOpen .container-fluid {
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0; } }
+
+@media (min-width: 1200px) {
+  .page.tourdates.contactModalIsOpen .navbar-main {
+    -webkit-opacity: .1;
+    -moz-opacity: .1;
+    opacity: .1; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates.contactModalIsOpen .navbar-main {
+    -moz-transform: translateY(44px);
+    -webkit-transform: translateY(44px);
+    -o-transform: translateY(44px);
+    -ms-transform: translateY(44px);
+    transform: translateY(44px); } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates.contactModalIsOpen .navbar-main {
+    -moz-transform: translateY(44px);
+    -webkit-transform: translateY(44px);
+    -o-transform: translateY(44px);
+    -ms-transform: translateY(44px);
+    transform: translateY(44px); } }
+
+@media (max-width: 767px) {
+  .page.tourdates.contactModalIsOpen .navbar-main {
+    -moz-transform: translateY(44px);
+    -webkit-transform: translateY(44px);
+    -o-transform: translateY(44px);
+    -ms-transform: translateY(44px);
+    transform: translateY(44px); } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates {
+    padding-top: 0; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates {
+    padding-top: 0; } }
+
+@media (max-width: 767px) {
+  .page.tourdates {
+    padding-top: 0; } }
+
+.page.tourdates .container-fluid {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates .container-fluid {
+    margin: 0;
+    padding: 0; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates .container-fluid {
+    margin: 0;
+    padding: 0; } }
+
+@media (max-width: 767px) {
+  .page.tourdates .container-fluid {
+    margin: 0;
+    padding: 0; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates .mobileOverflow {
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    padding-bottom: 44px; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates .mobileOverflow {
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    padding-bottom: 44px; } }
+
+@media (max-width: 767px) {
+  .page.tourdates .mobileOverflow {
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    padding-bottom: 44px; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates .mobileOverflow ul {
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    overflow: auto; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates .mobileOverflow ul {
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    overflow: auto; } }
+
+@media (max-width: 767px) {
+  .page.tourdates .mobileOverflow ul {
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    overflow: auto; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates .mobileOverflow .relativePos {
+    position: relative;
+    height: 100%;
+    overflow: hidden; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates .mobileOverflow .relativePos {
+    position: relative;
+    height: 100%;
+    overflow: hidden; } }
+
+@media (max-width: 767px) {
+  .page.tourdates .mobileOverflow .relativePos {
+    position: relative;
+    height: 100%;
+    overflow: hidden; } }
+
 .page.tourdates ul {
   list-style: none;
   padding: 0; }
@@ -603,18 +815,120 @@
   -o-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out; }
 
-.page.tourdates ul .restrict:hover {
-  background-color: #ffc600;
-  cursor: pointer;
-  padding-left: 20px; }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .restrict {
+    margin-left: 0;
+    height: auto;
+    line-height: inherit;
+    padding: 20px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 0;
+    border-radius: 0; } }
 
-.page.tourdates ul .restrict:hover .date, .page.tourdates ul .restrict:hover .location, .page.tourdates ul .restrict:hover .time {
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .restrict {
+    margin-left: 0;
+    height: auto;
+    line-height: inherit;
+    padding: 20px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 0;
+    border-radius: 0; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .restrict {
+    margin-left: 0;
+    height: auto;
+    line-height: inherit;
+    padding: 20px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 0;
+    border-radius: 0; } }
+
+@media (min-width: 1200px) {
+  .page.tourdates ul .restrict:active {
+    background-color: #ffc600;
+    cursor: pointer;
+    padding-left: 20px; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .restrict:active {
+    background-color: #ffc600; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .restrict:active {
+    background-color: #ffc600; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .restrict:active {
+    background-color: #ffc600; } }
+
+.page.tourdates ul .restrict:active .date, .page.tourdates ul .restrict:active .location, .page.tourdates ul .restrict:active .time {
   color: #000; }
 
-.page.tourdates ul .restrict:hover .button {
-  display: inline-block; }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .restrict:active .venue {
+    color: #000; } }
 
-.page.tourdates ul .restrict:hover .button a {
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .restrict:active .venue {
+    color: #000; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .restrict:active .venue {
+    color: #000; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .restrict:active .date {
+    color: rgba(0, 0, 0, 0.5); } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .restrict:active .date {
+    color: rgba(0, 0, 0, 0.5); } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .restrict:active .date {
+    color: rgba(0, 0, 0, 0.5); } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .restrict:active .city {
+    color: rgba(0, 0, 0, 0.5); } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .restrict:active .city {
+    color: rgba(0, 0, 0, 0.5); } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .restrict:active .city {
+    color: rgba(0, 0, 0, 0.5); } }
+
+@media (min-width: 1200px) {
+  .page.tourdates ul .restrict:hover {
+    background-color: #ffc600;
+    cursor: pointer;
+    padding-left: 20px;
+    text-decoration: none; } }
+
+@media (min-width: 1200px) {
+  .page.tourdates ul .restrict:hover .venue {
+    color: #000; } }
+
+@media (min-width: 1200px) {
+  .page.tourdates ul .restrict:hover .date {
+    color: #000; } }
+
+@media (min-width: 1200px) {
+  .page.tourdates ul .restrict:hover .city {
+    color: rgba(0, 0, 0, 0.5); } }
+
+@media (min-width: 1200px) {
+  .page.tourdates ul .restrict:hover .time {
+    color: #000; } }
+
+.page.tourdates ul .restrict:hover button {
   color: #000; }
 
 .page.tourdates ul .tourdate {
@@ -624,12 +938,63 @@
 .page.tourdates ul .tourdate:first-child {
   margin-top: 44px; }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .tourdate:first-child {
+    margin: 0; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .tourdate:first-child {
+    margin: 0; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .tourdate:first-child {
+    margin: 0; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .tourdate {
+    margin: 0; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .tourdate {
+    margin: 0; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .tourdate {
+    margin: 0; } }
+
 .page.tourdates ul .date, .page.tourdates ul .location, .page.tourdates ul .time, .page.tourdates ul .button {
   color: #aaa;
   display: inline-block; }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .date, .page.tourdates ul .location, .page.tourdates ul .time, .page.tourdates ul .button {
+    display: block;
+    width: 100%; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .date, .page.tourdates ul .location, .page.tourdates ul .time, .page.tourdates ul .button {
+    display: block;
+    width: 100%; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .date, .page.tourdates ul .location, .page.tourdates ul .time, .page.tourdates ul .button {
+    display: block;
+    width: 100%; } }
+
 .page.tourdates ul .time {
   width: 90px; }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .date {
+    font-size: 14px; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .date {
+    font-size: 10px; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .date {
+    font-size: 10px; } }
 
 .page.tourdates ul .date:after {
   content: "";
@@ -643,6 +1008,18 @@
   position: relative;
   bottom: 4px; }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .date:after {
+    display: none; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .date:after {
+    display: none; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .date:after {
+    display: none; } }
+
 .page.tourdates ul .day {
   display: inline-block;
   min-width: 75px; }
@@ -650,14 +1027,80 @@
 .page.tourdates ul .location {
   min-width: 350px; }
 
-.page.tourdates ul .location .venue {
-  color: #444;
-  margin-left: 10px; }
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .location {
+    min-width: inherit;
+    color: #fff; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .location {
+    min-width: inherit;
+    color: #fff; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .location {
+    min-width: inherit;
+    color: #fff; } }
+
+@media (min-width: 1200px) {
+  .page.tourdates ul .location .venue {
+    color: #aaa; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .location .venue {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    color: #fff;
+    font-size: 22px;
+    text-transform: uppercase; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .location .venue {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    color: #fff; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .location .venue {
+    mdisplay: block;
+    width: 100%;
+    margin-left: 0;
+    color: #fff; } }
+
+@media (min-width: 1200px) {
+  .page.tourdates ul .location .city {
+    color: #444; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .location .city {
+    color: #888; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .location .city {
+    color: #888; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .location .city {
+    color: #888; } }
 
 .page.tourdates ul .location .city, .page.tourdates ul .location .venue {
   display: inline-block; }
 
-.page.tourdates ul .button a {
+@media (min-width: 992px) and (max-width: 1199px) {
+  .page.tourdates ul .button {
+    display: none; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page.tourdates ul .button {
+    display: none; } }
+
+@media (max-width: 767px) {
+  .page.tourdates ul .button {
+    display: none; } }
+
+.page.tourdates ul .button button {
   font-size: 12px;
   height: 44px;
   text-transform: uppercase;
@@ -668,15 +1111,17 @@
   display: block;
   position: relative;
   bottom: 2px;
+  border: none;
   -webkit-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
+  background-color: transparent;
   -webkit-transition: all .1s ease-in-out;
   -moz-transition: all .1s ease-in-out;
   -ms-transition: all .1s ease-in-out;
   -o-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out; }
 
-.page.tourdates ul .button a:hover {
+.page.tourdates ul .button button:hover {
   text-decoration: none;
   background-color: #e1ac00; }
 
