@@ -9,6 +9,24 @@
     display: inline-block;
     margin-left: 10px;
 
+    @include respond-to(md){
+        width: 100%;
+        margin-left: 0;
+        top: 13px;
+    }
+
+    @include respond-to(sm){
+        width: 100%;
+        margin-left: 0;
+        top: 13px;
+    }
+
+    @include respond-to(xs){
+        width: 100%;
+        margin-left: 0;
+        top: 13px;
+    }
+
     #bar-outer{
         position: absolute;
         width: 100%;

@@ -18,6 +18,12 @@
                 opacity: .1;
             }
 
+            @include respond-to(md){
+                -webkit-opacity: 0;
+                -moz-opacity: 0;
+                opacity: 0;
+            }
+
             @include respond-to(sm){
                 -webkit-opacity: 0;
                 -moz-opacity: 0;
@@ -37,6 +43,18 @@
                 -webkit-opacity: .1;
                 -moz-opacity: .1;
                 opacity: .1;
+            }
+
+        }
+
+        @include respond-to(md){
+
+            .navbar-main{
+                -moz-transform: translateY(44px);
+                -webkit-transform: translateY(44px);
+                -o-transform: translateY(44px);
+                -ms-transform: translateY(44px);
+                transform: translateY(44px);
             }
 
         }
