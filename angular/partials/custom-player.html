@@ -11,7 +11,8 @@
 
             <div class="visible-xs sm-current-title">
                 <span ng-if="audio.currentTrackArtist">{{ audio.currentTrackArtist }} - {{ audio.currentTrackTitle }}</span>
-                <span ng-if="!audio.currentTrackArtist">No track is playing</span>
+                <span ng-if="!audio.currentTrackArtist && data.length > 0">No track is playing</span>
+                <span ng-if="!data.length">No music currently available</span>
             </div>
 
             <div class="cta">
@@ -53,7 +54,7 @@
 
                 </li>
 
-                <li ng-if="!data" class="item" style="color: #fff;">
+                <li ng-if="!data.length" class="item" style="color: #fff;">
                     No music currently available
                 </li>
 

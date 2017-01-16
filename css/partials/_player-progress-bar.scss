@@ -28,14 +28,6 @@
         width: 80%;
         margin-left: 0;
         display: none;
-
-        @include respond-to(v-sm){
-            display: block;
-            #position{
-                display: none;
-            }
-
-        }
     }
 
     #bar-outer{

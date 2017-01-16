@@ -1625,12 +1625,6 @@
     margin-left: 0;
     display: none; } }
 
-@media (max-width: 767px) and (min-height: 500px) {
-  #progressBar {
-    display: block; }
-  #progressBar #position {
-    display: none; } }
-
 #progressBar #bar-outer {
   position: absolute;
   width: 100%;
