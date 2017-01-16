@@ -9,6 +9,11 @@
 
         <div id="actions" class="pull-left">
 
+            <div class="visible-xs sm-current-title">
+                <span ng-if="audio.currentTrackArtist">{{ audio.currentTrackArtist }} - {{ audio.currentTrackTitle }}</span>
+                <span ng-if="!audio.currentTrackArtist">No track is playing</span>
+            </div>
+
             <div class="cta">
 
                 <div class="buttons">
@@ -46,6 +51,10 @@
                         <input type="hidden" name="url" value="{{ music.url }}">
                     </a>
 
+                </li>
+
+                <li ng-if="!data" class="item" style="color: #fff;">
+                    No music currently available
                 </li>
 
             </ul>

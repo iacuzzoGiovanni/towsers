@@ -4,7 +4,6 @@ app.controller('Contact', [
     $scope.myDirectory = myDirectory.directory;
     Contact.get().then(function(d) {
       $scope.data = d;
-      console.log($scope.data.page);
     });
     $scope.$on('$viewContentLoaded', function() {
       $timeout((function() {

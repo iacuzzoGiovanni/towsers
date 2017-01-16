@@ -8,7 +8,6 @@ app.controller 'Contact', [
     
     Contact.get().then (d) ->
       $scope.data = d
-      console.log $scope.data.page
       return
     
     $scope.$on '$viewContentLoaded', ->

@@ -108,15 +108,19 @@
             @include respond-to(md){
                 margin-right: 0;
                 width: 100%;
-                -webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, .15);
-                box-shadow: 0 25px 25px 0 rgba(0, 0, 0, .15);
+                padding-top: 40px;
+                text-align: center;
+                -webkit-box-shadow: none;
+                box-shadow: none;
             }
 
             @include respond-to(sm){
                 margin-right: 0;
                 width: 100%;
-                -webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, .15);
-                box-shadow: 0 25px 25px 0 rgba(0, 0, 0, .15);
+                padding-top: 40px;
+                text-align: center;
+                -webkit-box-shadow: none;
+                box-shadow: none;
             }
 
             @include respond-to(xs){
@@ -124,22 +128,34 @@
                 width: 100%;
                 -webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, .15);
                 box-shadow: 0 25px 25px 0 rgba(0, 0, 0, .15);
+
+                @include respond-to(lnd){
+                    padding-top: 20px;
+                    text-align: center;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                }
             }
 
             img{
                 @include respond-to(md){
-                    width: 100%;
-                    height: 100%;
+                    width: 250px;
+                    height: 250px;
                 }
 
                 @include respond-to(sm){
-                    width: 100%;
-                    height: 100%;
+                    width: 50%;
+                    height: 50%;
                 }
 
                 @include respond-to(xs){
                     width: 100%;
                     height: 100%;
+
+                    @include respond-to(lnd){
+                        width: 125px;
+                        height: 125px;
+                    }
                 }
             }
         }
@@ -185,18 +201,19 @@
 
             @include respond-to(xs){
                 width: 100%;
-                height: 66px;
-                position: absolute;
-                bottom: 44px;
+                height: 100%;
                 margin-bottom: 0;
                 border-bottom: none;
-                border-top: 1px solid rgba(255,255,255, .1);
-                padding-top: 10px;
-                padding-bottom: 10px;
-                -webkit-box-shadow: 0 -25px 25px 0 rgba(0,0,0, 0.15);
-                box-shadow: 0 -25px 25px 0 rgba(0,0,0, 0.15);
-                padding-left: 150px;
-                padding-right: 20px;
+                padding: 0;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-align-items: center;
+                -ms-flex-align: center;
+                align-items: center;
             }
 
             .current{
@@ -238,9 +255,7 @@
             }
 
             @include respond-to(xs){
-                position: absolute;
-                left: 0;
-                top: 10px;
+                padding: 0;
             }
         }
 
@@ -251,7 +266,7 @@
                 height: 100%;
                 padding-bottom: 110px;
                 position: absolute;
-                padding-top: 100%;
+                padding-top: 310px;
             }
 
             @include respond-to(sm){
@@ -259,15 +274,19 @@
                 height: 100%;
                 padding-bottom: 110px;
                 position: absolute;
-                padding-top: 100%;
+                padding-top: 470px;
             }
 
             @include respond-to(xs){
                 width: 100%;
                 height: 100%;
-                padding-bottom: 110px;
+                padding-bottom: 44px;
                 position: absolute;
                 padding-top: 100%;
+
+                @include respond-to(lnd){
+                    padding-top: 160px;
+                }
             }
 
             button{
@@ -280,6 +299,13 @@
                 line-height: 44px;
                 text-decoration: none;
                 outline-style: none;
+
+                @include respond-to(xs){
+                    width: 66px;
+                    height: 66px;
+                    line-height: 66px;
+                    font-size: 20px;
+                }
             }
 
             .play{
@@ -291,6 +317,33 @@
                     bottom: 1px;
                     left: 1px;
                     top: inherit;
+                }
+            }
+
+            .sm-current-title{
+                height: 0;
+
+                span{
+                    display: block;
+                    height: 44px;
+                    line-height: 44px;
+                    background-color: rgba(255,255,255, .9);
+                    color: #000;
+                    position: relative;
+                    bottom: 44px;
+                    padding: 0 20px;
+                    text-align: center;
+
+                    @include respond-to(lnd){
+                        display: block;
+                        height: auto;
+                        line-height: inherit;
+                        background-color: transparent;
+                        padding: 0;
+                        bottom: 8px;
+                        color: #fff;
+                    }
+
                 }
             }
 
@@ -316,10 +369,7 @@
             }
 
             @include respond-to(xs){
-                width: 100%;
-                margin: 0;
-                height: 100%;
-                overflow: auto;
+                display: none;
             }
 
             a{

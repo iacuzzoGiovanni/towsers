@@ -50,7 +50,6 @@
         while (cur && !contact.collectionHas(all, cur)) {
           cur = cur.parentNode;
         }
-        console.log(cur);
         return cur;
       };
     }

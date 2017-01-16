@@ -29,6 +29,15 @@
   @else if $media == lg {
     @media(min-width:1200px){@content;}
   }
+  @else if $media == v-sm {
+    @media(min-height:500px){@content;}
+  }
+  @else if $media == lnd {
+    @media(orientation: landscape){@content;}
+  }
+  @else if $media == por {
+    @media(orientation: portrait){@content;}
+  }
 }
 
 @mixin border-radius($radius){

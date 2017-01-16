@@ -407,6 +407,7 @@
   position: fixed;
   width: 600px;
   top: 0;
+  opacity: 0;
   -moz-transform: translateY(-100%);
   -webkit-transform: translateY(-100%);
   -o-transform: translateY(-100%);
@@ -444,7 +445,8 @@
   transform: translateY(0);
   -webkit-box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.5); }
+  box-shadow: 0px 20px 40px 0px rgba(0, 0, 0, 0.5);
+  opacity: 1; }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   #contactModal.isOpen {
@@ -469,7 +471,8 @@
   -webkit-transform: translateY(-100%);
   -o-transform: translateY(-100%);
   -ms-transform: translateY(-100%);
-  transform: translateY(-100%); }
+  transform: translateY(-100%);
+  opacity: 0; }
 
 #contactModal h1 {
   font-family: 'Oswald', sans-serif;
@@ -529,6 +532,10 @@
 #contactModal .card {
   margin-bottom: 40px; }
 
+@media (max-width: 767px) and (orientation: landscape) {
+  #contactModal .card {
+    margin-bottom: 20px; } }
+
 #contactModal .card.last {
   margin-bottom: 0; }
 
@@ -566,6 +573,10 @@
   #contactModal .card a:hover, #contactModal .card a:active, #contactModal .card a:focus {
     color: #ffc600;
     text-decoration: none; } }
+
+@media (max-width: 767px) and (orientation: landscape) {
+  #contactModal .card a {
+    font-size: 16px; } }
 
 #contactModal .social h2 {
   font-family: 'Oswald', sans-serif;
@@ -608,8 +619,16 @@
     margin-bottom: 20px;
     position: fixed;
     bottom: 0;
-    left: 0;
     padding: 0 20px; } }
+
+@media (max-width: 767px) and (orientation: portrait) {
+  #contactModal .social ul {
+    left: 0; } }
+
+@media (max-width: 767px) and (orientation: landscape) {
+  #contactModal .social ul {
+    width: 100px;
+    right: 0; } }
 
 #contactModal .social li {
   float: left; }
@@ -626,12 +645,20 @@
   #contactModal .social li {
     width: 25%; } }
 
+@media (max-width: 767px) and (orientation: landscape) {
+  #contactModal .social li {
+    width: 100%; } }
+
 #contactModal .social a {
   font-size: 44px; }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   #contactModal .social a {
     font-size: 66px; } }
+
+@media (max-width: 767px) and (orientation: landscape) {
+  #contactModal .social a {
+    font-size: 32px; } }
 
 #contactModal .social a.facebook {
   color: #3b5998; }
@@ -1224,15 +1251,19 @@
   .page.music #player .cover {
     margin-right: 0;
     width: 100%;
-    -webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.15);
-    box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.15); } }
+    padding-top: 40px;
+    text-align: center;
+    -webkit-box-shadow: none;
+    box-shadow: none; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .page.music #player .cover {
     margin-right: 0;
     width: 100%;
-    -webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.15);
-    box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.15); } }
+    padding-top: 40px;
+    text-align: center;
+    -webkit-box-shadow: none;
+    box-shadow: none; } }
 
 @media (max-width: 767px) {
   .page.music #player .cover {
@@ -1240,21 +1271,33 @@
     width: 100%;
     -webkit-box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 25px 25px 0 rgba(0, 0, 0, 0.15); } }
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .page.music #player .cover {
+    padding-top: 20px;
+    text-align: center;
+    -webkit-box-shadow: none;
+    box-shadow: none; } }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .page.music #player .cover img {
-    width: 100%;
-    height: 100%; } }
+    width: 250px;
+    height: 250px; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .page.music #player .cover img {
-    width: 100%;
-    height: 100%; } }
+    width: 50%;
+    height: 50%; } }
 
 @media (max-width: 767px) {
   .page.music #player .cover img {
     width: 100%;
     height: 100%; } }
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .page.music #player .cover img {
+    width: 125px;
+    height: 125px; } }
 
 .page.music #player .cta {
   width: 400px;
@@ -1298,18 +1341,19 @@
 @media (max-width: 767px) {
   .page.music #player .cta {
     width: 100%;
-    height: 66px;
-    position: absolute;
-    bottom: 44px;
+    height: 100%;
     margin-bottom: 0;
     border-bottom: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    -webkit-box-shadow: 0 -25px 25px 0 rgba(0, 0, 0, 0.15);
-    box-shadow: 0 -25px 25px 0 rgba(0, 0, 0, 0.15);
-    padding-left: 150px;
-    padding-right: 20px; } }
+    padding: 0;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; } }
 
 .page.music #player .cta .current {
   color: #fff;
@@ -1349,9 +1393,7 @@
 
 @media (max-width: 767px) {
   .page.music #player .buttons {
-    position: absolute;
-    left: 0;
-    top: 10px; } }
+    padding: 0; } }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .page.music #player #actions {
@@ -1359,7 +1401,7 @@
     height: 100%;
     padding-bottom: 110px;
     position: absolute;
-    padding-top: 100%; } }
+    padding-top: 310px; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .page.music #player #actions {
@@ -1367,15 +1409,19 @@
     height: 100%;
     padding-bottom: 110px;
     position: absolute;
-    padding-top: 100%; } }
+    padding-top: 470px; } }
 
 @media (max-width: 767px) {
   .page.music #player #actions {
     width: 100%;
     height: 100%;
-    padding-bottom: 110px;
+    padding-bottom: 44px;
     position: absolute;
     padding-top: 100%; } }
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .page.music #player #actions {
+    padding-top: 160px; } }
 
 .page.music #player #actions button {
   background-color: transparent;
@@ -1388,6 +1434,13 @@
   text-decoration: none;
   outline-style: none; }
 
+@media (max-width: 767px) {
+  .page.music #player #actions button {
+    width: 66px;
+    height: 66px;
+    line-height: 66px;
+    font-size: 20px; } }
+
 .page.music #player #actions .play {
   border: 1px solid #ffc600;
   -webkit-border-radius: 44px;
@@ -1398,6 +1451,30 @@
   bottom: 1px;
   left: 1px;
   top: inherit; }
+
+.page.music #player #actions .sm-current-title {
+  height: 0; }
+
+.page.music #player #actions .sm-current-title span {
+  display: block;
+  height: 44px;
+  line-height: 44px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  position: relative;
+  bottom: 44px;
+  padding: 0 20px;
+  text-align: center; }
+
+@media (orientation: landscape) {
+  .page.music #player #actions .sm-current-title span {
+    display: block;
+    height: auto;
+    line-height: inherit;
+    background-color: transparent;
+    padding: 0;
+    bottom: 8px;
+    color: #fff; } }
 
 .page.music #player .playlist {
   width: 400px;
@@ -1420,10 +1497,7 @@
 
 @media (max-width: 767px) {
   .page.music #player .playlist {
-    width: 100%;
-    margin: 0;
-    height: 100%;
-    overflow: auto; } }
+    display: none; } }
 
 .page.music #player .playlist a {
   display: block;
@@ -1544,9 +1618,18 @@
 
 @media (max-width: 767px) {
   #progressBar {
-    width: 100%;
+    position: absolute;
+    top: calc(100% - 46px);
+    left: 10%;
+    width: 80%;
     margin-left: 0;
-    top: 13px; } }
+    display: none; } }
+
+@media (max-width: 767px) and (min-height: 500px) {
+  #progressBar {
+    display: block; }
+  #progressBar #position {
+    display: none; } }
 
 #progressBar #bar-outer {
   position: absolute;

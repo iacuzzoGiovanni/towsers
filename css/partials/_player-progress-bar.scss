@@ -22,9 +22,20 @@
     }
 
     @include respond-to(xs){
-        width: 100%;
+        position: absolute;
+        top: calc(100% - 46px);
+        left: 10%;
+        width: 80%;
         margin-left: 0;
-        top: 13px;
+        display: none;
+
+        @include respond-to(v-sm){
+            display: block;
+            #position{
+                display: none;
+            }
+
+        }
     }
 
     #bar-outer{

@@ -47,10 +47,8 @@ do ->
           #keep going up until you find a match
           cur = cur.parentNode
           #go up
-        console.log cur
         cur
         #will return null if not found
-
 
       return
   ]

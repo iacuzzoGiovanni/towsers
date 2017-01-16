@@ -4,7 +4,6 @@ app.controller('Tourdates', [
     $scope.myDirectory = myDirectory.directory;
     Tourdates.get().then(function(d) {
       $scope.data = d;
-      console.log($scope.data);
     });
     $scope.$on('$viewContentLoaded', function() {
       $timeout((function() {
